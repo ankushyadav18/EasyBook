@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { type } from "./../node_modules/@types/whatwg-url/index.d";
 
 const userSchema = new mongoose.Schema({
   _id: { type: String, required: true },
