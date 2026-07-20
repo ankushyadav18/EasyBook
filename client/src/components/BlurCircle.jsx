@@ -3,12 +3,22 @@ const BlurCircle = ({
   left = "auto",
   right = "auto",
   bottom = "auto",
+  size = "18rem",
+  opacity = "0.25",
 }) => {
   return (
     <div
-      className="absolute -z-50 h-58 w-58 aspect-square rounded-full bg-primary/30 blur-3xl pointer-events-none"
-      style={{ top, left, right, bottom }}
-    ></div>
+      className="absolute -z-10 rounded-full bg-primary blur-[120px] pointer-events-none"
+      style={{
+        top,
+        left,
+        right,
+        bottom,
+        width: size,
+        height: size,
+        opacity,
+      }}
+    />
   );
 };
 

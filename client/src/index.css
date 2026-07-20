@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Outfit:wght@100..900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-primary: #f84565;
@@ -14,7 +14,7 @@
 
 body {
   color: white;
-  background-color: #09090b;
+  background: #080808;
 }
 
 .no-scrollbar {
@@ -26,6 +26,38 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-::-webkit-calender-picker-indicator{
-    filter: invert(1);
+::-webkit-calender-picker-indicator {
+  filter: invert(1);
+}
+
+.section-container {
+  @apply relative px-4 md:px-16 lg:px-24 xl:px-40 py-3 md:py-8 overflow-visible;
+}
+
+.section-header {
+  @apply flex items-center justify-between mb-2;
+}
+
+.movie-carousel {
+  @apply flex gap-6 py-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth md:overflow-y-visible;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.movie-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Premium Scrollbar */
+
+/* Hide scrollbar but keep scrolling */
+
+.custom-scroll {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+}
+
+.custom-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
 }

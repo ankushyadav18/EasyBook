@@ -1,72 +1,153 @@
 import React, { useEffect, useState } from "react";
-import { dummyShowsData } from "../../assets/assets";
 import Loading from "../../components/Loading";
 import Title from "../../components/admin/Title";
-import { dateFormat } from "../../lib/dateFormat";
+import api from "../../lib/api";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ListShows = () => {
   const currency = import.meta.env.VITE_CURRENCY;
+
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const navigate = useNavigate();
+
   const getAllShows = async () => {
     try {
-      setShows([
-        {
-          movie: dummyShowsData[0],
-          showDateTime: "2005-06-30T02:30:00.000Z",
-          showPrice: 59,
-          occupiedSeats: {
-            A1: "user_1",
-            B1: "user_2",
-            C1: "user_3",
-          },
-        },
-      ]);
-      setLoading(false);
+      setLoading(true);
+
+      const { data } = await api.get("/show");
+
+      console.log("SHOW DATA:", data.shows);
+
+      if (data.success) {
+        setShows(data.shows);
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
       console.error(error);
+      toast.error("Failed to load shows");
+    } finally {
+      setLoading(false);
     }
   };
+  const deleteShow = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this show?",
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const { data } = await api.delete(`/show/${id}`);
+
+      if (data.success) {
+        toast.success(data.message);
+
+        setShows((prev) => prev.filter((show) => show._id !== id));
+      }
+    } catch (error) {
+      console.log(error);
+
+      toast.error(error.response?.data?.message || "Failed to delete show");
+    }
+  };
+
   useEffect(() => {
     getAllShows();
   }, []);
-  return !loading ? (
-    <>
-      <Title text1="List" text2="Shows" />
-      <div className="max-w-4xl mt-6 overflow-x-auto">
-        <table
-          className="w-full border-collapse rounded-md overflow-hidden
 
-text-nowrap"
-        >
+  if (loading) {
+    return <Loading />;
+  }
+
+  return (
+    <>
+      <div className="mb-8">
+        <Title text1="List" text2="Shows" />
+
+        <p className="text-gray-400 mt-2">
+          View, edit and manage all scheduled movie shows.
+        </p>
+      </div>
+
+      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 mt-8">
+        <table className="w-full border-separate border-spacing-y-3">
           <thead>
-            <tr className="bg-primary/20 text-left text-white">
-              <th className="p-2 font-medium p1-5">Movie Name</th>
-              <th className="p-2 font-medium">Show Time</th>
-              <th className="p-2 font-medium">Total Bookings</th>
-              <th className="p-2 font-medium">Earnings</th>
+            <tr className="bg-primary/20 text-gray-200">
+              <th className="text-left px-6 py-4 font-semibold rounded-l-xl">
+                Movie
+              </th>
+
+              <th className="text-left px-6 py-4 font-semibold">Show Time</th>
+
+              <th className="text-left px-6 py-4 font-semibold">Bookings</th>
+
+              <th className="text-left px-6 py-4 font-semibold">Revenue</th>
+
+              <th className="text-center px-6 py-4 font-semibold rounded-r-xl">
+                Actions
+              </th>
             </tr>
           </thead>
-          <tbody className="text-sm font-light">
-            {shows.map((show, index) => (
+
+          <tbody className="text-sm">
+            {shows.map((show) => (
               <tr
-                key={index}
-                className="border-b border-primary/10
-
-bg-primary/5 even:bg-primary/10"
+                key={show._id}
+                className="bg-black/20 hover:bg-primary/10 transition-all duration-300"
               >
-                <td className="p-2 min-w-45 p1-5">{show.movie.title}</td>
+                <td className="px-6 py-4 rounded-l-xl">
+                  <div>
+                    <p className="font-semibold text-white">
+                      {show.movie?.title || "Movie Deleted"}
+                    </p>
 
-                <td className="p-2">{dateFormat(show.showDateTime)}</td>
-
-                <td className="p-2">
-                  {Object.keys(show.occupiedSeats).length}
+                    <p className="text-xs text-gray-400">
+                      {show.movie ? "Active Movie" : "Removed"}
+                    </p>
+                  </div>
                 </td>
 
-                <td className="p-2">
-                  {currency}{" "}
-                  {Object.keys(show.occupiedSeats).length + show.showPrice}
+                <td className="px-6 py-4">
+                  <div>
+                    <p className="font-medium text-white">{show.showTime}</p>
+
+                    <p className="text-xs text-gray-400">
+                      {new Date(show.showDate).toLocaleDateString()}
+                    </p>
+                  </div>
+                </td>
+
+                <td className="px-6 py-4">
+                  <span className="inline-flex items-center justify-center min-w-10 px-3 py-1 bg-blue-500/15 text-blue-400 border border-blue-500/20 rounded-full text-sm font-semibold">
+                    {show.bookedSeats?.length || 0}
+                  </span>
+                </td>
+
+                <td className="px-6 py-4">
+                  <span className="inline-flex items-center px-3 py-1 bg-green-500/15 text-green-400 border border-green-500/20 rounded-full font-semibold">
+                    {currency}{" "}
+                    {(show.bookedSeats?.length || 0) * show.ticketPrice}
+                  </span>
+                </td>
+
+                <td className="px-6 py-4 rounded-r-xl text-center">
+                  <button
+                    onClick={() => navigate(`/admin/edit-show/${show._id}`)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-medium transition cursor-pointer"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() => deleteShow(show._id)}
+                    className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-xl font-medium transition cursor-pointer ml-2"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -74,8 +155,6 @@ bg-primary/5 even:bg-primary/10"
         </table>
       </div>
     </>
-  ) : (
-    <Loading />
   );
 };
 

@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Title from "../../components/admin/Title";
-import { CheckIcon, StarIcon, XIcon } from "lucide-react";
-import { dummyShowsData } from "../../assets/assets";
+import {
+  CheckIcon,
+  StarIcon,
+  XIcon,
+  Building2,
+  CalendarClock,
+} from "lucide-react";
 import { Kconverter } from "../../lib/kConverter";
+import toast from "react-hot-toast";
+import api from "../../lib/api";
 
 const AddShows = () => {
   const currency = import.meta.env.VITE_CURRENCY;
@@ -13,10 +21,22 @@ const AddShows = () => {
   const [dateTimeSelection, setDateTimeSelection] = useState([]);
   const [dateTimeInput, setDateTimeInput] = useState("");
   const [showPrice, setShowPrice] = useState("");
+  const [theatreName, setTheatreName] = useState("");
+  const [screen, setScreen] = useState("");
+  const navigate = useNavigate();
 
   // Fetch dummy movies
   const fetchNowPlayingMovies = async () => {
-    setNowPlayingMovies(dummyShowsData);
+    try {
+      const { data } = await api.get("/movie/now-playing");
+
+      if (data.success) {
+        setNowPlayingMovies(data.movies);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to load movies");
+    }
   };
 
   useEffect(() => {
@@ -35,117 +55,267 @@ const AddShows = () => {
     setDateTimeSelection((prev) => prev.filter((t) => t !== timeToRemove));
   };
 
-  return nowPlayingMovies.length > 0 ? (
-    <>
-      <Title text1="Add" text2="Shows" />
+  const handleAddShow = async () => {
+    if (!selectedMovie) {
+      return toast.error("Please select a movie");
+    }
 
-      <p className="mt-10 text-lg font-medium text-white">Now Playing Movies</p>
+    if (!theatreName || !screen) {
+      return toast.error("Please enter theatre and screen");
+    }
+
+    if (!showPrice) {
+      return toast.error("Please enter show price");
+    }
+
+    if (dateTimeSelection.length === 0) {
+      return toast.error("Please add at least one show time");
+    }
+
+    try {
+      for (const dateTime of dateTimeSelection) {
+        const date = new Date(dateTime);
+
+        await api.post("/show/add", {
+          movie: selectedMovie,
+          theatreName,
+          screen,
+          showDate: date,
+          showTime: date.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          }),
+          ticketPrice: Number(showPrice),
+        });
+      }
+
+      toast.success("Show(s) added successfully");
+
+      setSelectedMovie(null);
+      setDateTimeSelection([]);
+      setDateTimeInput("");
+      setShowPrice("");
+      setTheatreName("");
+      setScreen("");
+
+      navigate("/admin/list-shows");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to add show");
+    }
+  };
+
+  return (
+    <>
+      <div className="mb-8">
+        <Title text1="Add" text2="Shows" />
+
+        <p className="text-gray-400 mt-2">
+          Schedule movie shows and manage theatre timings.
+        </p>
+      </div>
 
       {/* Movies List */}
-      <div className="pb-4">
-        <div className="flex flex-wrap gap-4 mt-4">
-          {nowPlayingMovies.map((movie) => (
-            <div
-              key={movie.id}
-              className={`relative w-40 cursor-pointer transition duration-300 hover:-translate-y-1 ${
-                selectedMovie === movie.id ? "ring-2 ring-primary rounded-lg" : ""
-              }`}
-              onClick={() => setSelectedMovie(movie.id)}
-            >
-              <div className="relative rounded-lg overflow-hidden shadow-md">
-                <img
-                  src={movie.poster_path}
-                  alt={movie.title}
-                  className="w-full h-60 object-cover brightness-90"
-                />
-                <div className="text-sm flex items-center justify-between p-2 bg-black/70 absolute bottom-0 w-full">
-                  <p className="flex items-center gap-1 text-gray-300">
-                    <StarIcon className="w-4 h-4 text-primary fill-primary" />
-                    {movie.vote_average.toFixed(1)}
-                  </p>
-                  <p className="text-gray-400">{Kconverter(movie.vote_count)} votes</p>
-                </div>
-              </div>
+      <div className="bg-primary/10 border border-primary/20 rounded-xl p-6">
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold">Select Movie</h2>
 
-              {selectedMovie === movie.id && (
-                <div className="absolute top-2 right-2 bg-primary h-6 w-6 flex items-center justify-center rounded">
-                  <CheckIcon className="text-white w-4 h-4" strokeWidth={2.5} />
-                </div>
-              )}
-
-              <p className="font-medium truncate text-white mt-2">{movie.title}</p>
-              <p className="text-gray-400 text-sm">{movie.release_date}</p>
-            </div>
-          ))}
+          <p className="text-gray-400 text-sm mt-1">
+            Choose a movie that is currently playing.
+          </p>
         </div>
-      </div>
 
-      {/* Show Price */}
-      <div className="mt-8">
-        <label className="block text-sm font-medium mb-2 text-white">Show Price</label>
-        <div className="inline-flex items-center gap-2 border border-gray-600 px-3 py-2 rounded-md">
-          <p className="text-gray-400 text-sm">{currency}</p>
-          <input
-            min={0}
-            type="number"
-            value={showPrice}
-            onChange={(e) => setShowPrice(e.target.value)}
-            placeholder="Enter show price"
-            className="outline-none bg-transparent text-white"
-          />
-        </div>
-      </div>
-
-      {/* Date & Time Selector */}
-      <div className="mt-6">
-        <label className="block text-sm font-medium mb-2 text-white">
-          Select Date and Time
-        </label>
-
-        <div className="inline-flex gap-5 border border-gray-600 p-1 pl-3 rounded-lg">
-          <input
-            type="datetime-local"
-            value={dateTimeInput}
-            onChange={(e) => setDateTimeInput(e.target.value)}
-            className="outline-none rounded-md bg-transparent text-white"
-          />
-          <button
-            onClick={handleDateTimeAdd}
-            className="bg-primary/80 text-white px-3 py-2 text-sm rounded-lg hover:bg-primary cursor-pointer"
-          >
-            Add Time
-          </button>
-        </div>
-      </div>
-
-      {/* Selected Times */}
-      {dateTimeSelection.length > 0 && (
-        <div className="mt-6 text-white">
-          <h2 className="mb-2 font-semibold text-lg">Selected Times</h2>
-          <div className="flex flex-wrap gap-2">
-            {dateTimeSelection.map((time) => (
+        {/* movie cards here */}
+        <div className="pb-4">
+          <div className="flex flex-wrap justify-center gap-6 mt-4">
+            {nowPlayingMovies.map((movie) => (
               <div
-                key={time}
-                className="border border-primary px-2 py-1 flex items-center rounded"
+                key={movie._id}
+                className={`group relative w-44 bg-primary/10 border rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ${
+                  selectedMovie === movie._id
+                    ? "border-primary ring-2 ring-primary scale-105 shadow-lg shadow-primary/20"
+                    : "border-primary/20 hover:border-primary/50 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10"
+                }`}
+                onClick={() =>
+                  setSelectedMovie(
+                    selectedMovie === movie._id ? null : movie._id,
+                  )
+                }
               >
-                <span>{time}</span>
-                <XIcon
-                  onClick={() => handleRemoveTime(time)}
-                  width={15}
-                  className="ml-2 text-red-500 hover:text-red-700 cursor-pointer"
-                />
+                <div className="relative rounded-lg overflow-hidden shadow-md">
+                  <img
+                    src={movie.poster_path}
+                    alt={movie.title}
+                    className="w-full h-64 object-cover transition duration-300 group-hover:scale-105"
+                  />
+                  <div className="text-sm flex items-center justify-between p-2 bg-black/70 absolute bottom-0 w-full">
+                    <p className="flex items-center gap-1 text-gray-300">
+                      <StarIcon className="w-4 h-4 text-primary fill-primary" />
+                      {movie.vote_average.toFixed(1)}
+                    </p>
+                    <p className="text-gray-400">
+                      {Kconverter(movie.vote_count)} votes
+                    </p>
+                  </div>
+                </div>
+
+                {selectedMovie === movie._id && (
+                  <div className="absolute top-2 right-2 bg-primary h-6 w-6 flex items-center justify-center rounded">
+                    <CheckIcon
+                      className="text-white w-4 h-4"
+                      strokeWidth={2.5}
+                    />
+                  </div>
+                )}
+
+                <div className="p-3">
+                  <h3 className="font-semibold text-white truncate">
+                    {movie.title}
+                  </h3>
+
+                  <p className="text-xs text-gray-400 mt-1">
+                    {movie.release_date}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
+          <div className="bg-primary/10 border border-primary/20 rounded-xl p-6 mt-8">
+            <div>
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-primary" />
+                Theatre Details
+              </h2>
 
-      <button className="bg-primary text-white px-8 py-2 mt-6 rounded hover:bg-primary/90 transition-all cursor-pointer">
+              <p className="text-sm text-gray-400">
+                Configure where the movie will be shown.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Theatre Name
+              </label>
+
+              <input
+                type="text"
+                value={theatreName}
+                onChange={(e) => setTheatreName(e.target.value)}
+                placeholder="PVR Noida"
+                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              />
+            </div>
+
+            <div className="mt-6">
+              <label className="block text-sm font-medium mb-2">Screen</label>
+
+              <input
+                type="text"
+                value={screen}
+                onChange={(e) => setScreen(e.target.value)}
+                placeholder="Screen 1"
+                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-primary/10 border border-primary/20 rounded-xl p-6 mt-8">
+          <div>
+            <h2 className="text-2xl font-bold flex items-center gap-2">
+              <CalendarClock className="w-5 h-5 text-primary" />
+              Show Schedule
+            </h2>
+
+            <p className="text-sm text-gray-400">
+              Choose one or multiple show timings.
+            </p>
+          </div>
+
+          {/* Show Price */}
+          <div className="mt-8">
+            <label className="block text-sm font-medium mb-2 text-white">
+              Show Price
+            </label>
+            <div className="flex items-center w-full bg-black/20 border border-primary/20 rounded-xl px-4">
+              <p className="text-gray-400 text-sm">{currency}</p>
+              <input
+                min={0}
+                type="number"
+                value={showPrice}
+                onChange={(e) => setShowPrice(e.target.value)}
+                placeholder="Enter show price"
+                className="flex-1 bg-transparent text-white py-3 outline-none"
+              />
+            </div>
+          </div>
+
+          {/* Date & Time Selector */}
+          <div className="mt-8">
+            <label className="block text-sm font-medium mb-3">
+              Select Date & Time
+            </label>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              <input
+                type="datetime-local"
+                value={dateTimeInput}
+                onChange={(e) => setDateTimeInput(e.target.value)}
+                className="flex-1 bg-black/20 border border-primary/20 rounded-xl p-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              />
+
+              <button
+                type="button"
+                onClick={handleDateTimeAdd}
+                className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-xl font-semibold transition cursor-pointer"
+              >
+                Add Time
+              </button>
+            </div>
+          </div>
+
+          {/* Selected Times */}
+          {dateTimeSelection.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-lg font-semibold mb-2">
+                Selected Show Times
+              </h2>
+
+              <p className="text-sm text-gray-400 mb-5">
+                Click the × icon to remove a scheduled show time.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                {dateTimeSelection.map((time) => (
+                  <div
+                    key={time}
+                    className="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-xl px-4 py-3"
+                  >
+                    <span className="text-sm text-white">{time}</span>
+
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveTime(time)}
+                      className="text-red-400 hover:text-red-500 transition cursor-pointer"
+                    >
+                      <XIcon size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <button
+        onClick={handleAddShow}
+        className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-semibold transition cursor-pointer mt-8 shadow-lg hover:shadow-primary/30"
+      >
         Add Show
       </button>
     </>
-  ) : (
-    <Loading />
   );
 };
 
