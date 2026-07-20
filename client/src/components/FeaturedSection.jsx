@@ -37,7 +37,7 @@ const FeaturedSection = ({ movies, loading, selectedGenre }) => {
 
         <button
           onClick={() => navigate("/movies")}
-          className="group flex items-center gap-2 px-3 md:px-5 py-1 md:py-2 rounded-full border border-white/10 bg-white/5 hover:bg-primary transition"
+          className="group flex items-center gap-2 px-3 md:px-5 py-1 md:py-2 rounded-full border border-white/10 bg-white/5 hover:bg-primary transition cursor-pointer"
         >
           View All
           <ArrowRight className="w-3 md:w-5 h-3 md:h-5 transition group-hover:translate-x-1" />

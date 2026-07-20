@@ -7,6 +7,7 @@ import api from "../lib/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { Eye, EyeOff, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import PageBackground from "../components/PageBackground";
 
 const SettingsPage = () => {
   const { user, updateUser } = useAuth();
@@ -253,6 +254,7 @@ const SettingsPage = () => {
 
   return (
     <div className="min-h-screen px-6 md:px-16 lg:px-40 pt-24 md:pt-32 pb-12 md:pb-20">
+      <PageBackground />
       {/* Header */}
       <div className="mb-10">
         <h1 className="flex items-center gap-2 text-xl md:text-2xl font-bold">

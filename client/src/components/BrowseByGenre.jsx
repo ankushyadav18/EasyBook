@@ -35,7 +35,7 @@ const BrowseByGenre = ({ selectedGenre, setSelectedGenre }) => {
           <button
             key={genre}
             onClick={() => setSelectedGenre(genre)}
-            className={`flex-shrink-0 px-7 py-3 rounded-full backdrop-blur-xl border transition-all duration-300 font-medium ${
+            className={`flex-shrink-0 px-7 py-3 rounded-full cursor-pointer backdrop-blur-xl border transition-all duration-300 font-medium ${
               selectedGenre === genre
                 ? "bg-primary text-white border-primary shadow-lg shadow-primary/40"
                 : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary hover:-translate-y-1"
