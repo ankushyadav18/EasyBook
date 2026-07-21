@@ -1,8 +1,7 @@
-import { assets } from "../assets/assets";
+import logo from "../assets/logo.png";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
-import BlurCircle from "./BlurCircle";
 
 const Footer = () => {
   return (
@@ -12,7 +11,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start md:flex-row md:gap-8 md:max-w-md">
             {/* Responsive logo */}
             <img
-              src={assets.logo}
+              src={logo}
               alt="EasyBook Logo"
               className="w-24 sm:w-40 md:w-44 lg:w-52 h-auto object-contain flex-shrink-0 mx-auto md:mx-0"
             />

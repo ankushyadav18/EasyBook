@@ -23,6 +23,7 @@ const AddShows = () => {
   const [showPrice, setShowPrice] = useState("");
   const [theatreName, setTheatreName] = useState("");
   const [screen, setScreen] = useState("");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   // Fetch dummy movies
@@ -38,6 +39,9 @@ const AddShows = () => {
       toast.error("Failed to load movies");
     }
   };
+  const filteredMovies = nowPlayingMovies.filter((movie) =>
+    movie.title.toLowerCase().includes(search.toLowerCase()),
+  );
 
   useEffect(() => {
     fetchNowPlayingMovies();
@@ -115,10 +119,19 @@ const AddShows = () => {
           Schedule movie shows and manage theatre timings.
         </p>
       </div>
+      <div className="mb-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+        <input
+          type="text"
+          placeholder="Search movie..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full sm:w-80 bg-black/20 border border-primary/20 rounded-xl px-4 py-3 outline-none focus:border-primary transition"
+        />
+      </div>
 
       {/* Movies List */}
       <div className="bg-primary/10 border border-primary/20 rounded-xl p-6">
-        <div className="mb-6">
+        <div className="mb-2 md:mb-6">
           <h2 className="text-lg font-semibold">Select Movie</h2>
 
           <p className="text-gray-400 text-sm mt-1">
@@ -128,11 +141,11 @@ const AddShows = () => {
 
         {/* movie cards here */}
         <div className="pb-4">
-          <div className="flex flex-wrap justify-center gap-6 mt-4">
-            {nowPlayingMovies.map((movie) => (
+          <div className="movie-carousel">
+            {filteredMovies.map((movie) => (
               <div
                 key={movie._id}
-                className={`group relative w-44 bg-primary/10 border rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ${
+                className={`group relative min-w-[180px] w-34 md:w-44 flex-shrink-0 bg-primary/10 border rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ${
                   selectedMovie === movie._id
                     ? "border-primary ring-2 ring-primary scale-105 shadow-lg shadow-primary/20"
                     : "border-primary/20 hover:border-primary/50 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10"
@@ -147,9 +160,9 @@ const AddShows = () => {
                   <img
                     src={movie.poster_path}
                     alt={movie.title}
-                    className="w-full h-64 object-cover transition duration-300 group-hover:scale-105"
+                    className="w-full h-52 sm:h-60 md:h-64 object-cover transition duration-300 group-hover:scale-105"
                   />
-                  <div className="text-sm flex items-center justify-between p-2 bg-black/70 absolute bottom-0 w-full">
+                  <div className="text-[11px] sm:text-sm flex items-center justify-between p-2 bg-black/70 absolute bottom-0 w-full">
                     <p className="flex items-center gap-1 text-gray-300">
                       <StarIcon className="w-4 h-4 text-primary fill-primary" />
                       {movie.vote_average.toFixed(1)}
@@ -170,11 +183,11 @@ const AddShows = () => {
                 )}
 
                 <div className="p-3">
-                  <h3 className="font-semibold text-white truncate">
+                  <h3 className="font-semibold text-sm sm:text-base text-white truncate">
                     {movie.title}
                   </h3>
 
-                  <p className="text-xs text-gray-400 mt-1">
+                  <p className="text-[11px] sm:text-xs text-gray-400 mt-1">
                     {movie.release_date}
                   </p>
                 </div>

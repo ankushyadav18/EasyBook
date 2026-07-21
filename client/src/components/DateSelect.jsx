@@ -13,17 +13,17 @@ const DateSelect = ({ dateTime = {}, id }) => {
   const [selected, setSelected] = useState(null);
 
   const onBookHandler = () => {
-  if (!selected) {
-    return toast.error("Please select a date");
-  }
+    if (!selected) {
+      return toast.error("Please select a date");
+    }
 
-  if (!user) {
-    setShowLogin(true);
-    return;
-  }
+    if (!user) {
+      setShowLogin(true);
+      return;
+    }
 
-  navigate(`/movies/${id}/${selected}`);
-};
+    navigate(`/movies/${id}/${selected}`);
+  };
 
   return (
     <div id="dateSelect" className="pt-16">
@@ -40,60 +40,74 @@ const DateSelect = ({ dateTime = {}, id }) => {
           <p className="text-sm sm:text-base text-gray-400 mt-2">
             Select an available date to continue with your booking.
           </p>
-
           <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-4 lg:gap-6 text-sm mt-2 md:mt-8">
-            <ChevronLeftIcon className="hidden lg:block w-7 h-7 flex-shrink-0" />
+            {Object.keys(dateTime).length === 0 ? (
+              <div className="w-full rounded-xl border border-yellow-500/20 bg-yellow-500/10 p-6 text-center">
+                <h3 className="text-lg font-semibold text-yellow-400">
+                  No Shows Available
+                </h3>
 
-            <span className="movie-carousel">
-              {Object.keys(dateTime).map((date) => {
-                const isExpired =
-                  new Date(date) < new Date().setHours(0, 0, 0, 0);
+                <p className="mt-2 text-sm text-gray-400">
+                  There are currently no shows scheduled for this movie. Please
+                  check back later.
+                </p>
+              </div>
+            ) : (
+              <>
+                <ChevronLeftIcon className="hidden lg:block w-7 h-7 flex-shrink-0" />
 
-                return (
-                  <button
-                    key={date}
-                    disabled={isExpired}
-                    onClick={() => !isExpired && setSelected(date)}
-                    className={`min-w-[60px] h-18 sm:min-w-[75px] sm:h-22 lg:min-w-[80px] lg:h-24 rounded-xl lg:rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center cursor-pointer flex-shrink-0 ${
-                      isExpired
-                        ? "bg-gray-800 border-gray-700 text-gray-500 cursor-not-allowed opacity-50"
-                        : selected === date
-                          ? "bg-primary border-primary text-white shadow-sm shadow-primary/30 scale-105"
-                          : "bg-white/5 border-white/10 hover:border-primary hover:bg-primary/10 hover:-translate-y-1 cursor-pointer"
-                    }`}
-                  >
-                    <span className="text-lg sm:text-xl lg:text-2xl font-bold">
-                      {new Date(date).getDate()}
-                    </span>
+                <span className="movie-carousel">
+                  {Object.keys(dateTime).map((date) => {
+                    const isExpired =
+                      new Date(date) < new Date().setHours(0, 0, 0, 0);
 
-                    <span className="text-[10px] sm:text-xs uppercase tracking-wider mt-1">
-                      {new Date(date).toLocaleDateString("en-US", {
-                        month: "short",
-                      })}
-                    </span>
+                    return (
+                      <button
+                        key={date}
+                        disabled={isExpired}
+                        onClick={() => !isExpired && setSelected(date)}
+                        className={`min-w-[60px] h-18 sm:min-w-[75px] sm:h-22 lg:min-w-[80px] lg:h-24 rounded-xl lg:rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center cursor-pointer flex-shrink-0 ${
+                          isExpired
+                            ? "bg-gray-800 border-gray-700 text-gray-500 cursor-not-allowed opacity-50"
+                            : selected === date
+                              ? "bg-primary border-primary text-white shadow-sm shadow-primary/30 scale-105"
+                              : "bg-white/5 border-white/10 hover:border-primary hover:bg-primary/10 hover:-translate-y-1 cursor-pointer"
+                        }`}
+                      >
+                        <span className="text-lg sm:text-xl lg:text-2xl font-bold">
+                          {new Date(date).getDate()}
+                        </span>
 
-                    <span className="text-[8px] sm:text-[10px] text-gray-300 mt-1">
-                      {new Date(date).toLocaleDateString("en-US", {
-                        weekday: "short",
-                      })}
-                    </span>
-                    {isExpired && (
-                      <span className="mt-1 text-[9px] uppercase text-red-400">
-                        Expired
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </span>
+                        <span className="text-[10px] sm:text-xs uppercase tracking-wider mt-1">
+                          {new Date(date).toLocaleDateString("en-US", {
+                            month: "short",
+                          })}
+                        </span>
 
-            <ChevronRightIcon className="hidden lg:block w-7 h-7 flex-shrink-0" />
+                        <span className="text-[8px] sm:text-[10px] text-gray-300 mt-1">
+                          {new Date(date).toLocaleDateString("en-US", {
+                            weekday: "short",
+                          })}
+                        </span>
+                        {isExpired && (
+                          <span className="mt-1 text-[9px] uppercase text-red-400">
+                            Expired
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </span>
+
+                <ChevronRightIcon className="hidden lg:block w-7 h-7 flex-shrink-0" />
+              </>
+            )}
           </div>
         </div>
 
         <button
           onClick={onBookHandler}
-          disabled={!selected}
+          disabled={!selected || Object.keys(dateTime).length === 0}
           className="w-full lg:w-auto mt-2 lg:mt-0 lg:ml-12 px-6 sm:px-8 lg:px-10 py-3 lg:py-4 rounded-2xl bg-primary font-semibold text-white shadow-xl shadow-primary/30 hover:shadow-primary/50 hover:scale-105 transition-all duration-300 disabled:bg-gray-700 disabled:shadow-none disabled:cursor-not-allowed disabled:scale-100 cursor-pointer"
         >
           Continue Booking →

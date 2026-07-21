@@ -3,20 +3,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "./MovieCard";
 
-const FeaturedSection = ({ movies, loading, selectedGenre }) => {
+const FeaturedSection = ({ movies, loading }) => {
   const navigate = useNavigate();
-  const filteredMovies = movies.filter((movie) => {
-    // Only show now showing movies
-    if (movie.status !== "now_showing") return false;
-
-    // Genre filter
-    if (selectedGenre === "All") return true;
-
-    return movie.genres?.some(
-      (genre) =>
-        (genre.name || genre).toLowerCase() === selectedGenre.toLowerCase(),
-    );
-  });
+  const nowShowingMovies = movies
+    .filter((movie) => movie.status === "now_showing")
+    .slice(0, 10);
 
   return (
     <section className="section-container">
@@ -45,20 +36,15 @@ const FeaturedSection = ({ movies, loading, selectedGenre }) => {
       </div>
 
       {/* STATES */}
-      {loading && (
+      {loading ? (
         <p className="text-center text-gray-400">Loading movies...</p>
-      )}
-
-      {!loading && filteredMovies.length === 0 && (
+      ) : nowShowingMovies.length === 0 ? (
         <p className="text-center text-gray-400">
-          No movies found for this genre.
+          No movies are currently showing.
         </p>
-      )}
-
-      {/* MOVIES */}
-      {!loading && filteredMovies.length > 0 && (
+      ) : (
         <div className="movie-carousel">
-          {filteredMovies.map((movie) => (
+          {nowShowingMovies.map((movie) => (
             <div key={movie._id} className="flex-shrink-0 snap-start">
               <MovieCard movie={movie} />
             </div>

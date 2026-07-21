@@ -7,7 +7,7 @@ import {
   HomeIcon,
 } from "lucide-react";
 import React from "react";
-import { assets } from "../../assets/assets";
+
 import { NavLink } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 
@@ -59,17 +59,7 @@ const AdminSidebar = () => {
   ];
 
   return (
-    <div className="h-[calc(100vh-64px)] md:flex flex-col items-center pt-8 max-w-13 md:max-w-60 w-full border-r border-gray-300/20 text-sm">
-      <img
-        className="h-9 md:h-14 w-9 md:w-14 rounded-full mx-auto object-cover"
-        src={user?.image || assets.profile}
-        alt="sidebar"
-      />
-
-      <p className="mt-2 text-base max-md:hidden font-medium">
-        {user?.name || "Admin"}
-      </p>
-
+    <div className="h-full flex flex-col max-w-13 md:max-w-60 w-full border-r border-gray-300/20 text-sm">
       <div className="w-full">
         {adminNavlinks.map((link, index) => (
           <NavLink
@@ -77,9 +67,12 @@ const AdminSidebar = () => {
             to={link.path}
             end
             className={({ isActive }) =>
-              `relative flex items-center max-md:justify-center gap-2 w-full py-2.5 min-md:pl-10 first:mt-6 text-gray-400 ${
-                isActive ? "bg-primary/15 text-primary group" : ""
-              }`
+              `relative flex items-center max-md:justify-center gap-2 w-full py-2.5 min-md:pl-10 text-gray-400 transition-all duration-300
+  ${
+    isActive
+      ? "bg-primary/15 text-primary shadow-[0_0_15px_rgba(229,9,20,0.25)]"
+      : "hover:bg-primary/10 hover:text-white hover:shadow-[0_0_12px_rgba(229,9,20,0.18)]"
+  }`
             }
           >
             <link.icon className="w-5 h-5" />

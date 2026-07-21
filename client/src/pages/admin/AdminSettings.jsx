@@ -1,7 +1,8 @@
 import React from "react";
 import { Settings } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
-import { assets } from "../../assets/assets";
+import logo from "../../assets/logo.png";
+import profile from "../../assets/profile.png";
 
 const AdminSettings = () => {
   const { user } = useAuth();
@@ -37,7 +38,7 @@ const AdminSettings = () => {
               {/* Avatar */}
               <div className="relative">
                 <img
-                  src={user?.image || assets.profile}
+                  src={user?.image || profile}
                   alt={user?.name}
                   className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-primary shadow-2xl shadow-primary/30 transition-all duration-500 hover:scale-105"
                 />
@@ -222,7 +223,7 @@ const AdminSettings = () => {
           <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:border-primary/40 hover:bg-primary/15 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-6 text-center sm:text-left">
               <img
-                src={assets.logo}
+                src={logo}
                 alt="EasyBook"
                 className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white p-3 shadow-xl"
               />

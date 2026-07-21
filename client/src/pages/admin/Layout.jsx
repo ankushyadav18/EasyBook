@@ -9,21 +9,21 @@ import { useAuth } from "../../context/AuthContext";
 const Layout = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
-const { logout } = useAuth();
-const handleLogout = () => {
-  logout();
-  navigate("/");
-};
+  const { logout } = useAuth();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white">
+    <div className="h-screen bg-[#0f172a] text-white overflow-hidden">
       <AdminNavbar onLogoutClick={() => setShowLogoutModal(true)} />
 
-      <div className="flex">
+      <div className="flex h-[calc(100vh-56px)] md:h-[calc(100vh-64px)]">
         <AdminSidebar />
 
-        <main className="flex-1 py-6 px-6 md:px-10 h-[calc(100vh-64px)] overflow-y-auto">
-          <Outlet />
-        </main>
+        <main className="flex-1 overflow-y-auto px-6 py-6 md:px-10">
+  <Outlet />
+</main>
       </div>
       <AnimatePresence>
         {showLogoutModal && (

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import HeroSection from "../components/HeroSection";
-import BrowseByGenre from "../components/BrowseByGenre";
 import FeaturedSection from "../components/FeaturedSection";
 import TrailersSection from "../components/TrailersSection";
 import ComingSoon from "../components/ComingSoon";
@@ -11,7 +10,6 @@ import api from "../lib/api";
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedGenre, setSelectedGenre] = useState("All");
 
   const getMovies = async () => {
     try {
@@ -39,12 +37,8 @@ const Home = () => {
       <FeaturedSection
         movies={movies}
         loading={loading}
-        selectedGenre={selectedGenre}
       />
-      <BrowseByGenre
-        selectedGenre={selectedGenre}
-        setSelectedGenre={setSelectedGenre}
-      />
+
       <ComingSoon movies={movies} loading={loading} />
       <TrailersSection />
     </>

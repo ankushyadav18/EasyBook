@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import api from "../lib/api";
-import BlurCircle from "../components/BlurCircle";
 import {
   Heart,
   PlayCircleIcon,
@@ -209,7 +208,7 @@ const MovieDetails = () => {
             />
 
             <div className="relative flex flex-col gap-5">
-              <BlurCircle top="-100px" left="-100px" />
+              
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-3xl tracking-tight">
                 {show.movie.title}

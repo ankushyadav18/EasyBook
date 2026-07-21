@@ -1,6 +1,7 @@
 import { Settings } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-import { assets } from "../assets/assets";
+import profile from "../assets/profile.png";
+import logo from "../assets/logo.png";
 import react, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import api from "../lib/api";
@@ -16,7 +17,7 @@ const SettingsPage = () => {
   const [ticketReminder, setTicketReminder] = useState(true);
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [name, setName] = useState(user?.name || "");
-  const [image, setImage] = useState(user?.image || assets.profile);
+  const [image, setImage] = useState(user?.image || profile);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -283,7 +284,7 @@ const SettingsPage = () => {
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div className="relative">
             <img
-              src={user?.image || assets.profile}
+              src={user?.image || profile}
               alt={user?.name}
               className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-primary"
             />
@@ -584,7 +585,7 @@ const SettingsPage = () => {
       <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
         <div className="flex items-center gap-4 mb-6">
           <img
-            src={assets.logo}
+            src={logo}
             alt="EasyBook"
             className="w-16 h-16 rounded-2xl bg-white p-3 shadow-lg"
           />

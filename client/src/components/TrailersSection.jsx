@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import BlurCircle from "./BlurCircle";
 import api from "../lib/api";
 import { PlayCircleIcon } from "lucide-react";
 import YouTube from "react-youtube";

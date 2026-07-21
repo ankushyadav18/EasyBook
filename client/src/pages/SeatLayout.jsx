@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { assets } from "../assets/assets";
+import screenImage from "../assets/screenImage.svg";
 import api from "../lib/api";
 import Loading from "../components/Loading";
 import {
@@ -157,24 +157,26 @@ const SeatLayout = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const movieRes = await api.get(`/movie/${id}`);
-      const showRes = await api.get(`/show/${id}`);
+      try {
+        const movieRes = await api.get(`/movie/${id}`);
+        const showRes = await api.get(`/show/${id}`);
 
-      setShow({
-        movie: movieRes.data.movie,
-        dateTime: showRes.data.shows,
-      });
+        setShow({
+          movie: movieRes.data.movie,
+          dateTime: showRes.data.shows,
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to load show");
+      }
     };
 
     fetchData();
-  }, [id, date]);
+  }, [id]);
 
   if (!show) {
     return <Loading />;
   }
-
-  console.log("URL DATE:", date);
-  console.log("DATE TIME:", show?.dateTime);
 
   return (
     <>
@@ -288,7 +290,9 @@ const SeatLayout = () => {
 
                 <div>
                   <p className="text-xs text-gray-500 uppercase">Time</p>
-                  <p className="font-semibold">{selectedTime?.time || "--"}</p>
+                  <p className="font-semibold">
+                    {selectedTime ? isoTimeFormat(selectedTime.time) : "--"}
+                  </p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-500 uppercase">Price</p>
@@ -305,7 +309,7 @@ const SeatLayout = () => {
             className="relative mt-6 mb-8 flex w-full max-w-3xl flex-col items-center sm:mt-8 sm:mb-12"
           >
             <img
-              src={assets.screenImage}
+              src={screenImage}
               alt="screen"
               className="w-full max-w-md sm:max-w-xl lg:max-w-3xl opacity-95 drop-shadow-[0_0_40px_rgba(255,255,255,0.25)]"
             />

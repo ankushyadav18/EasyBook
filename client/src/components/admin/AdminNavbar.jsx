@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { useAuth } from "../../context/AuthContext";
-import { assets } from "../../assets/assets";
+import logo from "../../assets/logo.png";
 import { Home, User, Settings, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -28,11 +28,11 @@ const AdminNavbar = ({ onLogoutClick }) => {
     <header className="sticky top-0 z-50 bg-[#111827]/80 backdrop-blur-2xl border-b border-primary/20 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
       <div className="h-14 md:h-20 px-4 md:px-8 flex items-center justify-between">
         {/* Left */}
-        <Link to="/" className="flex items-center gap-3 md:gap-5">
+        <div className="flex items-center gap-3 md:gap-5">
           <img
-            src={assets.logo}
+            src={logo}
             alt="EasyBook"
-            className="w-24 sm:w-28 md:w-36 h-auto transition duration-300 hover:scale-105"
+            className="w-18 sm:w-24 md:w-30 h-auto"
           />
 
           <div className="hidden md:block">
@@ -40,7 +40,7 @@ const AdminNavbar = ({ onLogoutClick }) => {
 
             <p className="text-xs text-gray-400">EasyBook Management Panel</p>
           </div>
-        </Link>
+        </div>
 
         {/* Right */}
         <div className="flex items-center gap-3">

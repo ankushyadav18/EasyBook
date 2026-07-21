@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate, NavLink, useLocation } from "react-router-dom";
-import { assets } from "../assets/assets";
+import logo from "../assets/logo.png";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MenuIcon,
@@ -62,7 +62,7 @@ const Navbar = () => {
           }}
         >
           <img
-            src={assets.logo}
+            src={logo}
             alt="logo"
             className="w-28 sm:w-32 md:w-40 transition duration-300 hover:scale-105"
           />

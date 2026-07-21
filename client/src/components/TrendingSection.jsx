@@ -10,23 +10,23 @@ const TrendingSection = () => {
 
   const navigate = useNavigate();
 
-  const getTrendingMovies = async () => {
+  useEffect(() => {
+  const fetchTrending = async () => {
     try {
       const { data } = await api.get("/movie/trending");
 
       if (data.success) {
-        setMovies(data.movies);
+        setMovies(data.movies.slice(0, 8));
       }
     } catch (error) {
-      console.log(error);
+      console.error("Failed to load trending movies:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    getTrendingMovies();
-  }, []);
+  fetchTrending();
+}, []);
 
   return (
     <section className="section-container">
@@ -77,19 +77,16 @@ const TrendingSection = () => {
           </p>
         </div>
       ) : (
-        
-          <div className="movie-carousel">
-            {movies.map((movie) => (
-              <div>
-                <MovieCard
-                  key={movie._id}
-                  movie={movie}
-                  badgeText="🔥 Trending"
-                  badgeColor="bg-red-600 shadow-lg shadow-red-500/40"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="movie-carousel">
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              badgeText="🔥 Trending"
+              badgeColor="bg-red-600 shadow-lg shadow-red-500/40"
+            />
+          ))}
+        </div>
       )}
     </section>
   );
