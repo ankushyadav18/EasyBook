@@ -74,11 +74,11 @@ const MovieCard = ({
         </div>
 
         {/* Genres */}
-        <div className="flex flex-wrap gap-2 mt-3 md:mt-4">
+        <div className="flex gap-2 mt-3 md:mt-4 overflow-hidden">
           {movie.genres?.slice(0, 2).map((genre, index) => (
             <span
               key={index}
-              className="px-2 py-1 md:px-3 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium"
+              className="px-2 py-1 md:px-3 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium whitespace-nowrap"
             >
               {genre.name || genre}
             </span>
@@ -105,7 +105,7 @@ const MovieCard = ({
                 e.stopPropagation();
                 navigate(`/movies/${movie._id}#dateSelect`);
               }}
-              className="w-full rounded-xl bg-primary py-2 md:py-3 text-sm md:text-base font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/40"
+              className="w-full rounded-xl bg-primary py-2 md:py-3 text-sm md:text-base font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/40 cursor-pointer"
             >
               Buy Ticket
             </button>

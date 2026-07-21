@@ -6,6 +6,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const getMovies = async () => {
     try {
@@ -31,6 +32,8 @@ export const AppProvider = ({ children }) => {
         movies,
         loading,
         getMovies,
+        showLogin,
+        setShowLogin,
       }}
     >
       {children}

@@ -16,10 +16,10 @@ import {
 import Login from "./Login";
 import { useAuth } from "../context/AuthContext";
 import SearchModal from "./SearchModal";
+import { useAppContext } from "../context/AppContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -28,6 +28,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const { user, logout } = useAuth();
+  const { showLogin, setShowLogin } = useAppContext();
 
   const handleLogout = () => {
     logout();
@@ -109,34 +110,42 @@ const Navbar = () => {
           </NavLink>
 
           <NavLink
-            to="/my-bookings"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
-                : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
-            }
-            onClick={() => {
-              scrollTo(0, 0);
-              setIsOpen(false);
-            }}
-          >
-            My Bookings
-          </NavLink>
+  to="/my-bookings"
+  onClick={(e) => {
+    setIsOpen(false);
+
+    if (!user) {
+      e.preventDefault(); // Stop navigation
+      setShowLogin(true);
+    }
+  }}
+  className={({ isActive }) =>
+    isActive
+      ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
+      : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
+  }
+>
+  My Bookings
+</NavLink>
 
           <NavLink
-            to="/favorites"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
-                : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
-            }
-            onClick={() => {
-              scrollTo(0, 0);
-              setIsOpen(false);
-            }}
-          >
-            Favorites
-          </NavLink>
+  to="/favorites"
+  onClick={(e) => {
+    setIsOpen(false);
+
+    if (!user) {
+      e.preventDefault(); // Stop navigation
+      setShowLogin(true);
+    }
+  }}
+  className={({ isActive }) =>
+    isActive
+      ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
+      : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
+  }
+>
+  Favorites
+</NavLink>
         </div>
 
         {/* Right Side */}

@@ -2,19 +2,28 @@ import React, { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
+import { useAppContext } from "../context/AppContext";
 
 const DateSelect = ({ dateTime = {}, id }) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const { setShowLogin } = useAppContext();
 
   const [selected, setSelected] = useState(null);
 
   const onBookHandler = () => {
-    if (!selected) {
-      return toast.error("Please select a date");
-    }
+  if (!selected) {
+    return toast.error("Please select a date");
+  }
 
-    navigate(`/movies/${id}/${selected}`);
-  };
+  if (!user) {
+    setShowLogin(true);
+    return;
+  }
+
+  navigate(`/movies/${id}/${selected}`);
+};
 
   return (
     <div id="dateSelect" className="pt-16">
@@ -45,7 +54,7 @@ const DateSelect = ({ dateTime = {}, id }) => {
                     key={date}
                     disabled={isExpired}
                     onClick={() => !isExpired && setSelected(date)}
-                    className={`min-w-[60px] h-18 sm:min-w-[75px] sm:h-22 lg:min-w-[80px] lg:h-24 rounded-xl lg:rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center flex-shrink-0 ${
+                    className={`min-w-[60px] h-18 sm:min-w-[75px] sm:h-22 lg:min-w-[80px] lg:h-24 rounded-xl lg:rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center cursor-pointer flex-shrink-0 ${
                       isExpired
                         ? "bg-gray-800 border-gray-700 text-gray-500 cursor-not-allowed opacity-50"
                         : selected === date
@@ -85,7 +94,7 @@ const DateSelect = ({ dateTime = {}, id }) => {
         <button
           onClick={onBookHandler}
           disabled={!selected}
-          className="w-full lg:w-auto mt-2 lg:mt-0 lg:ml-12 px-6 sm:px-8 lg:px-10 py-3 lg:py-4 rounded-2xl bg-primary font-semibold text-white shadow-xl shadow-primary/30 hover:shadow-primary/50 hover:scale-105 transition-all duration-300 disabled:bg-gray-700 disabled:shadow-none disabled:cursor-not-allowed disabled:scale-100"
+          className="w-full lg:w-auto mt-2 lg:mt-0 lg:ml-12 px-6 sm:px-8 lg:px-10 py-3 lg:py-4 rounded-2xl bg-primary font-semibold text-white shadow-xl shadow-primary/30 hover:shadow-primary/50 hover:scale-105 transition-all duration-300 disabled:bg-gray-700 disabled:shadow-none disabled:cursor-not-allowed disabled:scale-100 cursor-pointer"
         >
           Continue Booking →
         </button>
