@@ -65,15 +65,60 @@ const ListShows = () => {
 
   return (
     <>
-      <div className="mb-8">
+      <div className="mb-2 md:mb-8">
         <Title text1="List" text2="Shows" />
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-400">
           View, edit and manage all scheduled movie shows.
         </p>
       </div>
+      <div className="md:hidden space-y-4 mt-8">
+        {shows.map((show) => (
+          <div
+            key={show._id}
+            className="bg-primary/10 border border-primary/20 rounded-2xl p-4"
+          >
+            <h3 className="text-lg font-semibold text-white">
+              {show.movie?.title || "Movie Deleted"}
+            </h3>
 
-      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 mt-8">
+            <p className="text-sm text-gray-400 mt-1">
+              📅 {new Date(show.showDate).toLocaleDateString()}
+            </p>
+
+            <p className="text-sm text-gray-400">🕒 {show.showTime}</p>
+
+            <div className="flex justify-between mt-4 text-sm">
+              <span className="text-blue-400">
+                Bookings: {show.bookedSeats?.length || 0}
+              </span>
+
+              <span className="text-green-400">
+                {currency}
+                {(show.bookedSeats?.length || 0) * show.ticketPrice}
+              </span>
+            </div>
+
+            <div className="flex gap-3 mt-5">
+              <button
+                onClick={() => navigate(`/admin/edit-show/${show._id}`)}
+                className="flex-1 bg-blue-600 hover:bg-blue-700 py-2 rounded-xl"
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={() => deleteShow(show._id)}
+                className="flex-1 bg-red-600 hover:bg-red-700 py-2 rounded-xl"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden md:block bg-primary/10 border border-primary/20 rounded-2xl p-6 mt-8 overflow-x-auto">
         <table className="w-full border-separate border-spacing-y-3">
           <thead>
             <tr className="bg-primary/20 text-gray-200">

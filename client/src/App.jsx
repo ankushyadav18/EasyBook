@@ -30,7 +30,11 @@ import Login from "./components/Login";
 import EditShow from "./pages/admin/EditShow";
 
 const App = () => {
-  const isAdminRoute = useLocation().pathname.startsWith("/admin");
+  const location = useLocation();
+
+  const isAdminRoute = location.pathname.startsWith("/admin");
+const isMovieDetails = /^\/movies\/[^/]+$/.test(location.pathname);
+const isSeatLayout = /^\/movies\/[^/]+\/[^/]+$/.test(location.pathname);
 
   // Login Popup State
   const [showLogin, setShowLogin] = useState(false);
@@ -42,7 +46,7 @@ const App = () => {
       {/* Login Popup */}
       {showLogin && <Login setShowLogin={setShowLogin} />}
 
-      {!isAdminRoute && <Navbar setShowLogin={setShowLogin} />}
+      {!isAdminRoute && !isMovieDetails && !isSeatLayout && <Navbar setShowLogin={setShowLogin} />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -77,7 +81,7 @@ const App = () => {
         </Route>
       </Routes>
 
-      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && !isSeatLayout && !isMovieDetails && <Footer />}
     </>
   );
 };

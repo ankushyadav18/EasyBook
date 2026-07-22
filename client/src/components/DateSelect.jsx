@@ -27,7 +27,7 @@ const DateSelect = ({ dateTime = {}, id }) => {
 
   return (
     <div id="dateSelect" className="pt-16">
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-5 sm:p-7 lg:p-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-12">
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-7 lg:p-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-12">
         <div>
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-xs font-semibold">
             🎟️ Ticket Booking

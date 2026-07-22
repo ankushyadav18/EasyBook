@@ -26,7 +26,7 @@ const MovieCard = ({
   return (
     <div
       onClick={() => navigate(`/movies/${movie._id}`)}
-      className="group shrink-0 snap-start w-40 md:w-64 rounded-3xl overflow-hidden cursor-pointer bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-primary/60 hover:shadow-[0_8px_20px_rgba(229,9,20,0.10)]"
+      className="group shrink-0 snap-start w-40 md:w-64 overflow-hidden cursor-pointer bg-primary/10 border border-primary/20 rounded-3xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-primary/60 hover:shadow-[0_8px_20px_rgba(229,9,20,0.10)]"
     >
       {/* Poster */}
       <div className="relative overflow-hidden rounded-t-3xl">

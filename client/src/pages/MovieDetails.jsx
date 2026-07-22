@@ -7,6 +7,7 @@ import {
   StarIcon,
   ArrowLeft,
   ArrowRight,
+  Share2,
 } from "lucide-react";
 import timeFormat from "../lib/timeFormat";
 import DateSelect from "../components/DateSelect";
@@ -161,6 +162,24 @@ const MovieDetails = () => {
   };
 
   const location = useLocation();
+  const handleShare = async () => {
+    const shareData = {
+      title: show?.movie?.title,
+      text: `Check out ${show?.movie?.title} on EasyBook!`,
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log("Share cancelled");
+      }
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+      toast.success("Link copied to clipboard!");
+    }
+  };
 
   useEffect(() => {
     if (location.hash === "#dateSelect") {
@@ -190,13 +209,37 @@ const MovieDetails = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/50"></div>
-        <div className="fixed top-24 left-4 md:top-32 md:left-16 lg:left-40 z-40">
-          <button
-            onClick={() => navigate("/movies")}
-            className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-2xl border border-white/10 flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </button>
+        <div className="fixed top-5 left-0 right-0 z-50 px-4 md:px-10 lg:px-16 xl:px-24">
+          <div className="flex items-center justify-between">
+            {/* Back */}
+            <button
+              onClick={() => navigate("/movies")}
+              className="w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+
+            {/* Right Buttons */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={toggleFavorite}
+                className="w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center hover:bg-red-500/20 hover:border-red-500 hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer"
+              >
+                <Heart
+                  className={`w-5 h-5 transition-all duration-300 ${
+                    isFavorite ? "fill-red-500 text-red-500" : "text-white"
+                  }`}
+                />
+              </button>
+
+              <button
+                onClick={handleShare}
+                className="w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center hover:bg-primary/20 hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer"
+              >
+                <Share2 className="w-5 h-5 text-white" />
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className="relative w-full px-4 sm:px-6 md:px-16 lg:px-40 pb-10 md:pb-16">
@@ -208,8 +251,6 @@ const MovieDetails = () => {
             />
 
             <div className="relative flex flex-col gap-5">
-              
-
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-3xl tracking-tight">
                 {show.movie.title}
               </h1>
@@ -219,16 +260,16 @@ const MovieDetails = () => {
               </p>
 
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2">
-                <div className="flex items-center gap-2 px-3 py-1.5 text-sm rounded-full bg-white/10 backdrop-blur-xl border border-white/10">
+                <div className="flex items-center gap-2 px-3 py-1.5 text-sm rounded-full bg-white/10 border border-white/10">
                   <StarIcon className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                   <span>{show.movie.vote_average.toFixed(1)}</span>
                 </div>
 
-                <div className="px-3 py-1.5 text-sm rounded-full bg-white/10 backdrop-blur-xl border border-white/10">
+                <div className="px-3 py-1.5 text-sm rounded-full bg-white/10 border border-white/10">
                   {show.movie.release_date?.split("-")[0]}
                 </div>
 
-                <div className="px-3 py-1.5 text-sm rounded-full bg-white/10 backdrop-blur-xl border border-white/10">
+                <div className="px-3 py-1.5 text-sm rounded-full bg-white/10 border border-white/10">
                   {timeFormat(show.movie.runtime)}
                 </div>
 
@@ -248,7 +289,7 @@ const MovieDetails = () => {
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mt-6">
                 <button
                   onClick={() => setShowTrailer(true)}
-                  className="flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3 rounded-full border border-white/10 bg-white/10 backdrop-blur-xl hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+                  className="flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3 rounded-full border border-white/10 bg-white/10 hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
                 >
                   <PlayCircleIcon className="w-5 h-5" />
                   Watch Trailer
@@ -302,19 +343,6 @@ const MovieDetails = () => {
                     Buy Tickets
                   </button>
                 )}
-
-                <button
-                  onClick={toggleFavorite}
-                  className="w-12 h-12 mx-auto sm:mx-0 flex items-center justify-center rounded-full border border-white/10 bg-white/10 backdrop-blur-xl hover:bg-red-500/20 hover:border-red-500 transition-all duration-300 cursor-pointer"
-                >
-                  <Heart
-                    className={`w-5 h-5 transition-all duration-300 ${
-                      isFavorite
-                        ? "fill-red-500 text-red-500 scale-110"
-                        : "text-white hover:text-red-400"
-                    }`}
-                  />
-                </button>
               </div>
             </div>
           </div>
@@ -331,7 +359,7 @@ const MovieDetails = () => {
           </h2>
 
           <div className="grid grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
-            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
+            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
               <div className=" bg-yellow-500/20 w-8 h-8 sm:w-10 sm:h-10 xl:w-12 xl:h-12 rounded-xl xl:rounded-2xl flex items-center justify-center text-base sm:text-lg xl:text-2xl">
                 ⭐
               </div>
@@ -349,7 +377,7 @@ const MovieDetails = () => {
               </span>
             </div>
 
-            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
+            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
               <div className=" bg-pink-500/20 w-8 h-8 sm:w-10 sm:h-10 xl:w-12 xl:h-12 rounded-xl xl:rounded-2xl flex items-center justify-center text-base sm:text-lg xl:text-2xl">
                 🎭
               </div>
@@ -367,7 +395,7 @@ const MovieDetails = () => {
               </span>
             </div>
 
-            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
+            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
               <div className=" bg-blue-500/20 w-8 h-8 sm:w-10 sm:h-10 xl:w-12 xl:h-12 rounded-xl xl:rounded-2xl flex items-center justify-center text-base sm:text-lg xl:text-2xl">
                 🌍
               </div>
@@ -385,7 +413,7 @@ const MovieDetails = () => {
               </span>
             </div>
 
-            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
+            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
               <div className=" bg-green-500/20 w-8 h-8 sm:w-10 sm:h-10 xl:w-12 xl:h-12 rounded-xl xl:rounded-2xl flex items-center justify-center text-base sm:text-lg xl:text-2xl">
                 📅
               </div>
@@ -403,7 +431,7 @@ const MovieDetails = () => {
               </span>
             </div>
 
-            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
+            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
               <div className="bg-orange-500/20 w-8 h-8 sm:w-10 sm:h-10 xl:w-12 xl:h-12 rounded-xl xl:rounded-2xl flex items-center justify-center text-base sm:text-lg xl:text-2xl">
                 ⏱
               </div>
@@ -421,7 +449,7 @@ const MovieDetails = () => {
               </span>
             </div>
 
-            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
+            <div className="rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 p-3 sm:p-4 xl:p-6 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 shadow-lg">
               <div className="w-8 h-8 sm:w-10 sm:h-10 xl:w-12 xl:h-12 rounded-xl xl:rounded-2xl flex items-center justify-center text-base sm:text-lg xl:text-2xl bg-primary/20">
                 🎬
               </div>
@@ -446,7 +474,7 @@ const MovieDetails = () => {
         )}
         {show.movie.status === "now_showing" && (
           <div className="mt-8 md:mt-20">
-            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-5 sm:p-6 md:p-8 mb-10">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-6 md:p-8 mb-10">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8">
                 <div>
                   <p className="text-gray-400 mb-2">Community Rating</p>
@@ -538,7 +566,7 @@ const MovieDetails = () => {
             </div>
 
             {/* Reviews List */}
-            <div className="rounded-3xl mt-4 border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden">
+            <div className="rounded-3xl mt-4 border border-white/10 bg-white/5 overflow-hidden">
               {reviews.length === 0 ? (
                 <div className="py-20 flex flex-col items-center justify-center text-center">
                   <div className="text-5xl mb-4">💬</div>

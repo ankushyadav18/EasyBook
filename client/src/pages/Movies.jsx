@@ -140,7 +140,7 @@ const Movies = () => {
             Explore Movies
           </h1>
 
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-gray-400 leading-6 sm:leading-7">
+          <p className="mt-3 max-w-2xl text-sm sm:text-base text-gray-300 leading-6 sm:leading-7">
             Browse the latest blockbusters, trending titles, and upcoming
             releases. Find your next favorite movie and book your tickets
             instantly.
@@ -251,7 +251,7 @@ const Movies = () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-8">
           <h2 className="text-xl sm:text-2xl font-semibold">Movies</h2>
 
-          <p className="text-gray-400">{filteredMovies.length} Movies Found</p>
+          <p className="text-gray-300">{filteredMovies.length} Movies Found</p>
         </div>
 
         {filteredMovies.length === 0 ? (

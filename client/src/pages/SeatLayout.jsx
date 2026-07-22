@@ -183,16 +183,16 @@ const SeatLayout = () => {
       <PageBackground />
 
       <div className="flex flex-col gap-6 px-3 pt-24 pb-12 sm:px-6 md:px-10 md:pt-32 lg:flex-row lg:gap-8 lg:px-24 xl:px-40 xl:pt-40">
-        <div className="fixed top-24 md:top-32 left-4 sm:left-6 lg:left-24 xl:left-40 z-40">
+        <div className="fixed top-5 left-4 sm:left-6 z-50">
           <button
             onClick={() => navigate(`/movies/${id}#dateSelect`)}
-            className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-2xl border border-white/10 flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer"
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary hover:scale-110 hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
         </div>
         {/* Available Timings */}
-        <div className="h-max w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-2xl sm:rounded-3xl lg:sticky lg:top-28 lg:w-80 lg:shrink-0">
+        <div className="h-max w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl sm:rounded-3xl lg:sticky lg:top-28 lg:w-80 lg:shrink-0">
           <div className="border-b border-white/10 px-4 pb-5 sm:px-6 sm:pb-6">
             <p className="text-primary mt-4 text-xs font-semibold uppercase tracking-[0.3em]">
               Show Schedule
@@ -265,7 +265,7 @@ const SeatLayout = () => {
         {/* Seat Layout */}
         <div className="relative flex-1 flex flex-col items-center mt-2 lg:mt-0">
           <div className="w-full max-w-4xl mb-8">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl sm:rounded-3xl sm:p-6">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:rounded-3xl sm:p-6">
               <h2 className="text-2xl font-bold">{show.movie.title}</h2>
 
               <div className="mt-4 grid grid-cols-1 gap-4 text-gray-300 xs:grid-cols-2 sm:grid-cols-3">
@@ -321,7 +321,7 @@ const SeatLayout = () => {
             <div className="mt-3 h-px w-2/3 bg-gradient-to-r from-transparent via-primary/60 to-transparent"></div>
           </div>
 
-          <div className="mb-4 grid w-full max-w-3xl grid-cols-1 gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center backdrop-blur-xl min-[420px]:grid-cols-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8 sm:px-6">
+          <div className="mb-4 grid w-full max-w-3xl grid-cols-1 gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center min-[420px]:grid-cols-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8 sm:px-6">
             <div className="flex items-center gap-2">
               <div className="w-5 h-5 rounded border border-primary/50"></div>
               <span className="text-sm text-gray-300">Available</span>
@@ -354,7 +354,7 @@ const SeatLayout = () => {
             {/* Legend */}
 
             {/* Booking Summary */}
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur-2xl sm:rounded-3xl sm:p-6">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-2xl sm:rounded-3xl sm:p-6">
               <div className="grid grid-cols-1 gap-5 text-center lg:grid-cols-[1fr_auto_auto] lg:items-center">
                 {/* Left */}
                 <div className="grid grid-cols-3 gap-2 sm:gap-6 text-center">

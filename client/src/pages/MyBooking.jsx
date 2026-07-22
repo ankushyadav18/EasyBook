@@ -195,13 +195,13 @@ const MyBooking = () => {
           My Bookings
         </h1>
 
-        <p className="mt-4 text-sm sm:text-base max-w-2xl text-gray-400 leading-6 sm:leading-7">
+        <p className="mt-4 text-sm sm:text-base max-w-2xl text-gray-300 leading-6 sm:leading-7">
           Manage your booked movies, download tickets, complete pending
           payments, and keep track of your upcoming cinema experience.
         </p>
         <div className="grid grid-cols-3 gap-3 mt-8 mb-10 sm:gap-6">
-          <div className="rounded-xl sm:rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-3 sm:p-6">
-            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-gray-500">
+          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 shadow-2xl p-6">
+            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-white">
               Total Bookings
             </p>
 
@@ -210,8 +210,8 @@ const MyBooking = () => {
             </h2>
           </div>
 
-          <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-5 sm:p-6">
-            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-gray-500">
+          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 shadow-2xl p-6">
+            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-white">
               Paid Tickets
             </p>
 
@@ -220,8 +220,8 @@ const MyBooking = () => {
             </h2>
           </div>
 
-          <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-5 sm:p-6">
-            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-gray-500">
+          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 shadow-2xl p-6">
+            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-white">
               Total Spent
             </p>
 
@@ -240,30 +240,30 @@ const MyBooking = () => {
           </h2>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl shadow-black/20">
+        <div className="overflow-hidden bg-primary/10 border border-primary/20 rounded-2xl">
           <div className="overflow-x-auto">
             <table className="min-w-[1100px] w-full">
-              <thead className="sticky top-0 z-10 bg-primary/20 backdrop-blur-xl border-b border-white/10">
+              <thead className="sticky top-0 z-10 border-b border-primary/20 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/80 backdrop-blur-3xl">
                 <tr>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-300">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
                     Movie
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-300">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
                     Show
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-300">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
                     Seats
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-300">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
                     Amount
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-300">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
                     Payment
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-300">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
                     Booking
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-300">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
                     Actions
                   </th>
                 </tr>
@@ -287,7 +287,7 @@ const MyBooking = () => {
                   return (
                     <tr
                       key={item._id}
-                      className={`border-t border-white/10 transition ${
+                      className={`border-t border-primary/35 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 ${
                         item.bookingStatus === "cancelled"
                           ? "opacity-50 grayscale"
                           : isExpired
@@ -311,14 +311,14 @@ const MyBooking = () => {
                               {item.movie?.title || "Movie Deleted"}
                             </h2>
 
-                            <p className="text-sm text-gray-400 mt-1">
+                            <p className="text-sm text-gray-300 mt-1">
                               ⭐{" "}
                               {Number(item.movie?.vote_average || 0).toFixed(1)}
                               {" • "}
                               {timeFormat(item.movie?.runtime || 0)}
                             </p>
 
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="text-xs text-gray-300 mt-1">
                               {item.movie?.genres
                                 ?.map((g) => g.name)
                                 .join(" • ")}
@@ -334,7 +334,7 @@ const MyBooking = () => {
                             🎭 {item.show?.theatreName}
                           </p>
 
-                          <p className="text-gray-400">
+                          <p className="text-gray-300">
                             🖥 {item.show?.screen}
                           </p>
 
@@ -407,7 +407,7 @@ const MyBooking = () => {
                             <p className="font-semibold text-red-400">
                               ❌ Booking Cancelled
                             </p>
-                            <p className="mt-1 text-xs text-gray-400">
+                            <p className="mt-1 text-xs text-gray-300">
                               Your seats have been released.
                             </p>
                           </div>
@@ -416,7 +416,7 @@ const MyBooking = () => {
                             <p className="font-semibold text-yellow-400">
                               🎬 Show Expired
                             </p>
-                            <p className="mt-1 text-xs text-gray-400">
+                            <p className="mt-1 text-xs text-gray-300">
                               This show has already ended.
                             </p>
                           </div>

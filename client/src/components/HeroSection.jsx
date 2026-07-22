@@ -63,10 +63,11 @@ const HeroSection = ({ movies, loading }) => {
 
   return (
     <div
-      className="relative h-screen bg-cover bg-center transition-all duration-700 ease-in-out"
+  className="relative min-h-[85vh] md:min-h-screen bg-cover bg-center md:bg-center transition-all duration-700 ease-in-out"
       style={{
-        backgroundImage: `url(${backgroundImage})`,
-      }}
+  backgroundImage: `url(${backgroundImage})`,
+  backgroundPosition: "center top",
+}}
     >
       {/* Dark Gradient Overlay */}
       {/* <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div> */}
@@ -77,13 +78,13 @@ const HeroSection = ({ movies, loading }) => {
       {/* Hero Content */}
 
       <div
-        className={`relative z-10 flex flex-col items-start justify-center h-full px-6 md:px-16 lg:px-36 transition-opacity duration-500 ${
+  className={`relative z-10 flex flex-col items-start justify-end md:justify-center min-h-[85vh] md:min-h-screen px-5 sm:px-6 md:px-16 lg:px-36 pb-20 md:pb-0 transition-opacity duration-500 ${
           fade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
         {/* Everything else stays exactly the same */}
 
-        <div className="flex items-center gap-3 mt-28 mb-5">
+        <div className="flex items-center gap-3 mb-4">
           <div className="flex items-center gap-2 bg-yellow-500/20 border border-yellow-400/40 px-4 py-2 rounded-full backdrop-blur-xl">
             <StarIcon className="w-4 h-4 fill-yellow-400 text-yellow-400" />
             <span className="text-sm font-semibold text-yellow-300">
@@ -98,8 +99,8 @@ const HeroSection = ({ movies, loading }) => {
           {movie?.title || "Loading..."}
         </h1>
 
-        <div className="flex items-center gap-3 flex-wrap mt-5">
-          <span className="px-4 py-1 rounded-full bg-white/10 backdrop-blur-xl text-sm">
+        <div className="flex items-center gap-2 flex-wrap mt-4">
+          <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-xl text-sm">
             {Array.isArray(movie?.genres)
               ? movie.genres
                   .map((genre) =>
@@ -109,14 +110,14 @@ const HeroSection = ({ movies, loading }) => {
               : "Movie"}
           </span>
 
-          <div className="flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 backdrop-blur-xl">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xl">
             <CalendarIcon className="w-4.5 h-4.5" />
             {movie?.release_date
               ? new Date(movie.release_date).getFullYear()
               : "N/A"}
           </div>
 
-          <div className="flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 backdrop-blur-xl">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xl">
             <ClockIcon className="w-4.5 h-4.5" />
             {movie?.runtime
               ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`
@@ -124,13 +125,13 @@ const HeroSection = ({ movies, loading }) => {
           </div>
         </div>
 
-        <p className="max-w-2xl mt-6 text-gray-300 leading-8 text-lg line-clamp-4">
+        <p className="max-w-xl mt-4 text-gray-300 leading-6 text-sm sm:text-base md:text-lg line-clamp-3 md:line-clamp-4">
           {movie?.overview || "No description available."}
         </p>
 
         <button
           onClick={() => navigate("/movies")}
-          className="mt-8 flex items-center gap-2 px-8 py-4 rounded-full bg-primary hover:bg-primary-dull hover:scale-[1.03]hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 shadow-lg shadow-primary/40 font-semibold"
+          className="mt-6 flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full bg-primary hover:bg-primary-dull hover:scale-[1.03]hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 shadow-lg shadow-primary/40 font-semibold"
         >
           Explore Movies
           <ArrowRight className="w-5 h-5" />
@@ -144,7 +145,7 @@ const HeroSection = ({ movies, loading }) => {
             prev === 0 ? movies.length - 1 : prev - 1,
           );
         }}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 hover:bg-primary hover:scale-105 duration-300 transition"
+        className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 hover:bg-primary hover:scale-105 duration-300 transition"
       >
         <ChevronLeft className="w-6 h-6 text-white" />
       </button>
@@ -155,7 +156,7 @@ const HeroSection = ({ movies, loading }) => {
 
           setCurrentIndex((prev) => (prev + 1) % movies.length);
         }}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 hover:bg-primary hover:scale-105 duration-300 transition"
+        className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 hover:bg-primary hover:scale-105 duration-300 transition"
       >
         <ChevronRight className="w-6 h-6 text-white" />
       </button>

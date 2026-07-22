@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import api from "../lib/api";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
+import PageBackground from "../components/PageBackground";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -77,7 +78,8 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen px-6 md:px-16 lg:px-40 pt-24 md:pt-32 pb-12 md:pb-20">
-      <div className="max-w-6xl mx-auto overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_25px_80px_rgba(0,0,0,0.45)]">
+      <PageBackground />
+      <div className="max-w-6xl mx-auto overflow-hidden bg-primary/10 border border-primary/20 rounded-2xl shadow-[0_25px_80px_rgba(0,0,0,0.45)]">
         <div className="relative h-28 md:h-44 overflow-hidden rounded-t-3xl bg-gradient-to-r from-[#7f1d1d] via-primary to-[#4c1d95]">
           {/* Left Glow */}
           <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-white/10 blur-3xl" />
@@ -145,7 +147,7 @@ const Profile = () => {
             {/* Premium Role Badge */}
 
             <div className="flex justify-center mt-6">
-              <div className="inline-flex items-center gap-3 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 md:px-6 md:py-2 backdrop-blur-xl">
+              <div className="inline-flex items-center gap-3 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 md:px-6 md:py-2">
                 <span className="text-xl">🛡</span>
 
                 <span className="font-semibold tracking-wide text-primary capitalize">
@@ -186,7 +188,7 @@ const Profile = () => {
               </div>
             
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6 mt-16">
-              <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 md:p-6 text-center">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">❤️</p>
                 <h3 className="text-lg md:text-2xl font-bold mt-4">
                   {profile?.favorites?.length || 0}
@@ -194,7 +196,7 @@ const Profile = () => {
                 <p className="text-xs md:text-sm text-gray-400 mt-2">Favorites</p>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-3 md:p-6 text-center">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-3 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">🎟</p>
                 <h3 className="text-lg md:text-2xl font-bold mt-4">
                   {stats.totalBookings}
@@ -202,7 +204,7 @@ const Profile = () => {
                 <p className="text-xs md:text-sm text-gray-400 mt-2">Bookings</p>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 md:p-6 text-center">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">💰</p>
                 <h3 className="text-lg md:text-2xl font-bold mt-4 text-primary">
                   ₹{stats.totalSpent}
@@ -210,7 +212,7 @@ const Profile = () => {
                 <p className="text-xs md:text-sm text-gray-400 mt-2">Total Spent</p>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 md:p-6 text-center">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">🎬</p>
                 <h3 className="text-lg md:text-2xl font-bold mt-4">
                   {profile?.role === "admin" ? "∞" : stats.totalBookings}
@@ -218,7 +220,7 @@ const Profile = () => {
                 <p className="text-xs md:text-sm text-gray-400 mt-2">Experience</p>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 md:p-6 text-center">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">⭐</p>
                 <h3 className="text-xl md:text-2xl font-bold mt-4">
                   {profile?.role === "admin" ? "PRO" : "USER"}
@@ -226,7 +228,7 @@ const Profile = () => {
                 <p className="text-xs md:text-sm text-gray-400 mt-2">Membership</p>
               </div>
             </div>
-            <div className="mt-14 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 md:p-8">
+            <div className="mt-14 rounded-3xl border border-white/10 bg-white/5 p-4 md:p-8">
               <h2 className="text-xl md:text-2xl font-bold mb-8">Personal Information</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
@@ -267,7 +269,7 @@ const Profile = () => {
             </div>
           </div>
           {isEditing && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
               <div className="w-full max-w-lg rounded-3xl border border-white/10 bg-[#111827] p-8 shadow-2xl">
                 <h2 className="text-3xl font-bold text-center">Edit Profile</h2>
 

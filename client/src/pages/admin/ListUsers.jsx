@@ -70,24 +70,76 @@ const ListUsers = () => {
             View, manage and remove registered users.
           </p>
         </div>
-        <table className="w-full border-separate border-spacing-y-3">
+        <div className="md:hidden space-y-4">
+          {users.length > 0 ? (
+            users.map((user) => (
+              <div
+                key={user._id}
+                className="bg-black/20 border border-primary/20 rounded-2xl p-4"
+              >
+                <div className="flex items-center gap-3">
+                  {user.image ? (
+                    <img
+                      src={user.image}
+                      alt={user.name}
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center font-bold">
+                      {user.name.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+
+                  <div>
+                    <h3 className="font-semibold">{user.name}</h3>
+                    <p className="text-sm text-gray-400 break-all">
+                      {user.email}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex justify-between mt-4 gap-2 text-sm">
+                  <span
+                    className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-semibold ${
+                      user.role === "admin"
+                        ? "bg-red-500/20 text-red-400"
+                        : "bg-green-500/20 text-green-400"
+                    }`}
+                  >
+                    {user.role}
+                  </span>
+
+                  <span className="text-gray-400">
+                    {dateFormat(user.createdAt)}
+                  </span>
+                </div>
+
+                <button
+                  onClick={() => handleDelete(user._id)}
+                  className="w-full mt-5 bg-red-500 hover:bg-red-600 py-2 rounded-xl text-white transition"
+                >
+                  Delete User
+                </button>
+              </div>
+            ))
+          ) : (
+            <div className="text-center py-10 text-gray-400">
+              No users found.
+            </div>
+          )}
+        </div>
+        <table className="hidden md:table w-full border-separate border-spacing-y-3">
           <thead>
             <tr className="bg-primary/20 text-gray-200">
               <th className="text-left px-6 py-4 font-semibold rounded-l-xl">
                 Name
               </th>
 
-              <th className="text-left px-6 py-4 font-semibold">
-                Email
-              </th>
+              <th className="text-left px-6 py-4 font-semibold">Email</th>
 
-              <th className="text-left px-6 py-4 font-semibold">
-                Role
-              </th>
+              <th className="text-left px-6 py-4 font-semibold">Role</th>
 
-              <th className="text-left px-6 py-4 font-semibold">
-                Joined
-              </th>
+              <th className="text-left px-6 py-4 font-semibold">Joined</th>
 
               <th className="text-center px-6 py-4 font-semibold rounded-r-xl">
                 Action

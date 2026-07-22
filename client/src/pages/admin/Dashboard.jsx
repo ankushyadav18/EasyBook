@@ -37,7 +37,6 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-import PageBackground from "../../components/PageBackground";
 
 const Dashboard = () => {
   const currency = import.meta.env.VITE_CURRENCY || "₹";

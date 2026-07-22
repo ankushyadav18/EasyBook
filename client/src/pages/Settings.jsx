@@ -269,7 +269,7 @@ const SettingsPage = () => {
       </div>
 
       {/* Profile */}
-      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
+      <div className="p-6 bg-primary/10 border border-primary/20 rounded-2xl transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 pb-4 border-b border-primary/10">
           <h2 className="text-xl sm:text-2xl font-bold">👤 My Profile</h2>
 

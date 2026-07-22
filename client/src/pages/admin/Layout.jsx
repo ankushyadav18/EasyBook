@@ -16,6 +16,7 @@ const Layout = () => {
   };
   return (
     <div className="h-screen bg-[#0f172a] text-white overflow-hidden">
+      
       <AdminNavbar onLogoutClick={() => setShowLogoutModal(true)} />
 
       <div className="flex h-[calc(100vh-56px)] md:h-[calc(100vh-64px)]">

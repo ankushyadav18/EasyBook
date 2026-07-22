@@ -17,7 +17,7 @@ const Footer = () => {
             />
 
             <div className="mt-1 md:mt-0 text-center md:text-left">
-              <p className="text-sm text-gray-400 max-w-sm leading-7">
+              <p className="text-sm text-gray-300 max-w-sm leading-7">
                 EasyBook is a modern movie ticket booking platform that lets you
                 discover movies, select your favorite seats, and book tickets
                 securely with a fast and seamless experience.
@@ -52,25 +52,25 @@ const Footer = () => {
 
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link to="/" className="text-gray-400 transition hover:text-white">
+                  <Link to="/" className="text-gray-300 transition hover:text-white">
                     Home
                   </Link>
                 </li>
 
                 <li>
-                  <Link to="/movies" className="text-gray-400 transition hover:text-white">
+                  <Link to="/movies" className="text-gray-300 transition hover:text-white">
                     Movies
                   </Link>
                 </li>
 
                 <li>
-                  <Link to="/favorites" className="text-gray-400 transition hover:text-white">
+                  <Link to="/favorites" className="text-gray-300 transition hover:text-white">
                     Favorites
                   </Link>
                 </li>
 
                 <li>
-                  <Link to="/my-bookings" className="text-gray-400 transition hover:text-white">
+                  <Link to="/my-bookings" className="text-gray-300 transition hover:text-white">
                     My Bookings
                   </Link>
                 </li>
@@ -99,7 +99,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-white/10 pt-4 text-center text-xs leading-6 text-gray-400 sm:text-sm">
+        <div className="mt-8 border-t border-white/10 pt-4 text-center text-xs leading-6 text-gray-300 sm:text-sm">
           © {new Date().getFullYear()} EasyBook • Crafted with ❤️ by Ankush
           Yadav
         </div>
