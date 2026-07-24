@@ -39,7 +39,7 @@ const ListBookings = () => {
       <div className="mb-8">
         <Title text1="List" text2="Bookings" />
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           View and monitor all customer movie bookings.
         </p>
       </div>
@@ -48,7 +48,7 @@ const ListBookings = () => {
         <div className="mb-6">
           <h2 className="text-lg font-semibold">Booking History</h2>
 
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
             View all customer bookings, payment amounts and booking status.
           </p>
         </div>
@@ -57,31 +57,31 @@ const ListBookings = () => {
           <table className="w-full border-separate border-spacing-y-2 text-nowrap">
             <thead>
               <tr className="bg-primary/20">
-                <th className="px-5 py-4 text-left text-sm font-semibold text-white rounded-l-xl">
+                <th className="px-5 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white rounded-l-xl">
                   User Name
                 </th>
 
-                <th className="px-5 py-4 text-left text-sm font-semibold text-white">
+                <th className="px-5 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
                   Movie Name
                 </th>
 
-                <th className="px-5 py-4 text-left text-sm font-semibold text-white">
+                <th className="px-5 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
                   Show Time
                 </th>
 
-                <th className="px-5 py-4 text-left text-sm font-semibold text-white">
+                <th className="px-5 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
                   Seats
                 </th>
 
-                <th className="px-5 py-4 text-left text-sm font-semibold text-white">
+                <th className="px-5 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
                   Amount
                 </th>
 
-                <th className="px-5 py-4 text-left text-sm font-semibold text-white">
+                <th className="px-5 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
                   Status
                 </th>
 
-                <th className="px-5 py-4 text-left text-sm font-semibold text-white rounded-r-xl">
+                <th className="px-5 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white rounded-r-xl">
                   Booked On
                 </th>
               </tr>
@@ -126,14 +126,14 @@ const ListBookings = () => {
                       </span>
                     </td>
 
-                    <td className="px-5 py-4 text-gray-300">
+                    <td className="px-5 py-4 text-gray-900 dark:text-gray-300">
                       {dateFormat(item.createdAt)}
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={7} className="py-10 text-center text-gray-400">
+                  <td colSpan={7} className="py-10 text-center text-gray-600 dark:text-gray-400">
                     No bookings found.
                   </td>
                 </tr>

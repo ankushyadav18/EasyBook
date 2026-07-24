@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "../context/ThemeContext";
 
 const blobs = [
   {
@@ -73,6 +74,8 @@ const contours = [
   },
 ];
 const PageBackground = () => {
+  const { theme, toggleTheme } = useTheme();
+const darkMode = theme === "dark";
   return (
     <>
       <style>{`
@@ -122,12 +125,26 @@ const PageBackground = () => {
 }
 `}</style>
 
-      <div className="fixed inset-0 -z-50 overflow-hidden bg-[#071018] pointer-events-none">
+      <div
+        className={`fixed inset-0 -z-50 overflow-hidden pointer-events-none ${
+          theme === "dark" ? "bg-[#071018]" : "bg-[#f8fafc]"
+        }`}
+      >
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#08131c] via-[#061019] to-[#03060b]" />
+        <div
+          className={`absolute inset-0 ${
+            darkMode
+              ? "bg-gradient-to-br from-[#08131c] via-[#061019] to-[#03060b]"
+              : "bg-gradient-to-br from-[#ffffff] via-[#f8fafc] to-[#eef4ff]"
+          }`}
+        />
 
         {/* Center Glow */}
-        <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300/5 blur-[170px]" />
+        <div
+          className={`absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[170px] ${
+            theme === "dark" ? "bg-amber-300/5" : "bg-blue-300/20"
+          }`}
+        />
 
         {blobs.map((blob, index) => (
           <div
@@ -135,9 +152,13 @@ const PageBackground = () => {
             className="luxury-shape absolute overflow-hidden rounded-[45%]"
             style={{
               ...blob,
-              border: "1px solid rgba(226,180,90,.12)",
-              background:
-                "radial-gradient(circle at center,rgba(255,195,90,.03),transparent 70%)",
+              border: darkMode
+                ? "1px solid rgba(226,180,90,.12)"
+                : "1px solid rgba(59,130,246,.12)",
+
+              background: darkMode
+                ? "radial-gradient(circle at center,rgba(255,195,90,.03),transparent 70%)"
+                : "radial-gradient(circle at center,rgba(59,130,246,.05),transparent 70%)",
               backdropFilter: "blur(2px)",
               "--rotate": blob.rotate,
               "--delay": blob.delay,
@@ -150,7 +171,9 @@ const PageBackground = () => {
                 style={{
                   top: `${i * 18}px`,
                   height: "180%",
-                  borderTop: "1px solid rgba(232,185,90,.45)",
+                  borderTop: darkMode
+                    ? "1px solid rgba(232,185,90,.45)"
+                    : "1px solid rgba(59,130,246,.25)",
                   opacity: 0.9 - i * 0.03,
                   transform: `scale(${1 + i * 0.05})`,
                 }}
@@ -169,7 +192,9 @@ const PageBackground = () => {
         {particles.map((p) => (
           <span
             key={p.id}
-            className="gold-particle absolute rounded-full bg-amber-300"
+            className={`gold-particle absolute rounded-full ${
+              theme === "dark" ? "bg-amber-300" : "bg-blue-400"
+            }`}
             style={{
               left: p.left,
               top: p.top,
@@ -177,7 +202,9 @@ const PageBackground = () => {
               height: `${p.size}px`,
               opacity: p.opacity,
               animationDelay: p.delay,
-              boxShadow: "0 0 8px rgba(255,190,90,.45)",
+              boxShadow: darkMode
+                ? "0 0 8px rgba(255,190,90,.45)"
+                : "0 0 10px rgba(59,130,246,.35)",
             }}
           />
         ))}
@@ -198,7 +225,9 @@ const PageBackground = () => {
                 className="absolute inset-0 rounded-[50%]"
                 style={{
                   transform: `scale(${1 - i * 0.035})`,
-                  border: "1px solid rgba(236,189,90,.12)",
+                  border: darkMode
+                    ? "1px solid rgba(236,189,90,.12)"
+                    : "1px solid rgba(59,130,246,.12)",
                   opacity: 0.85 - i * 0.03,
                 }}
               />
@@ -208,9 +237,17 @@ const PageBackground = () => {
 
         {/* Soft vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_45%,rgba(0,0,0,.78)_100%)]" />
-        <div className="absolute top-[18%] left-[18%] h-72 w-72 rounded-full bg-amber-300/8 blur-[170px]" />
+        <div
+          className={`absolute top-[18%] left-[18%] h-72 w-72 rounded-full blur-[170px] ${
+            theme === "dark" ? "bg-amber-300/8" : "bg-cyan-300/25"
+          }`}
+        />
 
-        <div className="absolute bottom-[15%] right-[18%] h-80 w-80 rounded-full bg-orange-300/8 blur-[190px]" />
+        <div
+          className={`absolute bottom-[15%] right-[18%] h-80 w-80 rounded-full blur-[190px] ${
+            theme === "dark" ? "bg-orange-300/8" : "bg-violet-300/20"
+          }`}
+        />
       </div>
     </>
   );

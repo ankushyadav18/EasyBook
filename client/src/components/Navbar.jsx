@@ -44,12 +44,12 @@ const Navbar = () => {
       {showSearch && <SearchModal onClose={() => setShowSearch(false)} />}
 
       <div className="fixed top-0 left-0 z-50 w-full h-30 flex items-center justify-between px-6 md:px-16 lg:px-36 py-5">
-        {/* <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-4 border-b border-white/10 bg-black/40 backdrop-blur-2xl"> */}
+        {/* <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-4 border-b border-gray-600 dark:border-white/10 bg-black/40 backdrop-blur-2xl"> */}
         {/* <div
         className={`fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-5 transition-all duration-300 ${
           isHomePage
             ? "bg-transparent"
-            : "bg-black/50 backdrop-blur-2xl border-b border-white/10"
+            : "bg-black/50 backdrop-blur-2xl border-b border-gray-600 dark:border-white/10"
         }`}
       > */}
         {/* Logo */}
@@ -70,8 +70,8 @@ const Navbar = () => {
 
         {/* Desktop + Mobile Menu */}
         <div
-          className={`max-md:absolute max-md:top-0 max-md:left-0 max-md:font-medium max-md:text-lg z-50 flex flex-col md:flex-row items-center max-md:justify-center gap-5 md:px-6 py-3 max-md:h-screen md:rounded-full backdrop-blur-xl bg-black/70 md:bg-white/5 md:border md:border-white/10 shadow-lg shadow-black/30 overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-md:w-full" : "max-md:w-0"
+          className={`max-md:absolute max-md:top-0 max-md:left-0 max-md:font-medium max-md:text-lg z-50 flex flex-col md:flex-row items-center max-md:justify-center gap-5 md:px-6 py-3 max-md:h-screen md:rounded-full text-black dark:text-white backdrop-blur-xl bg-black/70 md:bg-white/5 md:border md:border-gray-600 dark:border-white/10 shadow-lg shadow-black/30 overflow-hidden transition-all duration-300 ${
+            isOpen ? "max-md:w-full text-white" : "max-md:w-0"
           }`}
         >
           <XIcon
@@ -110,42 +110,42 @@ const Navbar = () => {
           </NavLink>
 
           <NavLink
-  to="/my-bookings"
-  onClick={(e) => {
-    setIsOpen(false);
+            to="/my-bookings"
+            onClick={(e) => {
+              setIsOpen(false);
 
-    if (!user) {
-      e.preventDefault(); // Stop navigation
-      setShowLogin(true);
-    }
-  }}
-  className={({ isActive }) =>
-    isActive
-      ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
-      : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
-  }
->
-  My Bookings
-</NavLink>
+              if (!user) {
+                e.preventDefault(); // Stop navigation
+                setShowLogin(true);
+              }
+            }}
+            className={({ isActive }) =>
+              isActive
+                ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
+                : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
+            }
+          >
+            My Bookings
+          </NavLink>
 
           <NavLink
-  to="/favorites"
-  onClick={(e) => {
-    setIsOpen(false);
+            to="/favorites"
+            onClick={(e) => {
+              setIsOpen(false);
 
-    if (!user) {
-      e.preventDefault(); // Stop navigation
-      setShowLogin(true);
-    }
-  }}
-  className={({ isActive }) =>
-    isActive
-      ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
-      : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
-  }
->
-  Favorites
-</NavLink>
+              if (!user) {
+                e.preventDefault(); // Stop navigation
+                setShowLogin(true);
+              }
+            }}
+            className={({ isActive }) =>
+              isActive
+                ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
+                : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
+            }
+          >
+            Favorites
+          </NavLink>
         </div>
 
         {/* Right Side */}
@@ -166,7 +166,7 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={() => setShowMenu(!showMenu)}
-                className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full cursor-pointer hover:bg-white/10 hover:border-primary/40 transition"
+                className="flex items-center gap-2 bg-white/5 border border-gray-600 dark:border-white/10 px-4 py-2 rounded-full cursor-pointer hover:bg-white/10 hover:border-primary/40 transition"
               >
                 <div className="w-8 h-8 rounded-full overflow-hidden bg-primary flex items-center justify-center">
                   {user.image ? (
@@ -185,16 +185,18 @@ const Navbar = () => {
               </button>
 
               {showMenu && (
-                <div className="absolute right-0 mt-3 w-56 rounded-xl bg-black/80 backdrop-blur-xl border border-white/10 shadow-xl overflow-hidden">
+                <div className="absolute right-0 mt-3 w-56 rounded-xl bg-black/80 backdrop-blur-xl border border-gray-600 dark:border-white/10 shadow-xl overflow-hidden">
                   <div className="px-4 py-4 border-b border-gray-700">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-white">
+                      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-gray-900 dark:text-white">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
 
                       <div>
                         <p className="font-semibold">{user.name}</p>
-                        <p className="text-xs text-gray-400">{user.email}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                          {user.email}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -285,14 +287,14 @@ const Navbar = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 40 }}
               transition={{ duration: 0.25 }}
-              className="w-[90%] max-w-md rounded-3xl border border-white/10 bg-[#111827] p-8 shadow-2xl"
+              className="w-[90%] max-w-md rounded-3xl border border-gray-600 dark:border-white/10 bg-[#111827] p-8 shadow-2xl"
             >
               <div className="text-center">
                 <div className="text-5xl mb-5">🚪</div>
 
                 <h2 className="text-2xl font-bold">Logout Account?</h2>
 
-                <p className="mt-4 text-gray-400 leading-7">
+                <p className="mt-4 text-gray-600 dark:text-gray-400 leading-7">
                   Are you sure you want to logout?
                   <br />
                   You'll need to login again.
@@ -302,7 +304,7 @@ const Navbar = () => {
               <div className="flex gap-4 mt-8">
                 <button
                   onClick={() => setShowLogoutModal(false)}
-                  className="flex-1 rounded-xl border border-white/10 bg-white/5 py-3 hover:bg-white/10 transition"
+                  className="flex-1 rounded-xl border border-gray-600 dark:border-white/10 bg-white/5 py-3 hover:bg-white/10 transition"
                 >
                   Cancel
                 </button>

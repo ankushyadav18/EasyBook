@@ -38,7 +38,7 @@ const AdminNavbar = ({ onLogoutClick }) => {
           <div className="hidden md:block">
             <h2 className="text-lg font-bold">Admin Dashboard</h2>
 
-            <p className="text-xs text-gray-400">EasyBook Management Panel</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">EasyBook Management Panel</p>
           </div>
         </div>
 
@@ -48,7 +48,7 @@ const AdminNavbar = ({ onLogoutClick }) => {
           <div className="relative" ref={menuRef}>
             <button
               onClick={() => setOpenMenu(!openMenu)}
-              className="md:hidden w-10 h-10 rounded-full bg-primary text-white font-semibold flex items-center justify-center shadow-lg"
+              className="md:hidden w-10 h-10 rounded-full bg-primary text-gray-900 dark:text-white font-semibold flex items-center justify-center shadow-lg"
             >
               {user?.image ? (
                 <img
@@ -66,7 +66,7 @@ const AdminNavbar = ({ onLogoutClick }) => {
                 <div className="px-5 py-4 border-b border-primary/10">
                   <h3 className="font-semibold">{user?.name}</h3>
 
-                  <p className="text-sm text-gray-400">{user?.email}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{user?.email}</p>
                 </div>
 
                 <button
@@ -108,7 +108,7 @@ const AdminNavbar = ({ onLogoutClick }) => {
               onClick={() => setOpenMenu(!openMenu)}
               className="hidden md:flex items-center gap-3 rounded-full border border-primary/20 bg-white/5 backdrop-blur-xl px-2 py-2 pr-5 cursor-pointer hover:bg-primary/10 transition"
             >
-              <div className="w-11 h-11 rounded-full bg-primary flex items-center justify-center font-bold text-white shadow-lg">
+              <div className="w-11 h-11 rounded-full bg-primary flex items-center justify-center font-bold text-gray-900 dark:text-white shadow-lg">
                 {user?.image ? (
                   <img
                     src={user.image}
@@ -122,7 +122,7 @@ const AdminNavbar = ({ onLogoutClick }) => {
 
               <div className="text-left">
                 <p className="font-semibold leading-none">{user?.name}</p>
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                   {user?.role === "admin" ? "Administrator" : "Member"}
                 </p>
               </div>

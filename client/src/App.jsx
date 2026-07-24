@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useAppContext } from "./context/AppContext";
 import Navbar from "./components/Navbar";
 import { Route, Routes, useLocation } from "react-router";
 import Home from "./pages/Home";
@@ -35,9 +36,7 @@ const App = () => {
   const isAdminRoute = location.pathname.startsWith("/admin");
 const isMovieDetails = /^\/movies\/[^/]+$/.test(location.pathname);
 const isSeatLayout = /^\/movies\/[^/]+\/[^/]+$/.test(location.pathname);
-
-  // Login Popup State
-  const [showLogin, setShowLogin] = useState(false);
+const { showLogin, setShowLogin } = useAppContext();
 
   return (
     <>

@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Eye, EyeOff, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PageBackground from "../components/PageBackground";
+import { useTheme } from "../context/ThemeContext";
 
 const SettingsPage = () => {
   const { user, updateUser } = useAuth();
@@ -32,16 +33,9 @@ const SettingsPage = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem("darkMode");
+  const { theme, setTheme } = useTheme();
 
-    // First time user -> dark mode
-    if (savedTheme === null) {
-      return true;
-    }
-
-    return savedTheme === "true";
-  });
+  const darkMode = theme === "dark";
   const navigate = useNavigate();
 
   const [emailNotification, setEmailNotification] = useState(
@@ -258,24 +252,24 @@ const SettingsPage = () => {
       <PageBackground />
       {/* Header */}
       <div className="mb-10">
-        <h1 className="flex items-center gap-2 text-xl md:text-2xl font-bold">
+        <h1 className="flex items-center text-black dark:text-white gap-2 text-xl md:text-2xl font-bold">
           <Settings className="w-5 h-5 md:w-7 md:h-7 text-primary" />
           Account Settings
         </h1>
 
-        <p className="text-xs md:text-sm text-gray-400 mt-1">
+        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-1">
           Manage your profile, preferences, notifications and account security.
         </p>
       </div>
 
       {/* Profile */}
-      <div className="p-6 bg-primary/10 border border-primary/20 rounded-2xl transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
+      <div className="p-6 border-gray-600 bg-white dark:bg-primary/10 dark:border-primary/20 rounded-2xl transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 pb-4 border-b border-primary/10">
-          <h2 className="text-xl sm:text-2xl font-bold">👤 My Profile</h2>
+          <h2 className="text-xl font-bold text-black dark:text-gray-400">👤 My Profile</h2>
 
           <button
             onClick={() => setShowEditProfile(true)}
-            className="px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-primary text-gray-900 dark:text-white text-sm font-medium transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 cursor-pointer"
           >
             Edit Profile
           </button>
@@ -293,9 +287,9 @@ const SettingsPage = () => {
           </div>
 
           <div className="flex-1 text-center sm:text-left">
-            <h2 className="text-xl sm:text-2xl font-bold">{user?.name}</h2>
+            <h2 className="text-xl font-bold text-black dark:text-gray-400">{user?.name}</h2>
 
-            <p className="text-gray-400 mt-2">{user?.email}</p>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">{user?.email}</p>
 
             <div className="flex flex-wrap justify-center sm:justify-start gap-3 mt-5">
               <span className="px-4 py-1 rounded-full bg-primary/20 text-primary text-sm">
@@ -311,9 +305,9 @@ const SettingsPage = () => {
       </div>
 
       {/* Security */}
-      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
+      <div className="rounded-2xl p-6 mb-8 border border-gray-600 bg-white dark:bg-primary/10 dark:border-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:hover:bg-primary/15 dark:hover:border-primary hover:shadow-primary/20">
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-primary/10">
-          <h2 className="text-lg sm:text-2xl font-bold">🔒 Security</h2>
+          <h2 className="text-xl font-bold text-black dark:text-gray-400">🔒 Security</h2>
 
           <span className="px-2 py-1 sm:px-3 sm:py-1 rounded-full bg-green-500/20 text-green-400 text-[10px] sm:text-xs font-medium whitespace-nowrap">
             Protected
@@ -321,28 +315,28 @@ const SettingsPage = () => {
         </div>
 
         <div className="space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div className="flex-1">
-              <h3 className="font-semibold">Change Password</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Change Password</h3>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Update your account password.
               </p>
             </div>
 
             <button
               onClick={() => setShowPasswordModal(true)}
-              className="w-full sm:w-auto px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
+              className="w-full sm:w-auto px-4 py-2 rounded-xl bg-primary text-gray-900 dark:text-white text-sm font-medium transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
             >
               Change
             </button>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div className="flex-1">
-              <h3 className="font-semibold">Two-Factor Authentication</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Two-Factor Authentication</h3>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Add an extra layer of protection.
               </p>
             </div>
@@ -352,11 +346,11 @@ const SettingsPage = () => {
             </span>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div className="flex-1">
-              <h3 className="font-semibold">Login Devices</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Login Devices</h3>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Manage your active sessions.
               </p>
             </div>
@@ -369,11 +363,11 @@ const SettingsPage = () => {
       </div>
 
       {/* Preferences */}
-      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
+      <div className="rounded-2xl p-6 mb-8 border border-gray-600 bg-white dark:bg-primary/10 dark:border-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:hover:bg-primary/15 dark:hover:border-primary hover:shadow-primary/20">
         <div className="mb-6 pb-4 border-b border-primary/10">
-          <h2 className="text-xl sm:text-2xl font-bold">🎨 Preferences</h2>
+          <h2 className="text-xl font-bold text-black dark:text-gray-400">🎨 Preferences</h2>
 
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="mt-1 text-sm text-gray-600 dark:text-gray-600 dark:text-gray-400">
             Customize your EasyBook experience.
           </p>
         </div>
@@ -381,19 +375,23 @@ const SettingsPage = () => {
         <div className="space-y-5">
           {/* Dark Mode */}
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex items-center justify-between rounded-xl p-4 bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-gray-200 dark:hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div>
-              <h3 className="font-semibold">Dark Theme</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Dark Theme</h3>
 
-              <p className="text-sm text-gray-400">Premium dark interface.</p>
+              <p className="text-sm text-gray-600  dark:text-gray-400">Premium dark interface.</p>
             </div>
 
             <button
               onClick={() => {
-                setDarkMode(!darkMode);
+                const newTheme = darkMode ? "light" : "dark";
+
+                setTheme(newTheme);
 
                 toast.success(
-                  !darkMode ? "Dark mode enabled 🌙" : "Light mode is coming in a future update. ☀️",
+                  newTheme === "dark"
+                    ? "Dark mode enabled 🌙"
+                    : "Light mode enabled ☀️",
                 );
               }}
               className={`relative w-14 h-8 rounded-full transition-all duration-300 cursor-pointer ${
@@ -412,11 +410,11 @@ const SettingsPage = () => {
 
           {/* Email */}
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div>
-              <h3 className="font-semibold">Email Notifications</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Email Notifications</h3>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Booking confirmations and reminders.
               </p>
             </div>
@@ -447,11 +445,11 @@ const SettingsPage = () => {
 
           {/* Movie Alerts */}
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div>
-              <h3 className="font-semibold">Movie Release Alerts</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Movie Release Alerts</h3>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Get notified about upcoming movies.
               </p>
             </div>
@@ -463,7 +461,9 @@ const SettingsPage = () => {
                 setMovieNotification(value);
 
                 toast.success(
-                  value ? "Movie alerts is coming in a future update. 🎬" : "Movie alerts is coming in a future update.",
+                  value
+                    ? "Movie alerts is coming in a future update. 🎬"
+                    : "Movie alerts is coming in a future update.",
                 );
               }}
               className={`relative w-14 h-8 rounded-full transition ${
@@ -481,13 +481,13 @@ const SettingsPage = () => {
       </div>
 
       {/* Booking Preferences */}
-      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
+      <div className="rounded-2xl p-6 mb-8 border border-gray-600 bg-white dark:bg-primary/10 dark:border-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:hover:bg-primary/15 dark:hover:border-primary hover:shadow-primary/20">
         <div className="mb-6 pb-4 border-b border-primary/10">
-          <h2 className="text-xl sm:text-2xl font-bold">
+          <h2 className="text-xl font-bold text-black dark:text-gray-400">
             🎟 Booking Preferences
           </h2>
 
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
             Customize your movie booking experience.
           </p>
         </div>
@@ -495,11 +495,11 @@ const SettingsPage = () => {
         <div className="space-y-5">
           {/* Preferred Seat */}
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div>
-              <h3 className="font-semibold">Preferred Seat</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Preferred Seat</h3>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Default seat position during booking.
               </p>
             </div>
@@ -523,11 +523,11 @@ const SettingsPage = () => {
 
           {/* Language */}
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div>
-              <h3 className="font-semibold">Preferred Language</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Preferred Language</h3>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Default language while browsing.
               </p>
             </div>
@@ -550,11 +550,11 @@ const SettingsPage = () => {
 
           {/* Ticket Reminder */}
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
             <div>
-              <h3 className="font-semibold">Ticket Reminder</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Ticket Reminder</h3>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Notify before your movie starts.
               </p>
             </div>
@@ -582,7 +582,7 @@ const SettingsPage = () => {
       </div>
 
       {/* About */}
-      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 mb-8">
+      <div className="rounded-2xl p-6 mb-8 border border-gray-600 bg-white dark:bg-primary/10 dark:border-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:hover:bg-primary/15 dark:hover:border-primary hover:shadow-primary/20">
         <div className="flex items-center gap-4 mb-6">
           <img
             src={logo}
@@ -591,49 +591,49 @@ const SettingsPage = () => {
           />
 
           <div>
-            <h2 className="text-2xl font-bold">EasyBook</h2>
+            <h2 className="text-xl font-bold text-black dark:text-gray-400">EasyBook</h2>
 
-            <p className="text-gray-400">Movie Ticket Booking Platform</p>
+            <p className="text-gray-600 dark:text-gray-400">Movie Ticket Booking Platform</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
-            <p className="text-gray-400 text-sm">Version</p>
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">Version</p>
 
-            <h3 className="font-semibold mt-1">v1.0.0</h3>
+            <h3 className="font-semibold text-black dark:text-gray-400 mt-1">v1.0.0</h3>
           </div>
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
-            <p className="text-gray-400 text-sm">App Status</p>
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">App Status</p>
 
             <h3 className="text-green-400 font-semibold mt-1">Online</h3>
           </div>
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
-            <p className="text-gray-400 text-sm">Privacy Policy</p>
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">Privacy Policy</p>
 
             <button
               onClick={() => navigate("/privacy-policy")}
-              className="font-semibold hover:text-primary transition cursor-pointer"
+              className="font-semibold text-black dark:text-gray-400 hover:text-primary transition cursor-pointer"
             >
               View →
             </button>
           </div>
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
-            <p className="text-gray-400 text-sm">Terms & Conditions</p>
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">Terms & Conditions</p>
 
             <button
               onClick={() => navigate("/terms")}
-              className="font-semibold hover:text-primary transition cursor-pointer"
+              className="font-semibold text-black dark:text-gray-400 hover:text-primary transition cursor-pointer"
             >
               View →
             </button>
           </div>
 
-          <div className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
-            <p className="text-gray-400 text-sm">Contact Support</p>
+          <div className="flex items-center justify-between p-4 rounded-xl bg-gray-100 dark:bg-black/20 border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-primary/30 hover:scale-[1.02]">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">Contact Support</p>
 
             <a
               href="mailto:support@easybook.com"
@@ -646,15 +646,15 @@ const SettingsPage = () => {
       </div>
 
       {/* Danger Zone */}
-      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20">
+      <div className="bg-white dark:bg-primary/10 border border-primary/20 rounded-2xl p-6 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20">
         <h2 className="text-2xl font-bold text-red-400 mb-3">⚠️ Danger Zone</h2>
 
-        <p className="text-gray-400 mb-6">These actions affect your account.</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">These actions affect your account.</p>
 
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={handleLogoutAllDevices}
-            className="px-5 py-3 rounded-xl bg-red-700 text-white transition-all duration-300 hover:bg-red-600 hover:scale-105 hover:shadow-lg hover:shadow-red-500/30 cursor-pointer"
+            className="px-5 py-3 rounded-xl bg-red-700 text-gray-900 dark:text-white transition-all duration-300 hover:bg-red-600 hover:scale-105 hover:shadow-lg hover:shadow-red-500/30 cursor-pointer"
           >
             Logout From All Devices
           </button>
@@ -662,7 +662,7 @@ const SettingsPage = () => {
           <button
             disabled={user?.role === "admin"}
             onClick={() => setShowDeleteModal(true)}
-            className={`px-5 py-3 rounded-xl text-white transition-all duration-300 cursor-pointer ${
+            className={`px-5 py-3 rounded-xl text-gray-900 dark:text-white transition-all duration-300 cursor-pointer ${
               user?.role === "admin"
                 ? "bg-gray-600 cursor-not-allowed"
                 : "bg-red-700 hover:bg-red-600 hover:scale-105"
@@ -674,7 +674,7 @@ const SettingsPage = () => {
           </button>
           <button
             onClick={handleClearCache}
-            className="px-5 py-3 rounded-xl bg-red-600 text-white transition-all duration-300 hover:bg-red-500 hover:scale-105 hover:shadow-lg hover:shadow-red-500/30 cursor-pointer"
+            className="px-5 py-3 rounded-xl bg-red-600 text-gray-900 dark:text-white transition-all duration-300 hover:bg-red-500 hover:scale-105 hover:shadow-lg hover:shadow-red-500/30 cursor-pointer"
           >
             Clear Cache
           </button>
@@ -686,7 +686,7 @@ const SettingsPage = () => {
           <div className="relative w-[92%] max-w-lg rounded-3xl bg-[#111827] border border-primary/20 p-8">
             <button
               onClick={() => setShowEditProfile(false)}
-              className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/5 hover:bg-red-500 transition-all duration-300 flex items-center justify-center cursor-pointer"
+              className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white dark:bg-primary/10 hover:bg-red-500 transition-all duration-300 flex items-center justify-center cursor-pointer"
             >
               <X size={20} />
             </button>
@@ -715,7 +715,7 @@ const SettingsPage = () => {
 
                 <label
                   htmlFor="profileImage"
-                  className="absolute bottom-1 right-1 w-10 h-10 rounded-full bg-primary hover:bg-primary/90 transition flex items-center justify-center text-white cursor-pointer"
+                  className="absolute bottom-1 right-1 w-10 h-10 rounded-full bg-primary hover:bg-primary/90 transition flex items-center justify-center text-gray-900 dark:text-white cursor-pointer"
                 >
                   📷
                 </label>
@@ -723,7 +723,7 @@ const SettingsPage = () => {
 
               <div className="w-full space-y-5">
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-sm text-gray-600 dark:text-gray-400 mb-2">
                     Full Name
                   </label>
 
@@ -731,12 +731,12 @@ const SettingsPage = () => {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full rounded-xl bg-black/20 border border-primary/20 px-4 py-3 outline-none focus:border-primary"
+                    className="w-full rounded-xl bg-gray-100 dark:bg-black/20 border border-primary/20 px-4 py-3 outline-none focus:border-primary"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-sm text-gray-600 dark:text-gray-400 mb-2">
                     Email Address
                   </label>
 
@@ -752,14 +752,14 @@ const SettingsPage = () => {
               <div className="flex justify-end gap-4 w-full mt-8">
                 <button
                   onClick={() => setShowEditProfile(false)}
-                  className="px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold transition-all duration-300 cursor-pointer"
+                  className="px-6 py-3 rounded-xl bg-white dark:bg-primary/10 hover:bg-white/10 text-gray-900 dark:text-white font-semibold transition-all duration-300 cursor-pointer"
                 >
                   Cancel
                 </button>
 
                 <button
                   onClick={handleUpdate}
-                  className="px-6 py-3 rounded-xl bg-primary text-white font-semibold transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 cursor-pointer"
+                  className="px-6 py-3 rounded-xl bg-primary text-gray-900 dark:text-white font-semibold transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 cursor-pointer"
                 >
                   Save Changes
                 </button>
@@ -789,7 +789,7 @@ const SettingsPage = () => {
 
                 <button
                   onClick={() => setShowPasswordModal(false)}
-                  className="text-2xl text-gray-400 hover:text-white transition cursor-pointer"
+                  className="text-2xl text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition cursor-pointer"
                 >
                   ×
                 </button>
@@ -797,7 +797,7 @@ const SettingsPage = () => {
 
               {/* Current Password */}
               <div className="mb-5">
-                <label className="block text-sm text-gray-400 mb-2">
+                <label className="block text-sm text-gray-600 dark:text-gray-400 mb-2">
                   Current Password
                 </label>
 
@@ -807,13 +807,13 @@ const SettingsPage = () => {
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     placeholder="Enter current password"
-                    className="w-full rounded-xl border border-primary/20 bg-black/20 px-4 py-3 pr-12 outline-none focus:border-primary"
+                    className="w-full rounded-xl border border-primary/20 bg-gray-100 dark:bg-black/20 px-4 py-3 pr-12 outline-none focus:border-primary"
                   />
 
                   <button
                     type="button"
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-white transition"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-900 dark:text-white transition"
                   >
                     {showCurrentPassword ? (
                       <EyeOff size={20} />
@@ -826,7 +826,7 @@ const SettingsPage = () => {
 
               {/* New Password */}
               <div className="mb-5">
-                <label className="block text-sm text-gray-400 mb-2">
+                <label className="block text-sm text-gray-600 dark:text-gray-400 mb-2">
                   New Password
                 </label>
 
@@ -836,13 +836,13 @@ const SettingsPage = () => {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     placeholder="Enter new password"
-                    className="w-full rounded-xl border border-primary/20 bg-black/20 px-4 py-3 pr-12 outline-none focus:border-primary"
+                    className="w-full rounded-xl border border-primary/20 bg-gray-100 dark:bg-black/20 px-4 py-3 pr-12 outline-none focus:border-primary"
                   />
 
                   <button
                     type="button"
                     onClick={() => setShowNewPassword(!showNewPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition cursor-pointer"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition cursor-pointer"
                   >
                     {showNewPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
@@ -865,7 +865,7 @@ const SettingsPage = () => {
 
               {/* Confirm Password */}
               <div className="mb-8">
-                <label className="block text-sm text-gray-400 mb-2">
+                <label className="block text-sm text-gray-600 dark:text-gray-400 mb-2">
                   Confirm Password
                 </label>
 
@@ -875,13 +875,13 @@ const SettingsPage = () => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Confirm password"
-                    className="w-full rounded-xl border border-primary/20 bg-black/20 px-4 py-3 pr-12 outline-none focus:border-primary"
+                    className="w-full rounded-xl border border-primary/20 bg-gray-100 dark:bg-black/20 px-4 py-3 pr-12 outline-none focus:border-primary"
                   />
 
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition cursor-pointer"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition cursor-pointer"
                   >
                     {showConfirmPassword ? (
                       <EyeOff size={20} />
@@ -908,7 +908,7 @@ const SettingsPage = () => {
               <div className="flex gap-4">
                 <button
                   onClick={() => setShowPasswordModal(false)}
-                  className="flex-1 rounded-xl border border-white/10 bg-white/5 py-3 hover:bg-white/10 transition cursor-pointer"
+                  className="flex-1 rounded-xl border border-gray-600 dark:border-white/10 bg-white dark:bg-primary/10 py-3 hover:bg-white/10 transition cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -944,7 +944,7 @@ const SettingsPage = () => {
               Delete Account
             </h2>
 
-            <p className="text-gray-400 mb-5 leading-7">
+            <p className="text-gray-600 dark:text-gray-400 mb-5 leading-7">
               This action is permanent.
               <br />
               Please enter your current password to confirm account deletion.
@@ -955,13 +955,13 @@ const SettingsPage = () => {
                 value={deletePassword}
                 onChange={(e) => setDeletePassword(e.target.value)}
                 placeholder="Current Password"
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pr-12 outline-none focus:border-red-500"
+                className="w-full rounded-xl border border-gray-600 dark:border-white/10 bg-white dark:bg-primary/10 px-4 py-3 pr-12 outline-none focus:border-red-500"
               />
 
               <button
                 type="button"
                 onClick={() => setShowDeletePassword(!showDeletePassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 cursor-pointer"
               >
                 {showDeletePassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>

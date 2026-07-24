@@ -140,10 +140,10 @@ const SeatLayout = () => {
                 onClick={() => !isBooked && handleSeatClick(seatId)}
                 className={`h-7 w-7 rounded-md border text-[9px] font-semibold transition-all duration-300 sm:h-9 sm:w-9 sm:rounded-lg sm:text-[10px] ${
                   isBooked
-                    ? "bg-red-500 border-red-500 text-white cursor-not-allowed"
+                    ? "bg-red-500 border-red-500 text-gray-900 dark:text-white cursor-not-allowed"
                     : selectedSeats.includes(seatId)
-                      ? "bg-primary border-primary text-white scale-110 shadow-lg shadow-primary/40"
-                      : "bg-white/5 border-white/20 hover:border-primary hover:bg-primary/20 hover:scale-105"
+                      ? "bg-primary border-primary text-gray-900 dark:text-white scale-110 shadow-lg shadow-primary/40"
+                      : "bg-white dark:bg-primary/10 border-gray-500 hover:border-primary hover:bg-primary/20 hover:scale-105"
                 }`}
               >
                 {seatId}
@@ -182,30 +182,30 @@ const SeatLayout = () => {
     <>
       <PageBackground />
 
-      <div className="flex flex-col gap-6 px-3 pt-24 pb-12 sm:px-6 md:px-10 md:pt-32 lg:flex-row lg:gap-8 lg:px-24 xl:px-40 xl:pt-40">
+      <div className="flex flex-col gap-6 px-3 pt-16 pb-12 sm:px-6 md:px-10 md:pt-20 lg:flex-row lg:gap-8 lg:px-24 xl:px-40 xl:pt-24">
         <div className="fixed top-5 left-4 sm:left-6 z-50">
           <button
             onClick={() => navigate(`/movies/${id}#dateSelect`)}
-            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-primary hover:scale-110 hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 cursor-pointer"
+            className="w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
         </div>
         {/* Available Timings */}
-        <div className="h-max w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl sm:rounded-3xl lg:sticky lg:top-28 lg:w-80 lg:shrink-0">
-          <div className="border-b border-white/10 px-4 pb-5 sm:px-6 sm:pb-6">
+        <div className="h-max w-full overflow-hidden rounded-2xl border border-gray-600 dark:border-white/10 bg-white dark:bg-primary/10 shadow-2xl sm:rounded-3xl lg:sticky lg:top-28 lg:w-80 lg:shrink-0">
+          <div className="border-b border-gray-600 dark:border-white/10 px-4 pb-5 sm:px-6 sm:pb-6">
             <p className="text-primary mt-4 text-xs font-semibold uppercase tracking-[0.3em]">
               Show Schedule
             </p>
 
-            <h2 className="mt-2 text-2xl font-bold">Available Timings</h2>
+            <h2 className="mt-2 text-2xl text-black dark:text-white font-bold">Available Timings</h2>
 
-            <p className="mt-2 text-sm text-gray-400 leading-6">
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-6">
               Choose your preferred theatre and show time.
             </p>
           </div>
 
-          <div className="space-y-3 p-4 sm:space-y-4 sm:p-5">
+          <div className="space-y-3 p-4 text-gray-600 dark:text-gray-400 sm:space-y-4 sm:p-5">
             {show?.dateTime?.[date]?.length ? (
               show.dateTime[date].map((item) => (
                 <div
@@ -227,7 +227,7 @@ const SeatLayout = () => {
                   className={`cursor-pointer rounded-2xl border p-4 transition-all duration-300 ${
                     selectedTime?._id === item._id
                       ? "border-primary bg-primary/20 shadow-lg shadow-primary/20"
-                      : "border-white/10 bg-white/5 hover:border-primary/50 hover:bg-primary/10"
+                      : "border-gray-600 dark:border-white/10 bg-white dark:bg-primary/10 hover:border-primary/50 hover:bg-primary/10"
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -243,7 +243,7 @@ const SeatLayout = () => {
                     </span>
                   </div>
 
-                  <div className="mt-3 space-y-1 text-sm text-gray-400">
+                  <div className="mt-3 space-y-1 text-sm text-gray-600 dark:text-gray-400">
                     <h2 className="text-sm font-bold flex items-center gap-2">
                       <Building2 className="w-6 h-6 text-primary" />{" "}
                       {item.theatreName}
@@ -257,7 +257,7 @@ const SeatLayout = () => {
                 </div>
               ))
             ) : (
-              <p className="text-gray-400">No shows available.</p>
+              <p className="text-gray-900 dark:text-gray-400">No shows available.</p>
             )}
           </div>
         </div>
@@ -265,10 +265,10 @@ const SeatLayout = () => {
         {/* Seat Layout */}
         <div className="relative flex-1 flex flex-col items-center mt-2 lg:mt-0">
           <div className="w-full max-w-4xl mb-8">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:rounded-3xl sm:p-6">
-              <h2 className="text-2xl font-bold">{show.movie.title}</h2>
+            <div className="rounded-2xl border border-gray-600 dark:border-white/10 bg-white dark:bg-primary/10 p-4 sm:rounded-3xl sm:p-6">
+              <h2 className="text-2xl text-black dark:text-white font-bold">{show.movie.title}</h2>
 
-              <div className="mt-4 grid grid-cols-1 gap-4 text-gray-300 xs:grid-cols-2 sm:grid-cols-3">
+              <div className="mt-4 grid grid-cols-1 gap-4 text-gray-900 dark:text-gray-300 xs:grid-cols-2 sm:grid-cols-3">
                 <div>
                   <p className="text-xs text-gray-500 uppercase">Theatre</p>
                   <p className="font-semibold">
@@ -321,32 +321,34 @@ const SeatLayout = () => {
             <div className="mt-3 h-px w-2/3 bg-gradient-to-r from-transparent via-primary/60 to-transparent"></div>
           </div>
 
-          <div className="mb-4 grid w-full max-w-3xl grid-cols-1 gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center min-[420px]:grid-cols-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8 sm:px-6">
+          <div className="mb-4 grid w-full max-w-3xl grid-cols-1 gap-3 rounded-2xl border border-gray-600 dark:border-white/10 bg-white dark:bg-primary/10 px-4 py-4 text-center min-[420px]:grid-cols-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8 sm:px-6">
             <div className="flex items-center gap-2">
               <div className="w-5 h-5 rounded border border-primary/50"></div>
-              <span className="text-sm text-gray-300">Available</span>
+              <span className="text-sm text-gray-900 dark:text-gray-300">Available</span>
             </div>
 
             <div className="flex items-center gap-2">
               <div className="w-5 h-5 rounded bg-primary"></div>
-              <span className="text-sm text-gray-300">Selected</span>
+              <span className="text-sm text-gray-900 dark:text-gray-300">Selected</span>
             </div>
 
             <div className="flex items-center gap-2">
               <div className="w-5 h-5 rounded bg-red-500"></div>
-              <span className="text-sm text-gray-300">Booked</span>
+              <span className="text-sm text-gray-900 dark:text-gray-300">Booked</span>
             </div>
           </div>
 
-          <div className="mt-8 flex w-full max-w-full flex-col items-center overflow-x-auto px-1 text-xs text-gray-300 sm:mt-10">
-            <div className="mb-5 grid min-w-max grid-cols-2 gap-4 sm:gap-8 md:mb-6 md:grid-cols-1 md:gap-2">
+         <div className="mt-8 w-full overflow-x-auto sm:mt-10">
+  <div className="flex flex-col items-center min-w-fit px-4 md:px-0 text-xs text-gray-900 dark:text-gray-300">
+            <div className="mb-5 grid w-max grid-cols-2 gap-3 sm:gap-8 md:mb-6 md:grid-cols-1 md:gap-2">
               {groupRows[0].map((row) => renderSeats(row))}
             </div>
 
-            <div className="grid min-w-max grid-cols-2 gap-5 sm:gap-11">
+            <div className="grid w-max grid-cols-2 gap-3 sm:gap-11">
               {groupRows.slice(1).map((group, index) => (
                 <div key={index}>{group.map((row) => renderSeats(row))}</div>
               ))}
+            </div>
             </div>
           </div>
 
@@ -354,32 +356,32 @@ const SeatLayout = () => {
             {/* Legend */}
 
             {/* Booking Summary */}
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-2xl sm:rounded-3xl sm:p-6">
+            <div className="rounded-2xl border border-gray-600 dark:border-white/10 bg-white dark:bg-primary/10 p-4 shadow-2xl sm:rounded-3xl sm:p-6">
               <div className="grid grid-cols-1 gap-5 text-center lg:grid-cols-[1fr_auto_auto] lg:items-center">
                 {/* Left */}
                 <div className="grid grid-cols-3 gap-2 sm:gap-6 text-center">
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-gray-500">
+                    <p className="text-xs uppercase tracking-wider text-black dark:text-gray-500">
                       Seats
                     </p>
 
-                    <h3 className="mt-2 font-bold text-xs md:text-lg">
+                    <h3 className="mt-2 font-bold text-gray-500 dark:text-white text-xs md:text-lg">
                       {selectedSeats.length ? selectedSeats.join(", ") : "--"}
                     </h3>
                   </div>
 
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-gray-500">
+                    <p className="text-xs uppercase tracking-wider text-black dark:text-gray-500">
                       Tickets
                     </p>
 
-                    <h3 className="mt-2 font-bold text-sm md:text-lg">
+                    <h3 className="mt-2 font-bold text-gray-500 dark:text-white text-sm md:text-lg">
                       {selectedSeats.length}
                     </h3>
                   </div>
 
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-gray-500">
+                    <p className="text-xs uppercase tracking-wider text-black dark:text-gray-500">
                       Total
                     </p>
 

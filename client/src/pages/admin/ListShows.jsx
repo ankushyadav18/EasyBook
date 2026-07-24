@@ -68,7 +68,7 @@ const ListShows = () => {
       <div className="mb-2 md:mb-8">
         <Title text1="List" text2="Shows" />
 
-        <p className="text-gray-400">
+        <p className="text-gray-600 dark:text-gray-400">
           View, edit and manage all scheduled movie shows.
         </p>
       </div>
@@ -78,15 +78,15 @@ const ListShows = () => {
             key={show._id}
             className="bg-primary/10 border border-primary/20 rounded-2xl p-4"
           >
-            <h3 className="text-lg font-semibold text-white">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               {show.movie?.title || "Movie Deleted"}
             </h3>
 
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
               📅 {new Date(show.showDate).toLocaleDateString()}
             </p>
 
-            <p className="text-sm text-gray-400">🕒 {show.showTime}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">🕒 {show.showTime}</p>
 
             <div className="flex justify-between mt-4 text-sm">
               <span className="text-blue-400">
@@ -142,15 +142,15 @@ const ListShows = () => {
             {shows.map((show) => (
               <tr
                 key={show._id}
-                className="bg-black/20 hover:bg-primary/10 transition-all duration-300"
+                className="bg-gray-100 dark:bg-black/20 hover:bg-primary/10 transition-all duration-300"
               >
                 <td className="px-6 py-4 rounded-l-xl">
                   <div>
-                    <p className="font-semibold text-white">
+                    <p className="font-semibold text-gray-900 dark:text-white">
                       {show.movie?.title || "Movie Deleted"}
                     </p>
 
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
                       {show.movie ? "Active Movie" : "Removed"}
                     </p>
                   </div>
@@ -158,9 +158,9 @@ const ListShows = () => {
 
                 <td className="px-6 py-4">
                   <div>
-                    <p className="font-medium text-white">{show.showTime}</p>
+                    <p className="font-medium text-gray-900 dark:text-white">{show.showTime}</p>
 
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
                       {new Date(show.showDate).toLocaleDateString()}
                     </p>
                   </div>
@@ -182,14 +182,14 @@ const ListShows = () => {
                 <td className="px-6 py-4 rounded-r-xl text-center">
                   <button
                     onClick={() => navigate(`/admin/edit-show/${show._id}`)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-medium transition cursor-pointer"
+                    className="bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white px-5 py-2 rounded-xl font-medium transition cursor-pointer"
                   >
                     Edit
                   </button>
 
                   <button
                     onClick={() => deleteShow(show._id)}
-                    className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-xl font-medium transition cursor-pointer ml-2"
+                    className="bg-red-600 hover:bg-red-700 text-gray-900 dark:text-white px-5 py-2 rounded-xl font-medium transition cursor-pointer ml-2"
                   >
                     Delete
                   </button>

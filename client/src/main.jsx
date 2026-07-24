@@ -5,14 +5,17 @@ import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { AuthProvider } from "./context/AuthContext";
 import { AppProvider } from "./context/AppContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <AuthProvider>
-      <AppProvider>
-        <ScrollToTop />
-        <App />
-      </AppProvider>
-    </AuthProvider>
-  </BrowserRouter>
+    <ThemeProvider>
+      <AuthProvider>
+        <AppProvider>
+          <ScrollToTop />
+          <App />
+        </AppProvider>
+      </AuthProvider>
+    </ThemeProvider>
+  </BrowserRouter>,
 );

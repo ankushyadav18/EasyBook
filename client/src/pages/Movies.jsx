@@ -136,11 +136,11 @@ const Movies = () => {
             🎬 Collection
           </span>
 
-          <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl text-black dark:text-white font-bold tracking-tight leading-tight">
             Explore Movies
           </h1>
 
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-gray-300 leading-6 sm:leading-7">
+          <p className="mt-3 max-w-2xl text-sm sm:text-base text-gray-900 dark:text-gray-300 leading-6 sm:leading-7">
             Browse the latest blockbusters, trending titles, and upcoming
             releases. Find your next favorite movie and book your tickets
             instantly.
@@ -149,7 +149,7 @@ const Movies = () => {
 
         <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3 mb-8 md:mb-10">
           {/* Mobile */}
-          <div className="flex flex-wrap gap-2 sm:hidden">
+          <div className="flex flex-wrap gap-2 text-gray-900 dark:text-gray-300 sm:hidden">
             {categories
               .slice(0, showMoreCategories ? categories.length : 2)
               .map(({ name, icon: Icon }) => (
@@ -158,8 +158,8 @@ const Movies = () => {
                   onClick={() => setCategory(name)}
                   className={`flex items-center gap-2 px-4 py-2.5 text-sm rounded-full transition ${
                     category === name
-                      ? "bg-primary text-white"
-                      : "bg-white/5 border border-white/10"
+                      ? "bg-primary text-gray-900 dark:text-white"
+                      : "bg-white dark:bg-primary/10 border border-gray-600 dark:border-white/10"
                   }`}
                 >
                   <Icon size={16} />
@@ -169,22 +169,22 @@ const Movies = () => {
 
             <button
               onClick={() => setShowMoreCategories(!showMoreCategories)}
-              className="px-4 py-2.5 rounded-full bg-white/5 border border-white/10"
+              className="px-4 py-2.5 rounded-full bg-white dark:bg-primary/10 border border-gray-600 dark:border-white/10"
             >
               {showMoreCategories ? "Less ▲" : "More ▾"}
             </button>
           </div>
 
           {/* Desktop */}
-          <div className="hidden sm:flex flex-wrap gap-3">
+          <div className="hidden sm:flex flex-wrap text-gray-900 dark:text-gray-300 gap-3">
             {categories.map(({ name, icon: Icon }) => (
               <button
                 key={name}
                 onClick={() => setCategory(name)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 ${
                   category === name
-                    ? "bg-primary text-white scale-105 shadow-xl shadow-primary/40"
-                    : "bg-white/5 border border-white/10 hover:border-primary hover:bg-primary/10"
+                    ? "bg-primary text-gray-900 dark:text-white scale-105 shadow-xl shadow-primary/40"
+                    : "bg-white dark:bg-primary/10 border border-gray-600 dark:border-white/10 hover:border-primary hover:bg-primary/10"
                 }`}
               >
                 <Icon size={18} />
@@ -193,13 +193,13 @@ const Movies = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between mb-10">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start text-gray-900 dark:text-gray-300 lg:justify-between mb-10">
           <input
             type="text"
             placeholder="Search movies..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full lg:w-96 px-3 sm:px-5 py-3 rounded-xl bg-white/5 border border-white/10 outline-none focus:border-primary transition"
+            className="w-full lg:w-96 px-3 sm:px-5 py-3 rounded-xl bg-white dark:bg-primary/10 border border-gray-600 dark:border-white/10 outline-none focus:border-primary transition"
           />
 
           <div className="flex flex-wrap justify-center sm:justify-start gap-2">
@@ -213,8 +213,8 @@ const Movies = () => {
                     onClick={() => setFilter(genre)}
                     className={`px-4 py-2 text-sm rounded-full transition ${
                       filter === genre
-                        ? "bg-primary text-white"
-                        : "bg-white/5 border border-white/10"
+                        ? "bg-primary text-gray-900 dark:text-white"
+                        : "bg-white dark:bg-primary/10 border border-gray-600 dark:border-white/10"
                     }`}
                   >
                     {genre}
@@ -223,7 +223,7 @@ const Movies = () => {
 
               <button
                 onClick={() => setShowMoreGenres(!showMoreGenres)}
-                className="px-4 py-2 text-sm rounded-full bg-white/5 border border-white/10 hover:border-primary transition"
+                className="px-4 py-2 text-sm rounded-full bg-white dark:bg-primary/10 border border-gray-600 dark:border-white/10 hover:border-primary transition"
               >
                 {showMoreGenres ? "Less ▲" : "More ▾"}
               </button>
@@ -237,8 +237,8 @@ const Movies = () => {
                   onClick={() => setFilter(genre)}
                   className={`px-5 py-2 rounded-full transition ${
                     filter === genre
-                      ? "bg-primary text-white"
-                      : "bg-white/5 border border-white/10 hover:border-primary"
+                      ? "bg-primary text-gray-900 dark:text-white"
+                      : "bg-white dark:bg-primary/10 border border-gray-600 dark:border-white/10 hover:border-primary"
                   }`}
                 >
                   {genre}
@@ -249,16 +249,16 @@ const Movies = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-8">
-          <h2 className="text-xl sm:text-2xl font-semibold">Movies</h2>
+          <h2 className="text-xl sm:text-2xl text-black dark:text-white font-semibold">Movies</h2>
 
-          <p className="text-gray-300">{filteredMovies.length} Movies Found</p>
+          <p className="text-gray-900 dark:text-gray-300">{filteredMovies.length} Movies Found</p>
         </div>
 
         {filteredMovies.length === 0 ? (
-          <div className="text-center py-24 border border-dashed border-white/10 rounded-3xl">
+          <div className="text-center py-24 border border-dashed border-gray-600 dark:border-white/10 rounded-3xl">
             <h2 className="text-2xl font-semibold">No Movies Found</h2>
 
-            <p className="text-sm sm:text-base text-gray-400">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
               Movies will appear here once they're available.
             </p>
           </div>

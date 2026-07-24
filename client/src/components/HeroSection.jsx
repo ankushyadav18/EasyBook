@@ -63,11 +63,11 @@ const HeroSection = ({ movies, loading }) => {
 
   return (
     <div
-  className="relative min-h-[85vh] md:min-h-screen bg-cover bg-center md:bg-center transition-all duration-700 ease-in-out"
+      className="relative min-h-[85vh] md:min-h-screen bg-cover bg-center md:bg-center transition-all duration-700 ease-in-out"
       style={{
-  backgroundImage: `url(${backgroundImage})`,
-  backgroundPosition: "center top",
-}}
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundPosition: "center top",
+      }}
     >
       {/* Dark Gradient Overlay */}
       {/* <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div> */}
@@ -78,7 +78,7 @@ const HeroSection = ({ movies, loading }) => {
       {/* Hero Content */}
 
       <div
-  className={`relative z-10 flex flex-col items-start justify-end md:justify-center min-h-[85vh] md:min-h-screen px-5 sm:px-6 md:px-16 lg:px-36 pb-20 md:pb-0 transition-opacity duration-500 ${
+        className={`relative z-10 flex flex-col items-start justify-end md:justify-center min-h-[85vh] md:min-h-screen px-5 sm:px-6 md:px-16 lg:px-36 pb-20 md:pb-0 transition-opacity duration-500 ${
           fade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
@@ -92,7 +92,9 @@ const HeroSection = ({ movies, loading }) => {
             </span>
           </div>
 
-          <span className="text-gray-300 text-sm">IMDb Rating</span>
+          <span className="text-gray-900 dark:text-gray-300 text-sm">
+            IMDb Rating
+          </span>
         </div>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-none max-w-3xl tracking-tight drop-shadow-xl">

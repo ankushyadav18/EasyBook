@@ -6,8 +6,8 @@ import { Github, Linkedin, Mail, Phone } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="relative mt-4 md:mt-6 overflow-hidden">
-      <div className="px-4 md:px-16 lg:px-24 xl:px-40 py-4 md:py-16 bg-transparent border-t border-white/10 text-gray-300">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10 border-b border-white/10 pb-10">
+      <div className="px-4 md:px-16 lg:px-24 xl:px-40 py-4 md:py-16 bg-transparent border-t border-gray-600 dark:border-white/10 text-gray-900 dark:text-gray-300">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10 border-b border-gray-600 dark:border-white/10 pb-10">
           <div className="flex flex-col items-center md:items-start md:flex-row md:gap-8 md:max-w-md">
             {/* Responsive logo */}
             <img
@@ -17,7 +17,7 @@ const Footer = () => {
             />
 
             <div className="mt-1 md:mt-0 text-center md:text-left">
-              <p className="text-sm text-gray-300 max-w-sm leading-7">
+              <p className="text-sm text-gray-900 dark:text-gray-300 max-w-sm leading-7">
                 EasyBook is a modern movie ticket booking platform that lets you
                 discover movies, select your favorite seats, and book tickets
                 securely with a fast and seamless experience.
@@ -27,7 +27,7 @@ const Footer = () => {
                   href="https://github.com/ankushyadav18"
                   target="_blank"
                   rel="noreferrer"
-                  className="w-11 h-11 flex items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-primary hover:border-primary hover:-translate-y-1 transition-all duration-300"
+                  className="w-11 h-11 flex items-center justify-center rounded-full border border-gray-600 dark:border-white/10 bg-white/5 hover:bg-primary hover:border-primary hover:-translate-y-1 transition-all duration-300"
                 >
                   <Github size={18} />
                 </a>
@@ -36,7 +36,7 @@ const Footer = () => {
                   href="https://www.linkedin.com/in/ankush-yadav-a71418330"
                   target="_blank"
                   rel="noreferrer"
-                  className="w-11 h-11 flex items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-primary hover:border-primary hover:-translate-y-1 transition-all duration-300"
+                  className="w-11 h-11 flex items-center justify-center rounded-full border border-gray-600 dark:border-white/10 bg-white/5 hover:bg-primary hover:border-primary hover:-translate-y-1 transition-all duration-300"
                 >
                   <Linkedin size={18} />
                 </a>
@@ -46,31 +46,31 @@ const Footer = () => {
 
           <div className="grid w-full grid-cols-1 gap-8 text-center sm:grid-cols-2 sm:text-left md:w-auto md:min-w-[420px] md:gap-12 lg:min-w-[520px] lg:gap-20">
             <div>
-              <h2 className="mb-4 font-semibold text-white sm:mb-5">
+              <h2 className="mb-4 font-semibold text-gray-900 dark:text-white sm:mb-5">
                 Company
               </h2>
 
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link to="/" className="text-gray-300 transition hover:text-white">
+                  <Link to="/" className="text-gray-900 dark:text-gray-300 transition hover:text-gray-900 dark:text-white">
                     Home
                   </Link>
                 </li>
 
                 <li>
-                  <Link to="/movies" className="text-gray-300 transition hover:text-white">
+                  <Link to="/movies" className="text-gray-900 dark:text-gray-300 transition hover:text-gray-900 dark:text-white">
                     Movies
                   </Link>
                 </li>
 
                 <li>
-                  <Link to="/favorites" className="text-gray-300 transition hover:text-white">
+                  <Link to="/favorites" className="text-gray-900 dark:text-gray-300 transition hover:text-gray-900 dark:text-white">
                     Favorites
                   </Link>
                 </li>
 
                 <li>
-                  <Link to="/my-bookings" className="text-gray-300 transition hover:text-white">
+                  <Link to="/my-bookings" className="text-gray-900 dark:text-gray-300 transition hover:text-gray-900 dark:text-white">
                     My Bookings
                   </Link>
                 </li>
@@ -78,19 +78,19 @@ const Footer = () => {
             </div>
 
             <div className="min-w-0">
-              <h2 className="mb-4 font-semibold text-white sm:mb-5">
+              <h2 className="mb-4 font-semibold text-gray-900 dark:text-white sm:mb-5">
                 Contact
               </h2>
 
               <div className="space-y-3 sm:space-y-4">
-                <div className="flex min-w-0 items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 transition hover:border-primary/40 sm:justify-start">
+                <div className="flex min-w-0 items-center justify-center gap-3 rounded-xl border border-gray-600 dark:border-white/10 bg-white/5 p-3 transition hover:border-primary/40 sm:justify-start">
                   <Phone size={18} className="shrink-0 text-primary" />
-                  <p className="text-sm text-gray-300">+91 75700 18889</p>
+                  <p className="text-sm text-gray-900 dark:text-gray-300">+91 75700 18889</p>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 transition hover:border-primary/40 sm:justify-start">
+                <div className="flex min-w-0 items-center justify-center gap-3 rounded-xl border border-gray-600 dark:border-white/10 bg-white/5 p-3 transition hover:border-primary/40 sm:justify-start">
                   <Mail size={18} className="shrink-0 text-primary" />
-                  <p className="min-w-0 break-all text-sm text-gray-300">
+                  <p className="min-w-0 break-all text-sm text-gray-900 dark:text-gray-300">
                     yadavankusho45@gmail.com
                   </p>
                 </div>
@@ -99,7 +99,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-white/10 pt-4 text-center text-xs leading-6 text-gray-300 sm:text-sm">
+        <div className="mt-8 border-t border-gray-600 dark:border-white/10 pt-4 text-center text-xs leading-6 text-gray-900 dark:text-gray-300 sm:text-sm">
           © {new Date().getFullYear()} EasyBook • Crafted with ❤️ by Ankush
           Yadav
         </div>

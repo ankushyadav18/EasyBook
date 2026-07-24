@@ -191,27 +191,27 @@ const MyBooking = () => {
           EasyBook
         </p>
 
-        <h1 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-extrabold">
+        <h1 className="mt-3 text-3xl sm:text-4xl text-black dark:text-white md:text-5xl font-extrabold">
           My Bookings
         </h1>
 
-        <p className="mt-4 text-sm sm:text-base max-w-2xl text-gray-300 leading-6 sm:leading-7">
+        <p className="mt-4 text-sm sm:text-base max-w-2xl text-gray-900 dark:text-gray-300 leading-6 sm:leading-7">
           Manage your booked movies, download tickets, complete pending
           payments, and keep track of your upcoming cinema experience.
         </p>
         <div className="grid grid-cols-3 gap-3 mt-8 mb-10 sm:gap-6">
-          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 shadow-2xl p-6">
-            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-white">
+          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 bg-white dark:bg-primary/10 shadow-2xl p-6">
+            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-gray-900 dark:text-white">
               Total Bookings
             </p>
 
-            <h2 className="mt-2 text-xl sm:text-4xl font-bold">
+            <h2 className="mt-2 text-xl text-black dark:text-white sm:text-4xl font-bold">
               {totalBookings}
             </h2>
           </div>
 
-          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 shadow-2xl p-6">
-            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-white">
+          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 bg-white dark:bg-primary/10 shadow-2xl p-6">
+            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-gray-900 dark:text-white">
               Paid Tickets
             </p>
 
@@ -220,8 +220,8 @@ const MyBooking = () => {
             </h2>
           </div>
 
-          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 shadow-2xl p-6">
-            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-white">
+          <div className="rounded-3xl bg-[#0d111bcc] border border-[#d4af37]/20 bg-white dark:bg-primary/10 shadow-2xl p-6">
+            <p className="text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-[0.25em] text-gray-900 dark:text-white">
               Total Spent
             </p>
 
@@ -235,7 +235,7 @@ const MyBooking = () => {
 
       {bookings.length === 0 ? (
         <div className="flex justify-center items-center h-60">
-          <h2 className="text-2xl font-semibold text-gray-400">
+          <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-400">
             No Bookings Found
           </h2>
         </div>
@@ -245,25 +245,25 @@ const MyBooking = () => {
             <table className="min-w-[1100px] w-full">
               <thead className="sticky top-0 z-10 border-b border-primary/20 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/80 backdrop-blur-3xl">
                 <tr>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
                     Movie
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
                     Show
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
                     Seats
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
                     Amount
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
                     Payment
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
                     Booking
                   </th>
-                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                  <th className="px-6 py-5 text-left text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
                     Actions
                   </th>
                 </tr>
@@ -287,7 +287,7 @@ const MyBooking = () => {
                   return (
                     <tr
                       key={item._id}
-                      className={`border-t border-primary/35 transition-all duration-300 hover:bg-primary/15 hover:border-primary hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 ${
+                      className={`border-t border-primary/35 transition-all bg-white dark:bg-primary/10 duration-300 hover:bg-primary/15 hover:border-primary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 ${
                         item.bookingStatus === "cancelled"
                           ? "opacity-50 grayscale"
                           : isExpired
@@ -303,22 +303,22 @@ const MyBooking = () => {
                               item.movie?.poster_path ||
                               item.movie?.backdrop_path
                             }
-                            className="h-24 w-16 rounded-xl border border-white/10 object-cover shadow-lg"
+                            className="h-24 w-16 rounded-xl border border-gray-600 dark:border-white/10 object-cover shadow-lg"
                           />
 
                           <div>
-                            <h2 className="text-lg font-bold tracking-wide">
+                            <h2 className="text-lg font-bold text-black dark:text-white tracking-wide">
                               {item.movie?.title || "Movie Deleted"}
                             </h2>
 
-                            <p className="text-sm text-gray-300 mt-1">
+                            <p className="text-sm text-gray-900 dark:text-gray-300 mt-1">
                               ⭐{" "}
                               {Number(item.movie?.vote_average || 0).toFixed(1)}
                               {" • "}
                               {timeFormat(item.movie?.runtime || 0)}
                             </p>
 
-                            <p className="text-xs text-gray-300 mt-1">
+                            <p className="text-xs text-gray-900 dark:text-gray-300 mt-1">
                               {item.movie?.genres
                                 ?.map((g) => g.name)
                                 .join(" • ")}
@@ -330,15 +330,15 @@ const MyBooking = () => {
                       {/* Show */}
                       <td className="px-5 py-5">
                         <div className="space-y-1">
-                          <p className="font-medium">
+                          <p className="font-medium text-gray-900 dark:text-gray-300">
                             🎭 {item.show?.theatreName}
                           </p>
 
-                          <p className="text-gray-300">
+                          <p className="text-gray-900 dark:text-gray-300">
                             🖥 {item.show?.screen}
                           </p>
 
-                          <p className="text-sm">
+                          <p className="text-sm text-gray-900 dark:text-gray-300">
                             📅 {ticketDateFormat(item.show?.showDate)}
                           </p>
 
@@ -407,7 +407,7 @@ const MyBooking = () => {
                             <p className="font-semibold text-red-400">
                               ❌ Booking Cancelled
                             </p>
-                            <p className="mt-1 text-xs text-gray-300">
+                            <p className="mt-1 text-xs text-gray-900 dark:text-gray-300">
                               Your seats have been released.
                             </p>
                           </div>
@@ -416,7 +416,7 @@ const MyBooking = () => {
                             <p className="font-semibold text-yellow-400">
                               🎬 Show Expired
                             </p>
-                            <p className="mt-1 text-xs text-gray-300">
+                            <p className="mt-1 text-xs text-gray-900 dark:text-gray-300">
                               This show has already ended.
                             </p>
                           </div>
@@ -495,11 +495,11 @@ const MyBooking = () => {
               </div>
             </div>
 
-            <h2 className="mt-6 text-center text-3xl font-bold text-white">
+            <h2 className="mt-6 text-center text-3xl font-bold text-gray-900 dark:text-white">
               Cancel Booking?
             </h2>
 
-            <p className="mt-4 text-center text-gray-400">
+            <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
               Are you sure you want to cancel this booking?
             </p>
 
@@ -513,7 +513,7 @@ const MyBooking = () => {
                   setShowCancelModal(false);
                   setSelectedBooking(null);
                 }}
-                className="flex-1 rounded-xl border border-gray-600 py-3 font-semibold text-white transition hover:bg-gray-700 cursor-pointer"
+                className="flex-1 rounded-xl border border-gray-600 py-3 font-semibold text-gray-900 dark:text-white transition hover:bg-gray-700 cursor-pointer"
               >
                 No
               </button>
@@ -524,7 +524,7 @@ const MyBooking = () => {
                   setShowCancelModal(false);
                   setSelectedBooking(null);
                 }}
-                className="flex-1 rounded-xl bg-red-600 py-3 font-semibold text-white transition hover:bg-red-700 cursor-pointer"
+                className="flex-1 rounded-xl bg-red-600 py-3 font-semibold text-gray-900 dark:text-white transition hover:bg-red-700 cursor-pointer"
               >
                 Yes, Cancel
               </button>

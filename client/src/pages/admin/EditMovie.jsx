@@ -145,7 +145,7 @@ const EditMovie = () => {
       <div className="mb-8">
         <Title text1="Edit" text2="Movie" />
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Update movie information and keep your catalog up to date.
         </p>
       </div>
@@ -175,7 +175,7 @@ const EditMovie = () => {
                   <>
                     <ImagePlus className="w-14 h-14 text-primary mb-3" />
                     <p className="font-medium">Click to upload poster</p>
-                    <p className="text-sm text-gray-400 mt-1">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                       PNG, JPG or WEBP
                     </p>
                   </>
@@ -214,7 +214,7 @@ const EditMovie = () => {
                   <>
                     <ImagePlus className="w-14 h-14 text-primary mb-3" />
                     <p className="font-medium">Click to upload backdrop</p>
-                    <p className="text-sm text-gray-400 mt-1">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                       Recommended 16:9 image
                     </p>
                   </>
@@ -238,7 +238,7 @@ const EditMovie = () => {
               <h2 className="text-lg font-semibold">Movie Information</h2>
             </div>
 
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
               Basic details that customers will see.
             </p>
           </div>
@@ -255,7 +255,7 @@ const EditMovie = () => {
               value={formData.title}
               onChange={handleChange}
               placeholder="Enter movie title"
-              className="w-full border border-primary/20 rounded-lg p-3 bg-black/20 focus:border-primary outline-none transition"
+              className="w-full border border-primary/20 rounded-lg p-3 bg-gray-100 dark:bg-black/20 focus:border-primary outline-none transition"
             />
           </div>
 
@@ -269,7 +269,7 @@ const EditMovie = () => {
               value={formData.tagline}
               onChange={handleChange}
               placeholder="Movie tagline"
-              className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
             />
           </div>
 
@@ -285,10 +285,10 @@ const EditMovie = () => {
               value={formData.trailer}
               onChange={handleChange}
               placeholder="Example: mqqft2x_Aa4"
-              className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
             />
 
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
               Paste only the YouTube Video ID, not the full URL.
             </p>
           </div>
@@ -304,7 +304,7 @@ const EditMovie = () => {
               value={formData.overview}
               onChange={handleChange}
               placeholder="Movie description"
-              className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition resize-none"
+              className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition resize-none"
             />
           </div>
 
@@ -316,7 +316,7 @@ const EditMovie = () => {
               <div>
                 <h2 className="text-lg font-semibold">Movie Details</h2>
 
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Technical information about the movie.
                 </p>
               </div>
@@ -331,7 +331,7 @@ const EditMovie = () => {
                   name="release_date"
                   value={formData.release_date}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
                 />
               </div>
 
@@ -343,7 +343,7 @@ const EditMovie = () => {
                   name="runtime"
                   value={formData.runtime}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
                 />
               </div>
 
@@ -356,7 +356,7 @@ const EditMovie = () => {
                   name="vote_average"
                   value={formData.vote_average}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
                 />
               </div>
 
@@ -368,7 +368,7 @@ const EditMovie = () => {
                   name="original_language"
                   value={formData.original_language}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
                 />
               </div>
 
@@ -379,7 +379,7 @@ const EditMovie = () => {
                   name="status"
                   value={formData.status}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition cursor-pointer"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition cursor-pointer"
                 >
                   <option className="text-black" value="now_showing">
                     Now Showing
@@ -401,7 +401,7 @@ const EditMovie = () => {
               value={formData.genres}
               onChange={handleChange}
               placeholder="Action, Adventure, Sci-Fi"
-              className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
             />
           </div>
         </div>
@@ -409,7 +409,7 @@ const EditMovie = () => {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-green-600/50 disabled:cursor-not-allowed text-white py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-green-500/20 cursor-pointer"
+            className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-green-600/50 disabled:cursor-not-allowed text-gray-900 dark:text-white py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-green-500/20 cursor-pointer"
           >
             {loading ? "Updating Movie..." : "Update Movie"}
           </button>
@@ -417,7 +417,7 @@ const EditMovie = () => {
           <button
             type="button"
             onClick={() => navigate("/admin/list-movies")}
-            className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer"
+            className="flex-1 bg-gray-700 hover:bg-gray-600 text-gray-900 dark:text-white py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer"
           >
             Cancel
           </button>

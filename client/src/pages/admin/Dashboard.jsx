@@ -204,14 +204,14 @@ const Dashboard = () => {
             {greeting}, Admin 👋
           </h2>
 
-          <p className="mt-2 text-sm md:text-base text-gray-400 max-w-lg leading-6">
+          <p className="mt-2 text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-lg leading-6">
             Monitor your movie platform, track bookings, manage users, and
             analyze business performance—all from one dashboard.
           </p>
         </div>
 
         <div className="mt-2 md:mt-0 text-left md:text-right">
-          <p className="text-gray-400 text-sm uppercase tracking-widest">
+          <p className="text-gray-600 dark:text-gray-400 text-sm uppercase tracking-widest">
             Today
           </p>
 
@@ -250,7 +250,7 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <p className="text-gray-400 text-sm">Growth Today</p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">Growth Today</p>
 
             <h3 className="text-lg md:text-2xl font-bold text-green-400">
               +12%
@@ -268,7 +268,7 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <p className="text-gray-400 text-xs md:text-sm">Tickets Sold</p>
+            <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm">Tickets Sold</p>
             <h3 className="text-lg md:text-xl font-bold">
               {stats.totalBookings}
             </h3>
@@ -281,7 +281,7 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <p className="text-gray-400 text-xs md:text-sm">Avg Revenue</p>
+            <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm">Avg Revenue</p>
             <h3 className="text-lg md:text-xl font-bold">
               {currency}
               {stats.totalBookings
@@ -297,7 +297,7 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <p className="text-gray-400 text-xs md:text-sm">Server Status</p>
+            <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm">Server Status</p>
             <h3 className="text-lg md:text-xl font-bold text-green-400 flex items-center gap-2">
               <Activity className="w-3 h-3 md:w-4 md:h-4" />
               <p className="text-green-400 text-sm">Online</p>
@@ -322,14 +322,14 @@ const Dashboard = () => {
                 <Film className="w-5 h-5 md:w-7 md:h-7 text-primary" />
               </div>
 
-              <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition" />
             </div>
 
             <h3 className="font-bold text-base md:text-lg mt-3 md:mt-5">
               Add Movie
             </h3>
 
-            <p className="text-gray-400 text-xs md:text-sm mt-1 md:mt-2 leading-5">
+            <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm mt-1 md:mt-2 leading-5">
               Create and publish a new movie.
             </p>
           </button>
@@ -343,14 +343,14 @@ const Dashboard = () => {
                 <MonitorPlay className="w-5 h-5 md:w-7 md:h-7 text-primary" />
               </div>
 
-              <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition" />
             </div>
 
             <h3 className="font-bold text-base md:text-lg mt-3 md:mt-5">
               Add Show
             </h3>
 
-            <p className="text-gray-400 text-xs md:text-sm mt-1 md:mt-2 leading-5">
+            <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm mt-1 md:mt-2 leading-5">
               Schedule movie shows quickly.
             </p>
           </button>
@@ -364,14 +364,14 @@ const Dashboard = () => {
                 <Users className="w-5 h-5 md:w-7 md:h-7 text-primary" />
               </div>
 
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition" />
             </div>
 
             <h3 className="font-bold text-base md:text-lg mt-3 md:mt-5">
               Users
             </h3>
 
-            <p className="text-gray-400 text-xs md:text-sm mt-1 md:mt-2 leading-5">
+            <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm mt-1 md:mt-2 leading-5">
               View and manage all registered users.
             </p>
           </button>
@@ -385,14 +385,14 @@ const Dashboard = () => {
                 <Ticket className="w-5 h-5 md:w-7 md:h-7 text-primary" />
               </div>
 
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition" />
             </div>
 
             <h3 className="font-bold text-base md:text-lg mt-3 md:mt-5">
               Bookings
             </h3>
 
-            <p className="text-gray-400 text-xs md:text-sm mt-1 md:mt-2 leading-5">
+            <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm mt-1 md:mt-2 leading-5">
               Check recent and upcoming bookings.
             </p>
           </button>
@@ -409,7 +409,7 @@ const Dashboard = () => {
           <div className="group bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-xs md:text-sm text-gray-400">
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                   Today's Bookings
                 </p>
 
@@ -432,7 +432,7 @@ const Dashboard = () => {
           <div className="group bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-xs md:text-sm text-gray-400">New Users</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">New Users</p>
 
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 md:mt-3 text-green-400">
                   {stats.newUsers || 0}
@@ -453,7 +453,7 @@ const Dashboard = () => {
           <div className="group bg-gradient-to-br from-yellow-500/10 to-orange-500/5 border border-yellow-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-xs md:text-sm text-gray-400">
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                   Occupancy Rate
                 </p>
 
@@ -482,7 +482,7 @@ const Dashboard = () => {
               Platform Statistics
             </h2>
 
-            <p className="text-xs md:text-sm text-gray-400 mt-1">
+            <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-1">
               Overall performance of your EasyBook platform
             </p>
           </div>
@@ -497,7 +497,7 @@ const Dashboard = () => {
           <div className="group bg-primary/10 border border-primary/20 rounded-xl md:rounded-2xl p-4 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-xs md:text-sm text-gray-400">Total Users</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Total Users</p>
 
                 <h2 className="text-2xl md:text-4xl font-bold mt-2 md:mt-3">
                   {stats.totalUsers}
@@ -514,7 +514,7 @@ const Dashboard = () => {
           <div className="group bg-primary/10 border border-primary/20 rounded-xl md:rounded-2xl p-4 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-xs md:text-sm text-gray-400">Movies</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Movies</p>
 
                 <h2 className="text-2xl md:text-4xl font-bold mt-2 md:mt-3">
                   {stats.totalMovies}
@@ -531,7 +531,7 @@ const Dashboard = () => {
           <div className="group bg-primary/10 border border-primary/20 rounded-xl md:rounded-2xl p-4 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-xs md:text-sm text-gray-400">Shows</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Shows</p>
 
                 <h2 className="text-2xl md:text-4xl font-bold mt-2 md:mt-3">
                   {stats.totalShows}
@@ -548,7 +548,7 @@ const Dashboard = () => {
           <div className="group bg-primary/10 border border-primary/20 rounded-xl md:rounded-2xl p-4 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-xs md:text-sm text-gray-400">Bookings</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Bookings</p>
 
                 <h2 className="text-2xl md:text-4xl font-bold mt-2 md:mt-3">
                   {stats.totalBookings}
@@ -565,7 +565,7 @@ const Dashboard = () => {
           <div className="group bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 rounded-xl md:rounded-2xl p-4 md:p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-xs md:text-sm text-gray-400">Revenue</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Revenue</p>
 
                 <h2 className="text-xl md:text-3xl font-bold mt-2 md:mt-3 text-primary break-all">
                   {currency}
@@ -588,7 +588,7 @@ const Dashboard = () => {
               <Activity className="w-5 h-5 md:w-6 md:h-6 text-primary" />
               Recent Activity
             </h2>
-            <p className="text-xs md:text-sm text-gray-400">
+            <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
               Latest booking activities
             </p>
           </div>
@@ -606,7 +606,7 @@ const Dashboard = () => {
 
             <h3 className="mt-4 text-lg font-semibold">No Recent Activity</h3>
 
-            <p className="text-gray-400 text-sm mt-1">
+            <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
               New bookings will appear here.
             </p>
           </div>
@@ -618,7 +618,7 @@ const Dashboard = () => {
                 className="group flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl bg-black/10 hover:bg-primary/10 transition duration-300"
               >
                 {/* Avatar */}
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-base md:text-lg shadow-lg flex-shrink-0">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary text-gray-900 dark:text-white flex items-center justify-center font-bold text-base md:text-lg shadow-lg flex-shrink-0">
                   {booking.user?.name?.charAt(0).toUpperCase()}
                 </div>
 
@@ -629,10 +629,10 @@ const Dashboard = () => {
                       {booking.user?.name}
                     </span>{" "}
                     booked{" "}
-                    <span className="text-white">{booking.movie?.title}</span>
+                    <span className="text-gray-900 dark:text-white">{booking.movie?.title}</span>
                   </p>
 
-                  <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px] md:text-xs text-gray-400">
+                  <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px] md:text-xs text-gray-600 dark:text-gray-400">
                     <span>
                       {new Date(booking.createdAt).toLocaleDateString("en-IN")}
                     </span>
@@ -676,7 +676,7 @@ const Dashboard = () => {
                 Analytics
               </h2>
 
-              <p className="text-sm text-gray-400">Revenue and bookings</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Revenue and bookings</p>
             </div>
           </div>
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between mb-6">
@@ -687,8 +687,8 @@ const Dashboard = () => {
                   onClick={() => setPeriod(item)}
                   className={`px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
                     period === item
-                      ? "bg-primary text-white shadow-lg shadow-primary/30"
-                      : "bg-black/20 text-gray-300 hover:bg-primary/20"
+                      ? "bg-primary text-gray-900 dark:text-white shadow-lg shadow-primary/30"
+                      : "bg-gray-100 dark:bg-black/20 text-gray-900 dark:text-gray-300 hover:bg-primary/20"
                   }`}
                 >
                   {item === "7days"
@@ -704,13 +704,13 @@ const Dashboard = () => {
                 Revenue Analytics
               </h2>
 
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
                 Daily revenue performance
               </p>
             </div>
 
             <div className="text-left md:text-right">
-              <p className="text-gray-400 text-sm">Total Revenue</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Total Revenue</p>
 
               <h2 className="text-2xl md:text-3xl font-bold text-primary">
                 {currency}
@@ -809,14 +809,14 @@ const Dashboard = () => {
                 Top Performing Movies
               </h2>
 
-              <p className="text-gray-400 text-sm">Based on total bookings</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Based on total bookings</p>
             </div>
 
             <span className="text-2xl md:text-3xl">🎬</span>
           </div>
 
           {topMovies.length === 0 ? (
-            <p className="text-gray-400">No booking data available.</p>
+            <p className="text-gray-600 dark:text-gray-400">No booking data available.</p>
           ) : (
             <div className="space-y-5 overflow-y-auto pr-2 flex-1 custom-scroll">
               {topMovies.map((item, index) => (
@@ -830,7 +830,7 @@ const Dashboard = () => {
                       index === 0
                         ? "bg-yellow-500/20 text-yellow-400"
                         : index === 1
-                          ? "bg-gray-500/20 text-gray-300"
+                          ? "bg-gray-500/20 text-gray-900 dark:text-gray-300"
                           : index === 2
                             ? "bg-orange-500/20 text-orange-400"
                             : "bg-primary/20 text-primary"
@@ -843,12 +843,12 @@ const Dashboard = () => {
                   <img
                     src={item.movie.poster_path}
                     alt={item.movie.title}
-                    className="w-12 h-18 md:w-16 md:h-24 rounded-xl object-cover shadow-lg border border-white/10 transition-transform duration-300 group-hover:scale-105"
+                    className="w-12 h-18 md:w-16 md:h-24 rounded-xl object-cover shadow-lg border border-gray-600 dark:border-white/10 transition-transform duration-300 group-hover:scale-105"
                   />
 
                   {/* Details */}
                   <div className="flex-1">
-                    <h3 className="font-semibold text-sm md:text-base text-white truncate">
+                    <h3 className="font-semibold text-sm md:text-base text-gray-900 dark:text-white truncate">
                       {item.movie.title}
                     </h3>
 
@@ -866,7 +866,7 @@ const Dashboard = () => {
                     {/* Popularity bar */}
                     <div className="mt-4">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-[10px] md:text-xs text-gray-400 font-medium">
+                        <span className="text-[10px] md:text-xs text-gray-600 dark:text-gray-400 font-medium">
                           Popularity Score
                         </span>
 
@@ -900,7 +900,7 @@ const Dashboard = () => {
               Recent Bookings
             </h2>
 
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Latest customer ticket purchases
             </p>
           </div>
@@ -912,7 +912,7 @@ const Dashboard = () => {
 
             <button
               onClick={exportBookings}
-              className="flex items-center justify-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm md:text-base"
+              className="flex items-center justify-center gap-2 bg-primary text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm md:text-base"
             >
               <Download size={18} />
               Export CSV
@@ -921,12 +921,12 @@ const Dashboard = () => {
         </div>
 
         {recentBookings.length === 0 ? (
-          <p className="text-gray-400">No bookings found.</p>
+          <p className="text-gray-600 dark:text-gray-400">No bookings found.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-[1000px] w-full text-left">
               <thead>
-                <tr className="border-b border-primary/20 text-gray-400 text-sm">
+                <tr className="border-b border-primary/20 text-gray-600 dark:text-gray-400 text-sm">
                   <th className="py-3">Movie</th>
                   <th className="py-3">User</th>
                   <th className="py-3">Seats</th>
@@ -956,7 +956,7 @@ const Dashboard = () => {
                             {booking.movie?.title || "Deleted Movie"}
                           </p>
 
-                          <p className="text-[10px] md:text-xs text-gray-400">
+                          <p className="text-[10px] md:text-xs text-gray-600 dark:text-gray-400">
                             Booking ID: {booking._id.slice(-6)}
                           </p>
                         </div>
@@ -967,7 +967,7 @@ const Dashboard = () => {
                       <div>
                         <p className="font-medium">{booking.user?.name}</p>
 
-                        <p className="text-xs text-gray-400">
+                        <p className="text-xs text-gray-600 dark:text-gray-400">
                           {booking.user?.email}
                         </p>
                       </div>
@@ -1006,7 +1006,7 @@ const Dashboard = () => {
                     </td>
 
                     <td>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
                         {new Date(booking.createdAt).toLocaleDateString(
                           "en-IN",
                         )}
@@ -1035,7 +1035,7 @@ const Dashboard = () => {
 
               <button
                 onClick={() => setSelectedBooking(null)}
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-primary/10 hover:bg-red-500 hover:text-white transition-all duration-300 cursor-pointer"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-primary/10 hover:bg-red-500 hover:text-gray-900 dark:text-white transition-all duration-300 cursor-pointer"
               >
                 ✕
               </button>
@@ -1053,7 +1053,7 @@ const Dashboard = () => {
                   {selectedBooking.movie?.title}
                 </h3>
 
-                <p className="text-gray-400 text-sm mt-2">Booking ID:</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">Booking ID:</p>
 
                 <p className="text-xs">{selectedBooking._id}</p>
               </div>
@@ -1061,12 +1061,12 @@ const Dashboard = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
               <div className="bg-primary/10 rounded-xl p-4 border border-primary/10">
-                <p className="text-xs text-gray-400 mb-1">Customer</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Customer</p>
                 <p className="font-semibold">{selectedBooking.user?.name}</p>
               </div>
 
               <div className="bg-primary/10 rounded-xl p-4 border border-primary/10">
-                <p className="text-xs text-gray-400 mb-1">Payment</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Payment</p>
 
                 <span
                   className={`px-3 py-1 rounded-full text-xs ${
@@ -1080,7 +1080,7 @@ const Dashboard = () => {
               </div>
 
               <div className="bg-primary/10 rounded-xl p-4 border border-primary/10">
-                <p className="text-xs text-gray-400 mb-1">Seats</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Seats</p>
 
                 <div className="flex flex-wrap gap-1 mt-2">
                   {selectedBooking.seats.map((seat) => (
@@ -1095,7 +1095,7 @@ const Dashboard = () => {
               </div>
 
               <div className="bg-primary/10 rounded-xl p-4 border border-primary/10">
-                <p className="text-xs text-gray-400 mb-1">Amount</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Amount</p>
 
                 <p className="text-xl md:text-2xl font-bold text-green-400">
                   {currency}
@@ -1105,7 +1105,7 @@ const Dashboard = () => {
             </div>
 
             <div className="mt-5 border-t border-primary/10 pt-4">
-              <p className="text-sm text-gray-400">Booking Date</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Booking Date</p>
 
               <p className="mt-1">
                 {new Date(selectedBooking.createdAt).toLocaleString("en-IN")}
@@ -1125,7 +1125,7 @@ const Dashboard = () => {
           {notifications.map((item) => (
             <div
               key={item.id}
-              className="flex items-start md:items-center gap-3 md:gap-4 p-3 md:p-4 rounded-lg bg-black/20 hover:bg-black/30 transition"
+              className="flex items-start md:items-center gap-3 md:gap-4 p-3 md:p-4 rounded-lg bg-gray-100 dark:bg-black/20 hover:bg-black/30 transition"
             >
               <div
                 className={`w-4 h-4 rounded-full ${
@@ -1138,7 +1138,7 @@ const Dashboard = () => {
               ></div>
 
               <div className="flex-1">
-                <p className="text-sm md:text-base text-gray-300 leading-5">
+                <p className="text-sm md:text-base text-gray-900 dark:text-gray-300 leading-5">
                   {item.message}
                 </p>
 

@@ -62,19 +62,19 @@ const Login = ({ setShowLogin }) => {
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm px-4">
-      <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-[#111827] p-8 shadow-2xl">
+      <div className="relative w-full max-w-md rounded-2xl border border-gray-600 dark:border-white/10 bg-[#111827] p-8 shadow-2xl">
         <button
           onClick={() => setShowLogin(false)}
-          className="absolute right-5 top-5 text-gray-400 hover:text-white"
+          className="absolute right-5 top-5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white"
         >
           <X />
         </button>
 
-        <h2 className="text-3xl font-bold text-white text-center">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center">
           {isLogin ? "Welcome Back" : "Create Account"}
         </h2>
 
-        <p className="text-gray-400 text-center mt-2">
+        <p className="text-gray-600 dark:text-gray-400 text-center mt-2">
           {isLogin ? "Login to continue" : "Create your EasyBook account"}
         </p>
 
@@ -120,7 +120,7 @@ const Login = ({ setShowLogin }) => {
           </button>
         </form>
 
-        <p className="text-center text-gray-400 mt-6">
+        <p className="text-center text-gray-600 dark:text-gray-400 mt-6">
           {isLogin ? "Don't have an account?" : "Already have an account?"}
 
           <button

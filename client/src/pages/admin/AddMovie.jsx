@@ -121,7 +121,7 @@ const AddMovie = () => {
       <div className="mb-8">
         <Title text1="Add" text2="Movie" />
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Create and publish a new movie for your EasyBook platform.
         </p>
       </div>
@@ -147,7 +147,7 @@ const AddMovie = () => {
                   <>
                     <ImagePlus className="w-14 h-14 text-primary mb-3" />
                     <p className="font-medium">Click to upload poster</p>
-                    <p className="text-sm text-gray-400 mt-1">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                       PNG, JPG or WEBP
                     </p>
                   </>
@@ -182,7 +182,7 @@ const AddMovie = () => {
                   <>
                     <ImagePlus className="w-14 h-14 text-primary mb-3" />
                     <p className="font-medium">Click to upload backdrop</p>
-                    <p className="text-sm text-gray-400 mt-1">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                       Recommended 16:9 image
                     </p>
                   </>
@@ -206,7 +206,7 @@ const AddMovie = () => {
               <h2 className="text-lg font-semibold">Movie Information</h2>
             </div>
 
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
               Basic details that customers will see.
             </p>
           </div>
@@ -223,7 +223,7 @@ const AddMovie = () => {
               value={formData.title}
               onChange={handleChange}
               placeholder="Enter movie title"
-              className="w-full border border-primary/20 rounded-lg p-3 bg-black/20 focus:border-primary outline-none transition"
+              className="w-full border border-primary/20 rounded-lg p-3 bg-gray-100 dark:bg-black/20 focus:border-primary outline-none transition"
             />
           </div>
 
@@ -237,7 +237,7 @@ const AddMovie = () => {
               value={formData.tagline}
               onChange={handleChange}
               placeholder="Movie tagline"
-              className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
             />
           </div>
 
@@ -253,10 +253,10 @@ const AddMovie = () => {
               value={formData.trailer}
               onChange={handleChange}
               placeholder="Example: mqqft2x_Aa4"
-              className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
             />
 
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
               Paste only the YouTube Video ID, not the full URL.
             </p>
           </div>
@@ -272,7 +272,7 @@ const AddMovie = () => {
               value={formData.overview}
               onChange={handleChange}
               placeholder="Movie description"
-              className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition resize-none"
+              className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition resize-none"
             />
           </div>
 
@@ -284,7 +284,7 @@ const AddMovie = () => {
               <div>
                 <h2 className="text-lg font-semibold">Movie Details</h2>
 
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Technical information about the movie.
                 </p>
               </div>
@@ -299,7 +299,7 @@ const AddMovie = () => {
                   name="release_date"
                   value={formData.release_date}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
                 />
               </div>
 
@@ -311,7 +311,7 @@ const AddMovie = () => {
                   name="runtime"
                   value={formData.runtime}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
                 />
               </div>
 
@@ -324,7 +324,7 @@ const AddMovie = () => {
                   name="vote_average"
                   value={formData.vote_average}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
                 />
               </div>
 
@@ -336,7 +336,7 @@ const AddMovie = () => {
                   name="original_language"
                   value={formData.original_language}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
                 />
               </div>
 
@@ -347,7 +347,7 @@ const AddMovie = () => {
                   name="status"
                   value={formData.status}
                   onChange={handleChange}
-                  className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition cursor-pointer"
+                  className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition cursor-pointer"
                 >
                   <option className="text-black" value="now_showing">
                     Now Showing
@@ -369,7 +369,7 @@ const AddMovie = () => {
               value={formData.genres}
               onChange={handleChange}
               placeholder="Action, Adventure, Sci-Fi"
-              className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+              className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
             />
           </div>
         </div>
@@ -377,7 +377,7 @@ const AddMovie = () => {
           <button
             type="submit"
             disabled={loading}
-            className="bg-primary text-white px-10 py-3 rounded-xl hover:bg-primary/90 transition cursor-pointer font-medium shadow-lg shadow-primary/20"
+            className="bg-primary text-gray-900 dark:text-white px-10 py-3 rounded-xl hover:bg-primary/90 transition cursor-pointer font-medium shadow-lg shadow-primary/20"
           >
             {loading ? "Uploading..." : "Add Movie"}
           </button>

@@ -62,7 +62,7 @@ const SearchModal = ({ onClose }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-3xl rounded-3xl bg-[#111827] border border-white/10 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
+        className="w-full max-w-3xl rounded-3xl bg-[#111827] border border-gray-600 dark:border-white/10 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-700">
@@ -96,12 +96,12 @@ const SearchModal = ({ onClose }) => {
         {/* Results */}
         <div className="max-h-[420px] overflow-y-auto px-6 pb-6">
           {loading ? (
-            <p className="text-center text-gray-400 py-10">Loading movies...</p>
+            <p className="text-center text-gray-600 dark:text-gray-400 py-10">Loading movies...</p>
           ) : filteredMovies.length === 0 ? (
             <div className="text-center py-10">
               <p className="text-4xl mb-3">🎬</p>
               <h3 className="text-lg font-semibold">No movies found</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
                 Try searching with another name
               </p>
             </div>
@@ -128,18 +128,18 @@ const SearchModal = ({ onClose }) => {
 
                 {/* Info */}
                 <div className="flex-1">
-                  <h3 className="font-semibold text-white line-clamp-1">
+                  <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">
                     {movie.title}
                   </h3>
 
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
                     {movie.genres?.slice(0, 2).join(" • ")} •{" "}
                     {timeFormat(movie.runtime || 0)}
                   </p>
                 </div>
 
                 {/* Rating */}
-                <div className="flex items-center gap-1 text-sm text-gray-300">
+                <div className="flex items-center gap-1 text-sm text-gray-900 dark:text-gray-300">
                   <Star className="w-4 h-4 text-primary fill-primary" />
                   {(movie.rating || 0).toFixed(1)}
                 </div>

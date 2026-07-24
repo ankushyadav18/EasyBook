@@ -36,7 +36,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 
         <button
           onClick={onClose}
-          className="absolute top-2 right-3 text-white text-xl"
+          className="absolute top-2 right-3 text-gray-900 dark:text-white text-xl"
         >
           ×
         </button>

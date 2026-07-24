@@ -67,11 +67,11 @@ const AdminSidebar = () => {
             to={link.path}
             end
             className={({ isActive }) =>
-              `relative flex items-center max-md:justify-center gap-2 w-full py-2.5 min-md:pl-10 text-gray-400 transition-all duration-300
+              `relative flex items-center max-md:justify-center gap-2 w-full py-2.5 min-md:pl-10 text-gray-600 dark:text-gray-400 transition-all duration-300
   ${
     isActive
       ? "bg-primary/15 text-primary shadow-[0_0_15px_rgba(229,9,20,0.25)]"
-      : "hover:bg-primary/10 hover:text-white hover:shadow-[0_0_12px_rgba(229,9,20,0.18)]"
+      : "hover:bg-primary/10 hover:text-gray-900 dark:text-white hover:shadow-[0_0_12px_rgba(229,9,20,0.18)]"
   }`
             }
           >

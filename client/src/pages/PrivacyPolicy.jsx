@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
       <div className="sticky top-32 z-22 mb-8">
         <button
           onClick={() => navigate(-1)}
-          className="mb-8 flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/10 px-4 py-2 font-medium transition-all duration-300 hover:bg-primary hover:text-white cursor-pointer"
+          className="mb-8 flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/10 px-4 py-2 font-medium transition-all duration-300 hover:bg-primary hover:text-gray-900 dark:text-white cursor-pointer"
         >
           <ArrowLeft size={18} />
           Back
@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
       <div className="max-w-5xl mx-auto rounded-3xl bg-primary/10 border border-primary/20 p-8 md:p-12">
         <h1 className="text-4xl font-bold mb-2">Privacy Policy</h1>
 
-        <p className="text-gray-400 mb-10">Last Updated: July 2026</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-10">Last Updated: July 2026</p>
 
         <div className="space-y-8">
           <section>
@@ -27,7 +27,7 @@ const PrivacyPolicy = () => {
               1. Information We Collect
             </h2>
 
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-900 dark:text-gray-300 leading-8">
               EasyBook collects basic information such as your name, email
               address, profile picture, booking history, and account preferences
               to provide movie ticket booking services.
@@ -39,7 +39,7 @@ const PrivacyPolicy = () => {
               2. How We Use Your Information
             </h2>
 
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-900 dark:text-gray-300 leading-8">
               Your information is used to manage bookings, improve user
               experience, personalize recommendations, and communicate important
               updates regarding your account and bookings.
@@ -49,7 +49,7 @@ const PrivacyPolicy = () => {
           <section>
             <h2 className="text-2xl font-semibold mb-3">3. Data Security</h2>
 
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-900 dark:text-gray-300 leading-8">
               We use industry-standard security practices to protect your
               account information. Passwords are encrypted before being stored
               in our database.
@@ -61,7 +61,7 @@ const PrivacyPolicy = () => {
               4. Third-Party Services
             </h2>
 
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-900 dark:text-gray-300 leading-8">
               EasyBook may use trusted third-party services such as Cloudinary
               for image storage and payment providers for secure transactions.
             </p>
@@ -70,7 +70,7 @@ const PrivacyPolicy = () => {
           <section>
             <h2 className="text-2xl font-semibold mb-3">5. Contact</h2>
 
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-900 dark:text-gray-300 leading-8">
               If you have any questions regarding this Privacy Policy, please
               contact us at support@easybook.com.
             </p>

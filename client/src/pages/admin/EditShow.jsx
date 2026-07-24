@@ -81,7 +81,7 @@ const EditShow = () => {
       <div className="mb-8">
         <Title text1="Edit" text2="Show" />
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Update show details and manage theatre schedules.
         </p>
       </div>
@@ -91,7 +91,7 @@ const EditShow = () => {
           <div>
             <h2 className="text-lg font-semibold">Show Information</h2>
 
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
               Update theatre, schedule and ticket information.
             </p>
           </div>
@@ -106,7 +106,7 @@ const EditShow = () => {
                 name="theatreName"
                 value={formData.theatreName}
                 onChange={handleChange}
-                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
             </div>
 
@@ -118,7 +118,7 @@ const EditShow = () => {
                 name="screen"
                 value={formData.screen}
                 onChange={handleChange}
-                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
             </div>
 
@@ -132,7 +132,7 @@ const EditShow = () => {
                 name="showDate"
                 value={formData.showDate}
                 onChange={handleChange}
-                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
             </div>
 
@@ -147,7 +147,7 @@ const EditShow = () => {
                 value={formData.showTime}
                 onChange={handleChange}
                 placeholder="06:30 PM"
-                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
             </div>
 
@@ -161,7 +161,7 @@ const EditShow = () => {
                 name="ticketPrice"
                 value={formData.ticketPrice}
                 onChange={handleChange}
-                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
             </div>
 
@@ -175,15 +175,15 @@ const EditShow = () => {
                 name="totalSeats"
                 value={formData.totalSeats}
                 onChange={handleChange}
-                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-between bg-black/20 border border-primary/20 rounded-xl p-4">
+          <div className="flex items-center justify-between bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-4">
             <div>
               <h3 className="font-semibold">Active Show</h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Enable or disable this show for bookings.
               </p>
             </div>
@@ -202,7 +202,7 @@ const EditShow = () => {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition cursor-pointer disabled:opacity-60"
+            className="flex-1 bg-green-600 hover:bg-green-700 text-gray-900 dark:text-white py-3 rounded-xl font-semibold transition cursor-pointer disabled:opacity-60"
           >
             {loading ? "Updating..." : "Update Show"}
           </button>
@@ -210,7 +210,7 @@ const EditShow = () => {
           <button
             type="button"
             onClick={() => navigate("/admin/list-shows")}
-            className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-xl font-semibold transition cursor-pointer"
+            className="flex-1 bg-gray-700 hover:bg-gray-600 text-gray-900 dark:text-white py-3 rounded-xl font-semibold transition cursor-pointer"
           >
             Cancel
           </button>

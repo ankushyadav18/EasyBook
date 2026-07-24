@@ -37,18 +37,18 @@ const TrailersSection = () => {
           Trailers
         </span>
 
-        <h2 className="text-2xl md:text-4xl font-bold tracking-tight mt-2">
+        <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-gray-400 tracking-tight mt-2">
           Watch Latest Trailers
         </h2>
 
-        <p className="text-gray-400 mt-3 max-w-xl leading-7">
+        <p className="text-gray-600 dark:text-gray-400 mt-3 max-w-xl leading-7">
           Experience the excitement before booking your next movie.
         </p>
       </div>
 
       {/* Main Trailer */}
       {currentTrailer && (
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 backdrop-blur-xl bg-white/5 shadow-[0_25px_70px_rgba(0,0,0,0.55)]">
+        <div className="relative overflow-hidden rounded-3xl border border-gray-600 dark:border-white/10 backdrop-blur-xl bg-white/5 shadow-[0_25px_70px_rgba(0,0,0,0.55)]">
           <div className="aspect-video">
             <YouTube
               videoId={currentTrailer.trailer}
@@ -89,7 +89,7 @@ const TrailersSection = () => {
 
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent group-hover:bg-black/10 transition" />
 
-            <PlayCircleIcon className="absolute inset-0 m-auto w-14 h-14 text-white group-hover:text-primary group-hover:scale-110 transition" />
+            <PlayCircleIcon className="absolute inset-0 m-auto w-14 h-14 text-gray-900 dark:text-white group-hover:text-primary group-hover:scale-110 transition" />
 
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
               <p className="font-semibold truncate">{movie.title}</p>

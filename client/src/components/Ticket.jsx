@@ -183,7 +183,7 @@ Booking ID: ${booking._id}
             </div>
 
             <div className="shrink-0 sm:text-right">
-              <p className="text-sm text-gray-400">Amount Paid</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Amount Paid</p>
 
               <h1 className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-4xl font-black text-transparent sm:text-5xl">
                 ₹{booking.totalAmount}

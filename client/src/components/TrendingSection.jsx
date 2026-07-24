@@ -37,18 +37,18 @@ const TrendingSection = () => {
             Trending
           </span>
 
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight mt-2">
+          <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-gray-400 tracking-tight mt-2">
             Trending Now
           </h2>
 
-          <p className="mt-3 text-gray-400 max-w-xl leading-7">
+          <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-xl leading-7">
             See what's capturing everyone's attention right now.
           </p>
         </div>
 
         <button
           onClick={() => navigate("/movies")}
-          className="group flex items-center gap-2 px-3 md:px-5 py-1 md:py-2 rounded-full border border-white/10 bg-white/5 hover:bg-primary transition cursor-pointer"
+          className="group flex items-center gap-2 px-3 md:px-5 py-1 md:py-2 text-black dark:text-white rounded-full border border-gray-600 dark:border-white/10 bg-white/5 hover:bg-primary transition cursor-pointer"
         >
           View All
           <ArrowRight className="w-3 md:w-5 h-3 md:h-5 transition group-hover:translate-x-1" />
@@ -70,9 +70,9 @@ const TrendingSection = () => {
         </div>
       ) : movies.length === 0 ? (
         <div className="text-center py-20 border border-dashed border-gray-700 rounded-2xl">
-          <h3 className="text-xl font-semibold">No Trending Movies</h3>
+          <h3 className="text-xl font-bold text-black dark:text-gray-400">No Trending Movies</h3>
 
-          <p className="text-gray-400 mt-2">
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
             Trending movies will appear here soon.
           </p>
         </div>

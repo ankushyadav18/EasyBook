@@ -17,18 +17,18 @@ const FeaturedSection = ({ movies, loading }) => {
             Now Showing
           </span>
 
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight mt-2">
+          <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-gray-400 tracking-tight mt-2">
             In Theatres
           </h2>
 
-          <p className="text-gray-400 mt-3 max-w-xl leading-7">
+          <p className="text-gray-600 dark:text-gray-400 mt-3 max-w-xl leading-7">
             Discover the latest blockbuster movies currently playing near you.
           </p>
         </div>
 
         <button
           onClick={() => navigate("/movies")}
-          className="group flex items-center gap-2 px-3 md:px-5 py-1 md:py-2 rounded-full border border-white/10 bg-white/5 hover:bg-primary transition cursor-pointer"
+          className="group flex items-center gap-2 px-3 md:px-5 py-1 md:py-2 rounded-full border text-black dark:text-white border-gray-600 dark:border-white/10 bg-white/5 hover:bg-primary transition cursor-pointer"
         >
           View All
           <ArrowRight className="w-3 md:w-5 h-3 md:h-5 transition group-hover:translate-x-1" />
@@ -37,9 +37,9 @@ const FeaturedSection = ({ movies, loading }) => {
 
       {/* STATES */}
       {loading ? (
-        <p className="text-center text-gray-400">Loading movies...</p>
+        <p className="text-center text-gray-600 dark:text-gray-400">Loading movies...</p>
       ) : nowShowingMovies.length === 0 ? (
-        <p className="text-center text-gray-400">
+        <p className="text-center text-gray-600 dark:text-gray-400">
           No movies are currently showing.
         </p>
       ) : (

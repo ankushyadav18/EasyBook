@@ -95,7 +95,7 @@ const Profile = () => {
           </div>
 
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0 bg-gray-100 dark:bg-black/20"></div>
         </div>
         <div className="relative px-5 md:px-12 pb-8 md:pb-12">
           <div className="flex justify-center -mt-12 md:-mt-20">
@@ -107,7 +107,7 @@ const Profile = () => {
                   className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-[6px] border-[#111827] shadow-2xl"
                 />
               ) : (
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary flex items-center justify-center text-6xl font-bold text-white border-[6px] border-[#111827] shadow-2xl">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary flex items-center justify-center text-6xl font-bold text-gray-900 dark:text-white border-[6px] border-[#111827] shadow-2xl">
                   {profile?.name?.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -142,7 +142,7 @@ const Profile = () => {
 
             {/* Email */}
 
-            <p className="mt-3 text-sm md:text-lg text-gray-400">{profile?.email}</p>
+            <p className="mt-3 text-sm md:text-lg text-gray-600 dark:text-gray-400">{profile?.email}</p>
 
             {/* Premium Role Badge */}
 
@@ -160,7 +160,7 @@ const Profile = () => {
                 Welcome back, {profile?.name.split(" ")[0]} 👋
               </h2>
 
-              <p className="mt-2 text-sm md:text-base text-gray-400 max-w-2xl mx-auto leading-6 md:leading-7">
+              <p className="mt-2 text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-6 md:leading-7">
                 Manage your bookings, update your profile, and keep track of
                 your favorite movies—all from one place.
               </p>
@@ -188,47 +188,47 @@ const Profile = () => {
               </div>
             
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6 mt-16">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 md:p-6 text-center">
+              <div className="rounded-3xl border border-gray-600 dark:border-white/10 bg-white/5 p-4 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">❤️</p>
                 <h3 className="text-lg md:text-2xl font-bold mt-4">
                   {profile?.favorites?.length || 0}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-400 mt-2">Favorites</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-2">Favorites</p>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-3 md:p-6 text-center">
+              <div className="rounded-3xl border border-gray-600 dark:border-white/10 bg-white/5 p-3 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">🎟</p>
                 <h3 className="text-lg md:text-2xl font-bold mt-4">
                   {stats.totalBookings}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-400 mt-2">Bookings</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-2">Bookings</p>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 md:p-6 text-center">
+              <div className="rounded-3xl border border-gray-600 dark:border-white/10 bg-white/5 p-4 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">💰</p>
                 <h3 className="text-lg md:text-2xl font-bold mt-4 text-primary">
                   ₹{stats.totalSpent}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-400 mt-2">Total Spent</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-2">Total Spent</p>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 md:p-6 text-center">
+              <div className="rounded-3xl border border-gray-600 dark:border-white/10 bg-white/5 p-4 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">🎬</p>
                 <h3 className="text-lg md:text-2xl font-bold mt-4">
                   {profile?.role === "admin" ? "∞" : stats.totalBookings}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-400 mt-2">Experience</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-2">Experience</p>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 md:p-6 text-center">
+              <div className="rounded-3xl border border-gray-600 dark:border-white/10 bg-white/5 p-4 md:p-6 text-center">
                 <p className="text-2xl md:text-4xl">⭐</p>
                 <h3 className="text-xl md:text-2xl font-bold mt-4">
                   {profile?.role === "admin" ? "PRO" : "USER"}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-400 mt-2">Membership</p>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-2">Membership</p>
               </div>
             </div>
-            <div className="mt-14 rounded-3xl border border-white/10 bg-white/5 p-4 md:p-8">
+            <div className="mt-14 rounded-3xl border border-gray-600 dark:border-white/10 bg-white/5 p-4 md:p-8">
               <h2 className="text-xl md:text-2xl font-bold mb-8">Personal Information</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
@@ -270,7 +270,7 @@ const Profile = () => {
           </div>
           {isEditing && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-              <div className="w-full max-w-lg rounded-3xl border border-white/10 bg-[#111827] p-8 shadow-2xl">
+              <div className="w-full max-w-lg rounded-3xl border border-gray-600 dark:border-white/10 bg-[#111827] p-8 shadow-2xl">
                 <h2 className="text-3xl font-bold text-center">Edit Profile</h2>
 
                 <div className="flex justify-center mt-8">
@@ -292,12 +292,12 @@ const Profile = () => {
                 </div>
 
                 <label className="block mt-6">
-                  <span className="text-sm text-gray-400">Full Name</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Full Name</span>
 
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-primary"
+                    className="mt-2 w-full rounded-xl border border-gray-600 dark:border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-primary"
                   />
                 </label>
 

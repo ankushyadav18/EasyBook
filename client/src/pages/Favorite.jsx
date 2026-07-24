@@ -29,7 +29,10 @@ const Favorite = () => {
     getFavorites();
   }, []);
 
-  if (loading) return <Loading />;
+  if (loading) return <>
+  <PageBackground />
+  <Loading />
+  </> ;
 
   return favorites.length > 0 ? (
     <div className="relative my-28 md:my-40 mb-60 px-6 md:px-16 lg:px-40 xl:px-44 overflow-hidden min-h-[80vh]">
@@ -38,7 +41,7 @@ const Favorite = () => {
       <div className="mb-10">
         <h1 className="text-2xl md:text-4xl font-bold">❤️ My Favorites</h1>
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           {favorites.length} {favorites.length === 1 ? "Movie" : "Movies"} Saved
         </p>
       </div>
@@ -51,11 +54,12 @@ const Favorite = () => {
     </div>
   ) : (
     <div className="flex min-h-[80vh] flex-col items-center justify-center text-center px-6">
+      <PageBackground />
       <HeartOff className="w-8 md:w-16 h-8 md:h-16 text-red-500" />
 
-      <h1 className="text-2xl md:text-4xl font-bold">No Favorite Movies</h1>
+      <h1 className="text-2xl md:text-4xl text-gray-900 dark:text-gray-300 font-bold">No Favorite Movies</h1>
 
-      <p className="mt-4 max-w-md text-gray-400">
+      <p className="mt-4 max-w-md text-gray-600 dark:text-gray-400">
         You haven't added any movies to your favorites yet. Start exploring and
         tap the heart icon to save movies.
       </p>

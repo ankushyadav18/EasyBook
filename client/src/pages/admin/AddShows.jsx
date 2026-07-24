@@ -115,7 +115,7 @@ const AddShows = () => {
       <div className="mb-8">
         <Title text1="Add" text2="Shows" />
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Schedule movie shows and manage theatre timings.
         </p>
       </div>
@@ -125,7 +125,7 @@ const AddShows = () => {
           placeholder="Search movie..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-80 bg-black/20 border border-primary/20 rounded-xl px-4 py-3 outline-none focus:border-primary transition"
+          className="w-full sm:w-80 bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl px-4 py-3 outline-none focus:border-primary transition"
         />
       </div>
 
@@ -134,7 +134,7 @@ const AddShows = () => {
         <div className="mb-2 md:mb-6">
           <h2 className="text-lg font-semibold">Select Movie</h2>
 
-          <p className="text-gray-400 text-sm mt-1">
+          <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
             Choose a movie that is currently playing.
           </p>
         </div>
@@ -163,11 +163,11 @@ const AddShows = () => {
                     className="w-full h-52 sm:h-60 md:h-64 object-cover transition duration-300 group-hover:scale-105"
                   />
                   <div className="text-[11px] sm:text-sm flex items-center justify-between p-2 bg-black/70 absolute bottom-0 w-full">
-                    <p className="flex items-center gap-1 text-gray-300">
+                    <p className="flex items-center gap-1 text-gray-900 dark:text-gray-300">
                       <StarIcon className="w-4 h-4 text-primary fill-primary" />
                       {movie.vote_average.toFixed(1)}
                     </p>
-                    <p className="text-gray-400">
+                    <p className="text-gray-600 dark:text-gray-400">
                       {Kconverter(movie.vote_count)} votes
                     </p>
                   </div>
@@ -176,18 +176,18 @@ const AddShows = () => {
                 {selectedMovie === movie._id && (
                   <div className="absolute top-2 right-2 bg-primary h-6 w-6 flex items-center justify-center rounded">
                     <CheckIcon
-                      className="text-white w-4 h-4"
+                      className="text-gray-900 dark:text-white w-4 h-4"
                       strokeWidth={2.5}
                     />
                   </div>
                 )}
 
                 <div className="p-3">
-                  <h3 className="font-semibold text-sm sm:text-base text-white truncate">
+                  <h3 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white truncate">
                     {movie.title}
                   </h3>
 
-                  <p className="text-[11px] sm:text-xs text-gray-400 mt-1">
+                  <p className="text-[11px] sm:text-xs text-gray-600 dark:text-gray-400 mt-1">
                     {movie.release_date}
                   </p>
                 </div>
@@ -201,7 +201,7 @@ const AddShows = () => {
                 Theatre Details
               </h2>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Configure where the movie will be shown.
               </p>
             </div>
@@ -216,7 +216,7 @@ const AddShows = () => {
                 value={theatreName}
                 onChange={(e) => setTheatreName(e.target.value)}
                 placeholder="PVR Noida"
-                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
             </div>
 
@@ -228,7 +228,7 @@ const AddShows = () => {
                 value={screen}
                 onChange={(e) => setScreen(e.target.value)}
                 placeholder="Screen 1"
-                className="w-full bg-black/20 border border-primary/20 rounded-xl p-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
             </div>
           </div>
@@ -241,25 +241,25 @@ const AddShows = () => {
               Show Schedule
             </h2>
 
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Choose one or multiple show timings.
             </p>
           </div>
 
           {/* Show Price */}
           <div className="mt-8">
-            <label className="block text-sm font-medium mb-2 text-white">
+            <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">
               Show Price
             </label>
-            <div className="flex items-center w-full bg-black/20 border border-primary/20 rounded-xl px-4">
-              <p className="text-gray-400 text-sm">{currency}</p>
+            <div className="flex items-center w-full bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl px-4">
+              <p className="text-gray-600 dark:text-gray-400 text-sm">{currency}</p>
               <input
                 min={0}
                 type="number"
                 value={showPrice}
                 onChange={(e) => setShowPrice(e.target.value)}
                 placeholder="Enter show price"
-                className="flex-1 bg-transparent text-white py-3 outline-none"
+                className="flex-1 bg-transparent text-gray-900 dark:text-white py-3 outline-none"
               />
             </div>
           </div>
@@ -275,13 +275,13 @@ const AddShows = () => {
                 type="datetime-local"
                 value={dateTimeInput}
                 onChange={(e) => setDateTimeInput(e.target.value)}
-                className="flex-1 bg-black/20 border border-primary/20 rounded-xl p-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+                className="flex-1 bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl p-3 text-gray-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
               />
 
               <button
                 type="button"
                 onClick={handleDateTimeAdd}
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-xl font-semibold transition cursor-pointer"
+                className="bg-primary hover:bg-primary/90 text-gray-900 dark:text-white px-8 py-3 rounded-xl font-semibold transition cursor-pointer"
               >
                 Add Time
               </button>
@@ -295,7 +295,7 @@ const AddShows = () => {
                 Selected Show Times
               </h2>
 
-              <p className="text-sm text-gray-400 mb-5">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-5">
                 Click the × icon to remove a scheduled show time.
               </p>
 
@@ -305,7 +305,7 @@ const AddShows = () => {
                     key={time}
                     className="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-xl px-4 py-3"
                   >
-                    <span className="text-sm text-white">{time}</span>
+                    <span className="text-sm text-gray-900 dark:text-white">{time}</span>
 
                     <button
                       type="button"
@@ -324,7 +324,7 @@ const AddShows = () => {
 
       <button
         onClick={handleAddShow}
-        className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-semibold transition cursor-pointer mt-8 shadow-lg hover:shadow-primary/30"
+        className="w-full bg-primary hover:bg-primary/90 text-gray-900 dark:text-white py-3 rounded-xl font-semibold transition cursor-pointer mt-8 shadow-lg hover:shadow-primary/30"
       >
         Add Show
       </button>

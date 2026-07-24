@@ -113,7 +113,7 @@ const ListMovies = () => {
       <div className="mb-8">
         <Title text1="List" text2="Movies" />
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Manage, edit and remove movies available on your EasyBook platform.
         </p>
       </div>
@@ -124,7 +124,7 @@ const ListMovies = () => {
           placeholder="Search movies..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full max-w-md bg-black/20 border border-primary/20 rounded-xl px-4 py-3 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
+          className="w-full max-w-md bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition"
         />
       </div>
 
@@ -139,7 +139,7 @@ const ListMovies = () => {
 
             <h2 className="text-2xl font-bold text-center">Delete Movie?</h2>
 
-            <p className="text-gray-400 text-center mt-3 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 text-center mt-3 leading-relaxed">
               This action will permanently remove this movie from EasyBook.
               <br />
               This cannot be undone.
@@ -195,14 +195,14 @@ const ListMovies = () => {
           <div className="flex gap-3">
             <button
               onClick={updateMovie}
-              className="bg-green-500 text-white px-4 py-2 rounded"
+              className="bg-green-500 text-gray-900 dark:text-white px-4 py-2 rounded"
             >
               Save
             </button>
 
             <button
               onClick={() => setEditingMovie(null)}
-              className="bg-gray-500 text-white px-4 py-2 rounded"
+              className="bg-gray-500 text-gray-900 dark:text-white px-4 py-2 rounded"
             >
               Cancel
             </button>
@@ -238,7 +238,7 @@ const ListMovies = () => {
                     🌐 {movie.original_language?.toUpperCase()}
                   </span>
 
-                  <span className="bg-black/20 px-3 py-1 rounded-full">
+                  <span className="bg-gray-100 dark:bg-black/20 px-3 py-1 rounded-full">
                     ⏱ {movie.runtime} min
                   </span>
                 </div>
@@ -264,7 +264,7 @@ const ListMovies = () => {
                 <div className="flex gap-2 mt-5">
                   <button
                     onClick={() => navigate(`/admin/edit-movie/${movie._id}`)}
-                    className="flex-1 bg-primary hover:bg-primary/50 text-white py-2.5 rounded-xl transition font-medium cursor-pointer"
+                    className="flex-1 bg-primary hover:bg-primary/50 text-gray-900 dark:text-white py-2.5 rounded-xl transition font-medium cursor-pointer"
                   >
                     Edit
                   </button>
@@ -274,7 +274,7 @@ const ListMovies = () => {
                       setMovieToDelete(movie._id);
                       setShowConfirm(true);
                     }}
-                    className="flex-1 bg-red-500/90 hover:bg-red-600 text-white py-2.5 rounded-xl transition font-medium cursor-pointer"
+                    className="flex-1 bg-red-500/90 hover:bg-red-600 text-gray-900 dark:text-white py-2.5 rounded-xl transition font-medium cursor-pointer"
                   >
                     Delete
                   </button>

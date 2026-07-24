@@ -57,7 +57,7 @@ const ListUsers = () => {
       <div className="mb-8">
         <Title text1="List" text2="Users" />
 
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Manage registered users and their account information.
         </p>
       </div>
@@ -66,7 +66,7 @@ const ListUsers = () => {
         <div className="mb-6">
           <h2 className="text-lg font-semibold">Registered Users</h2>
 
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
             View, manage and remove registered users.
           </p>
         </div>
@@ -75,7 +75,7 @@ const ListUsers = () => {
             users.map((user) => (
               <div
                 key={user._id}
-                className="bg-black/20 border border-primary/20 rounded-2xl p-4"
+                className="bg-gray-100 dark:bg-black/20 border border-primary/20 rounded-2xl p-4"
               >
                 <div className="flex items-center gap-3">
                   {user.image ? (
@@ -92,7 +92,7 @@ const ListUsers = () => {
 
                   <div>
                     <h3 className="font-semibold">{user.name}</h3>
-                    <p className="text-sm text-gray-400 break-all">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 break-all">
                       {user.email}
                     </p>
                   </div>
@@ -109,21 +109,21 @@ const ListUsers = () => {
                     {user.role}
                   </span>
 
-                  <span className="text-gray-400">
+                  <span className="text-gray-600 dark:text-gray-400">
                     {dateFormat(user.createdAt)}
                   </span>
                 </div>
 
                 <button
                   onClick={() => handleDelete(user._id)}
-                  className="w-full mt-5 bg-red-500 hover:bg-red-600 py-2 rounded-xl text-white transition"
+                  className="w-full mt-5 bg-red-500 hover:bg-red-600 py-2 rounded-xl text-gray-900 dark:text-white transition"
                 >
                   Delete User
                 </button>
               </div>
             ))
           ) : (
-            <div className="text-center py-10 text-gray-400">
+            <div className="text-center py-10 text-gray-600 dark:text-gray-400">
               No users found.
             </div>
           )}
@@ -152,7 +152,7 @@ const ListUsers = () => {
               users.map((user) => (
                 <tr
                   key={user._id}
-                  className="bg-black/20 hover:bg-primary/10 transition-all duration-300"
+                  className="bg-gray-100 dark:bg-black/20 hover:bg-primary/10 transition-all duration-300"
                 >
                   <td className="px-6 py-4 rounded-l-xl">
                     <div className="flex items-center gap-3">
@@ -163,7 +163,7 @@ const ListUsers = () => {
                           className="w-10 h-10 rounded-full object-cover border border-primary/20"
                         />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                        <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-gray-900 dark:text-white font-bold">
                           {user.name.charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -172,7 +172,7 @@ const ListUsers = () => {
                     </div>
                   </td>
 
-                  <td className="px-6 py-4 text-gray-300">{user.email}</td>
+                  <td className="px-6 py-4 text-gray-900 dark:text-gray-300">{user.email}</td>
 
                   <td className="px-6 py-4">
                     <span
@@ -186,14 +186,14 @@ const ListUsers = () => {
                     </span>
                   </td>
 
-                  <td className="px-6 py-4 text-gray-300">
+                  <td className="px-6 py-4 text-gray-900 dark:text-gray-300">
                     {dateFormat(user.createdAt)}
                   </td>
 
                   <td className="px-6 py-4 rounded-r-xl text-center">
                     <button
                       onClick={() => handleDelete(user._id)}
-                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition cursor-pointer"
+                      className="bg-red-500 hover:bg-red-600 text-gray-900 dark:text-white px-4 py-2 rounded-lg transition cursor-pointer"
                     >
                       Delete
                     </button>
@@ -202,7 +202,7 @@ const ListUsers = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="text-center py-10 text-gray-400">
+                <td colSpan="5" className="text-center py-10 text-gray-600 dark:text-gray-400">
                   No users found.
                 </td>
               </tr>
