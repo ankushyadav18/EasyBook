@@ -70,7 +70,7 @@ const SearchModal = ({ onClose }) => {
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-white/10 transition"
+            className="p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
           >
             <X size={22} />
           </button>
@@ -96,7 +96,9 @@ const SearchModal = ({ onClose }) => {
         {/* Results */}
         <div className="max-h-[420px] overflow-y-auto px-6 pb-6">
           {loading ? (
-            <p className="text-center text-gray-600 dark:text-gray-400 py-10">Loading movies...</p>
+            <p className="text-center text-gray-600 dark:text-gray-400 py-10">
+              Loading movies...
+            </p>
           ) : filteredMovies.length === 0 ? (
             <div className="text-center py-10">
               <p className="text-4xl mb-3">🎬</p>
@@ -117,11 +119,7 @@ const SearchModal = ({ onClose }) => {
               >
                 {/* Poster */}
                 <img
-                  src={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                      : "/fallback.jpg"
-                  }
+                  src={movie.poster_path || "/fallback.jpg"}
                   alt={movie.title}
                   className="w-14 h-20 object-cover rounded-md"
                 />
@@ -132,16 +130,22 @@ const SearchModal = ({ onClose }) => {
                     {movie.title}
                   </h3>
 
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {movie.genres?.slice(0, 2).join(" • ")} •{" "}
-                    {timeFormat(movie.runtime || 0)}
+                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <span>
+                      {movie.genres
+                        ?.slice(0, 2)
+                        .map((g) => g.name)
+                        .join(" • ")}
+                    </span>
+                    <span className="text-gray-500">•</span>
+                    <span>{timeFormat(movie.runtime)}</span>
                   </p>
                 </div>
 
                 {/* Rating */}
                 <div className="flex items-center gap-1 text-sm text-gray-900 dark:text-gray-300">
                   <Star className="w-4 h-4 text-primary fill-primary" />
-                  {(movie.rating || 0).toFixed(1)}
+                  {(movie.vote_average || 0).toFixed(1)}
                 </div>
               </div>
             ))

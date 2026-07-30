@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link, useNavigate, NavLink, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,7 +13,7 @@ import {
   Shield,
   Settings,
 } from "lucide-react";
-import Login from "./Login";
+import AuthModal from "./auth/AuthModal";
 import { useAuth } from "../context/AuthContext";
 import SearchModal from "./SearchModal";
 import { useAppContext } from "../context/AppContext";
@@ -29,6 +29,7 @@ const Navbar = () => {
 
   const { user, logout } = useAuth();
   const { showLogin, setShowLogin } = useAppContext();
+  const menuRef = useRef(null);
 
   const handleLogout = () => {
     logout();
@@ -37,10 +38,25 @@ const Navbar = () => {
   };
 
   const isHomePage = location.pathname === "/";
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
-      {showLogin && <Login setShowLogin={setShowLogin} />}
+      {showLogin && (
+  <AuthModal onClose={() => setShowLogin(false)} />
+)}
       {showSearch && <SearchModal onClose={() => setShowSearch(false)} />}
 
       <div className="fixed top-0 left-0 z-50 w-full h-30 flex items-center justify-between px-6 md:px-16 lg:px-36 py-5">
@@ -163,7 +179,7 @@ const Navbar = () => {
               Login
             </button>
           ) : (
-            <div className="relative">
+            <div ref={menuRef} className="relative">
               <button
                 onClick={() => setShowMenu(!showMenu)}
                 className="flex items-center gap-2 bg-white/5 border border-gray-600 dark:border-white/10 px-4 py-2 rounded-full cursor-pointer hover:bg-white/10 hover:border-primary/40 transition"
@@ -205,7 +221,7 @@ const Navbar = () => {
                       navigate("/profile");
                       setShowMenu(false);
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition"
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
                   >
                     <User size={18} />
                     My Profile
@@ -216,7 +232,7 @@ const Navbar = () => {
                       navigate("/favorites");
                       setShowMenu(false);
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition"
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
                   >
                     <Heart size={18} />
                     Favorites
@@ -226,7 +242,7 @@ const Navbar = () => {
                       navigate("/my-bookings");
                       setShowMenu(false);
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition"
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
                   >
                     <TicketPlus size={18} />
                     My Bookings
@@ -236,7 +252,7 @@ const Navbar = () => {
                       navigate("/settings");
                       setShowMenu(false);
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition"
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
                   >
                     <Settings size={18} />
                     Settings
@@ -248,7 +264,7 @@ const Navbar = () => {
                         navigate("/admin");
                         setShowMenu(false);
                       }}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition"
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
                     >
                       <Shield size={18} />
                       Admin Panel
@@ -257,7 +273,7 @@ const Navbar = () => {
 
                   <button
                     onClick={() => setShowLogoutModal(true)}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-600 transition"
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-600 transition cursor-pointer"
                   >
                     <LogOut size={18} />
                     Logout
@@ -304,7 +320,7 @@ const Navbar = () => {
               <div className="flex gap-4 mt-8">
                 <button
                   onClick={() => setShowLogoutModal(false)}
-                  className="flex-1 rounded-xl border border-gray-600 dark:border-white/10 bg-white/5 py-3 hover:bg-white/10 transition"
+                  className="flex-1 rounded-xl border border-gray-600 dark:border-white/10 bg-white/5 py-3 hover:bg-white/10 transition cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -314,7 +330,7 @@ const Navbar = () => {
                     handleLogout();
                     setShowLogoutModal(false);
                   }}
-                  className="flex-1 rounded-xl bg-red-600 py-3 hover:bg-red-500 transition"
+                  className="flex-1 rounded-xl bg-red-600 py-3 hover:bg-red-500 transition cursor-pointer"
                 >
                   Logout
                 </button>

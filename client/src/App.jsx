@@ -25,9 +25,9 @@ import AdminSettings from "./pages/admin/AdminSettings";
 import SettingsPage from "./pages/Settings";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
+import AuthModal from "./components/auth/AuthModal";
 
 // Import Login Popup
-import Login from "./components/Login";
 import EditShow from "./pages/admin/EditShow";
 
 const App = () => {
@@ -43,7 +43,9 @@ const { showLogin, setShowLogin } = useAppContext();
       <Toaster />
 
       {/* Login Popup */}
-      {showLogin && <Login setShowLogin={setShowLogin} />}
+      {showLogin && (
+  <AuthModal onClose={() => setShowLogin(false)} />
+)}
 
       {!isAdminRoute && !isMovieDetails && !isSeatLayout && <Navbar setShowLogin={setShowLogin} />}
 

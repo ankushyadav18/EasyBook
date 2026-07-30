@@ -249,7 +249,6 @@ const MovieDetails = () => {
             alt={show.movie.title}
             className="w-[74%] max-w-[250px] rounded-3xl shadow-[0_35px_90px_rgba(0,0,0,.8)]"
           />
-          
         </div>
 
         {/* Content */}
@@ -262,14 +261,14 @@ const MovieDetails = () => {
             {/* Rating / Year / Runtime / Language */}
             <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
               <div className="flex items-center gap-2">
-              <StarIcon className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <div className="leading-none">
-                <p className="text-white text-sm font-bold">
-                  {show.movie.vote_average.toFixed(1)}
-                </p>
-                <p className="text-[10px] text-gray-400 uppercase">IMDb</p>
+                <StarIcon className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <div className="leading-none">
+                  <p className="text-white text-sm font-bold">
+                    {show.movie.vote_average.toFixed(1)}
+                  </p>
+                  <p className="text-[10px] text-gray-400 uppercase">IMDb</p>
+                </div>
               </div>
-            </div>
               <span className="px-4 py-2 rounded-full bg-white/8 backdrop-blur-xl border border-white/15 text-sm font-medium">
                 {show.movie.release_date?.split("-")[0]}
               </span>
@@ -309,6 +308,35 @@ const MovieDetails = () => {
                 <PlayCircleIcon className="w-6 h-6" />
                 Watch Trailer
               </button>
+              {showTrailer && show.movie.trailer && (
+                <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4">
+                  <div className="relative w-full max-w-4xl aspect-video">
+                    <button
+                      onClick={() => setShowTrailer(false)}
+                      className="absolute -top-10 right-0 text-gray-900 cursor-pointer dark:text-white text-2xl"
+                    >
+                      ✕
+                    </button>
+
+                    <YouTube
+                      videoId={show.movie.trailer}
+                      className="w-full h-full"
+                      iframeClassName="w-full h-full rounded-lg"
+                      opts={{
+                        width: "100%",
+                        height: "100%",
+                        playerVars: {
+                          autoplay: 1,
+                          controls: 1,
+                          modestbranding: 1,
+                          rel: 0,
+                          origin: window.location.origin,
+                        },
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
 
               {show.movie.status === "coming_soon" ? (
                 <button
@@ -450,7 +478,7 @@ const MovieDetails = () => {
                     <div className="relative w-full max-w-4xl aspect-video">
                       <button
                         onClick={() => setShowTrailer(false)}
-                        className="absolute -top-10 right-0 text-gray-900 dark:text-white text-2xl"
+                        className="absolute -top-10 right-0 text-gray-900 cursor-pointer dark:text-white text-2xl"
                       >
                         ✕
                       </button>
