@@ -63,7 +63,7 @@ const HeroSection = ({ movies, loading }) => {
 
   return (
     <div
-      className="relative min-h-[85vh] md:min-h-screen bg-cover bg-center md:bg-center transition-all duration-700 ease-in-out"
+      className="relative min-h-screen bg-cover bg-center md:bg-center transition-all duration-700 ease-in-out"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundPosition: "center top",
@@ -84,7 +84,7 @@ const HeroSection = ({ movies, loading }) => {
       >
         {/* Everything else stays exactly the same */}
 
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3 mb-6">
           <div className="flex items-center gap-2 bg-yellow-500/20 border border-yellow-400/40 px-4 py-2 rounded-full backdrop-blur-xl">
             <StarIcon className="w-4 h-4 fill-yellow-400 text-yellow-400" />
             <span className="text-sm font-semibold text-yellow-300">
@@ -101,7 +101,7 @@ const HeroSection = ({ movies, loading }) => {
           {movie?.title || "Loading..."}
         </h1>
 
-        <div className="flex items-center gap-2 flex-wrap mt-4">
+        <div className="flex items-center gap-2 flex-wrap mt-6">
           <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-xl text-sm">
             {Array.isArray(movie?.genres)
               ? movie.genres
@@ -127,13 +127,13 @@ const HeroSection = ({ movies, loading }) => {
           </div>
         </div>
 
-        <p className="max-w-xl mt-4 text-gray-300 leading-6 text-sm sm:text-base md:text-lg line-clamp-3 md:line-clamp-4">
+        <p className="max-w-xl mt-6 text-gray-300 leading-6 text-lg line-clamp-3 md:line-clamp-4">
           {movie?.overview || "No description available."}
         </p>
 
         <button
           onClick={() => navigate("/movies")}
-          className="mt-6 flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full bg-primary hover:bg-primary-dull hover:scale-[1.03]hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 shadow-lg shadow-primary/40 font-semibold"
+          className="mt-16 md:mt-6 flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full bg-primary hover:bg-primary-dull hover:scale-[1.03]hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 shadow-lg shadow-primary/40 font-semibold"
         >
           Explore Movies
           <ArrowRight className="w-5 h-5" />

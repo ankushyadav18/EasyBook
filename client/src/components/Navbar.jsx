@@ -54,20 +54,10 @@ const Navbar = () => {
 
   return (
     <>
-      {showLogin && (
-  <AuthModal onClose={() => setShowLogin(false)} />
-)}
+      {showLogin && <AuthModal onClose={() => setShowLogin(false)} />}
       {showSearch && <SearchModal onClose={() => setShowSearch(false)} />}
 
       <div className="fixed top-0 left-0 z-50 w-full h-30 flex items-center justify-between px-6 md:px-16 lg:px-36 py-5">
-        {/* <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-4 border-b border-gray-600 dark:border-white/10 bg-black/40 backdrop-blur-2xl"> */}
-        {/* <div
-        className={`fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-5 transition-all duration-300 ${
-          isHomePage
-            ? "bg-transparent"
-            : "bg-black/50 backdrop-blur-2xl border-b border-gray-600 dark:border-white/10"
-        }`}
-      > */}
         {/* Logo */}
         <Link
           to="/"
@@ -165,11 +155,22 @@ const Navbar = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-6 relative">
+        {/* Right Side */}
+<div className="flex items-center gap-6 relative">
+          {/* Desktop Search Icon */}
           <SearchIcon
             onClick={() => setShowSearch(true)}
             className="hidden md:block w-5 h-5 cursor-pointer hover:text-primary hover:scale-110 transition-all duration-300"
           />
+
+          {/* Mobile Search Bar */}
+          <button
+            onClick={() => setShowSearch(true)}
+            className="md:hidden flex-1 max-w-[170px] h-10 rounded-full bg-white/10 border border-white/10 px-4 flex items-center gap-2 text-sm text-gray-400 backdrop-blur-xl"
+          >
+            <SearchIcon className="w-4 h-4" />
+            <span>Search...</span>
+          </button>
 
           {!user ? (
             <button
@@ -282,13 +283,12 @@ const Navbar = () => {
               )}
             </div>
           )}
+          {/* Mobile Menu Icon */}
+          <MenuIcon
+            className="max-md:ml-4 md:hidden w-8 h-8 cursor-pointer"
+            onClick={() => setIsOpen(true)}
+          />
         </div>
-
-        {/* Mobile Menu Icon */}
-        <MenuIcon
-          className="max-md:ml-4 md:hidden w-8 h-8 cursor-pointer"
-          onClick={() => setIsOpen(true)}
-        />
       </div>
       <AnimatePresence>
         {showLogoutModal && (

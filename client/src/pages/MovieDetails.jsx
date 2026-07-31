@@ -203,186 +203,176 @@ const MovieDetails = () => {
   return show ? (
     <div>
       {/* Mobile Hero */}
-      <div className="md:hidden relative min-h-screen bg-[#080808] overflow-hidden">
-        <img
-          src={show.movie.backdrop_path}
-          alt={show.movie.title}
-          className="absolute top-0 left-0 w-full h-[45vh] object-cover"
-        />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/70 to-[#080808]" />
-
-        {/* Top Buttons */}
-        <div className="relative z-20 flex items-center justify-between px-4 pt-5">
-          <button
-            onClick={() => navigate("/movies")}
-            className="w-11 h-11 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center"
-          >
-            <ArrowLeft className="w-5 h-5 text-white" />
-          </button>
-
-          <div className="flex gap-3">
-            <button
-              onClick={toggleFavorite}
-              className="w-11 h-11 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center"
-            >
-              <Heart
-                className={`w-5 h-5 ${
-                  isFavorite ? "fill-red-500 text-red-500" : "text-white"
-                }`}
-              />
-            </button>
-
-            <button
-              onClick={handleShare}
-              className="w-11 h-11 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center"
-            >
-              <Share2 className="w-5 h-5 text-white" />
-            </button>
-          </div>
-        </div>
-
-        {/* Poster */}
-        <div className="relative z-20 flex justify-center pt-[18vh]">
+      <div className="md:hidden min-h-screen bg-white text-black">
+        {/* Hero */}
+        <div className="relative h-[40vh] overflow-hidden">
+          {/* Background */}
           <img
             src={show.movie.poster_path}
             alt={show.movie.title}
-            className="w-[74%] max-w-[250px] rounded-3xl shadow-[0_35px_90px_rgba(0,0,0,.8)]"
+            className="absolute inset-0 w-full h-full object-cover"
           />
+
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+          {/* Top Buttons */}
+          <div className="absolute top-5 left-4 right-4 z-20 flex justify-between">
+            <button
+              onClick={() => navigate("/movies")}
+              className="w-11 h-11 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center"
+            >
+              <ArrowLeft className="w-5 h-5 text-white" />
+            </button>
+
+            <div className="flex gap-3">
+              <button
+                onClick={toggleFavorite}
+                className="w-11 h-11 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center"
+              >
+                <Heart
+                  className={`w-5 h-5 ${
+                    isFavorite ? "fill-red-500 text-red-500" : "text-white"
+                  }`}
+                />
+              </button>
+
+              <button
+                onClick={handleShare}
+                className="w-11 h-11 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center"
+              >
+                <Share2 className="w-5 h-5 text-white" />
+              </button>
+            </div>
+          </div>
+
+          {/* Trailer Button */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+            <button
+              onClick={() => setShowTrailer(true)}
+              className="px-8 h-12 rounded-full bg-black/55 backdrop-blur-xl border border-white/20 text-white flex items-center gap-2 font-semibold"
+            >
+              <PlayCircleIcon className="w-5 h-5" />
+              Watch Trailer
+            </button>
+          </div>
         </div>
 
         {/* Content */}
-        <div className="relative z-20 px-5 -mt-6 pb-10">
-          <div className="px-5 pt-6 pb-28 text-center">
-            <h1 className="text-[36px] leading-[1.05] font-black tracking-tight">
-              {show.movie.title}
-            </h1>
+        <div className="relative z-20 mt-4 px-5 pb-8 shadow-[0_-10px_30px_rgba(0,0,0,0.08)]">
+          {/* Movie Title */}
+          <h1 className="text-[2.1rem] leading-[1.1] font-extrabold text-gray-900">
+            {show.movie.title}
+          </h1>
+          {showTrailer && show.movie.trailer && (
+              <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4">
+                <div className="relative w-full max-w-4xl aspect-video">
+                  <button
+                    onClick={() => setShowTrailer(false)}
+                    className="absolute -top-10 right-0 text-gray-900 cursor-pointer dark:text-white text-2xl"
+                  >
+                    ✕
+                  </button>
 
-            {/* Rating / Year / Runtime / Language */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-              <div className="flex items-center gap-2">
-                <StarIcon className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                <div className="leading-none">
-                  <p className="text-white text-sm font-bold">
-                    {show.movie.vote_average.toFixed(1)}
-                  </p>
-                  <p className="text-[10px] text-gray-400 uppercase">IMDb</p>
+                  <YouTube
+                    videoId={show.movie.trailer}
+                    className="w-full h-full"
+                    iframeClassName="w-full h-full rounded-lg"
+                    opts={{
+                      width: "100%",
+                      height: "100%",
+                      playerVars: {
+                        autoplay: 1,
+                        controls: 1,
+                        modestbranding: 1,
+                        rel: 0,
+                        origin: window.location.origin,
+                      },
+                    }}
+                  />
                 </div>
               </div>
-              <span className="px-4 py-2 rounded-full bg-white/8 backdrop-blur-xl border border-white/15 text-sm font-medium">
-                {show.movie.release_date?.split("-")[0]}
-              </span>
+            )}
 
-              <span className="px-4 py-2 rounded-full bg-white/8 backdrop-blur-xl border border-white/15 text-sm font-medium">
-                {timeFormat(show.movie.runtime)}
-              </span>
-
-              <span className="px-4 py-2 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm font-semibold uppercase">
-                {show.movie.original_language}
+          {/* Info */}
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-[15px] text-gray-500 font-medium">
+            <div className="flex items-center gap-1.5">
+              <StarIcon className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <span className="font-semibold text-gray-800">
+                {show.movie.vote_average.toFixed(1)}
               </span>
             </div>
 
-            {/* Genres */}
-            <div className="mt-5 flex flex-wrap justify-center gap-2">
-              {show.movie.genres?.map((genre, index) => (
-                <span
-                  key={index}
-                  className="px-4 py-1.5 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm"
-                >
-                  {genre.name || genre}
-                </span>
-              ))}
-            </div>
+            <span>•</span>
+            <span className="uppercase">{show.movie.original_language}</span>
 
-            {/* Overview */}
-            <p className="mt-6 text-gray-300 text-[15px] leading-7 max-w-md mx-auto">
-              {show.movie.overview}
-            </p>
+            <span>•</span>
+            <span>{timeFormat(show.movie.runtime)}</span>
 
-            {/* Buttons */}
-            <div className="mt-8 flex flex-col gap-4">
-              <button
-                onClick={() => setShowTrailer(true)}
-                className="w-full h-14 rounded-full bg-white/10 backdrop-blur-xl border border-gray-600 dark:border-white/10 flex items-center justify-center gap-3 font-semibold text-gray-200 dark:text-white transition-all duration-300 active:scale-95"
-              >
-                <PlayCircleIcon className="w-6 h-6" />
-                Watch Trailer
-              </button>
-              {showTrailer && show.movie.trailer && (
-                <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4">
-                  <div className="relative w-full max-w-4xl aspect-video">
-                    <button
-                      onClick={() => setShowTrailer(false)}
-                      className="absolute -top-10 right-0 text-gray-900 cursor-pointer dark:text-white text-2xl"
-                    >
-                      ✕
-                    </button>
-
-                    <YouTube
-                      videoId={show.movie.trailer}
-                      className="w-full h-full"
-                      iframeClassName="w-full h-full rounded-lg"
-                      opts={{
-                        width: "100%",
-                        height: "100%",
-                        playerVars: {
-                          autoplay: 1,
-                          controls: 1,
-                          modestbranding: 1,
-                          rel: 0,
-                          origin: window.location.origin,
-                        },
-                      }}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {show.movie.status === "coming_soon" ? (
-                <button
-                  disabled
-                  className="w-full h-14 rounded-2xl bg-gray-600 text-white"
-                >
-                  Coming Soon
-                </button>
-              ) : (
-                <button
-                  onClick={() =>
-                    document
-                      .getElementById("dateSelect")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="w-full h-16 rounded-full bg-gradient-to-r from-primary via-primary/80 to-primary/90 text-black font-bold text-lg flex items-center justify-center gap-3 shadow-xl shadow-primary/30 hover:shadow-primary/50 hover:scale-105 transition-all duration-300 active:scale-95"
-                >
-                  <>
-                    <Ticket className="w-5 h-5" />
-                    Buy Tickets
-                  </>
-                </button>
-              )}
-            </div>
+            <span>•</span>
+            <span>{show.movie.release_date?.split("-")[0]}</span>
           </div>
+
+          {/* Genres */}
+          <div className="mt-5 flex flex-wrap gap-2">
+            {show.movie.genres?.map((genre, index) => (
+              <span
+                key={index}
+                className="px-4 py-1.5 rounded-full bg-gray-100 text-gray-700 text-sm font-medium"
+              >
+                {genre.name || genre}
+              </span>
+            ))}
+          </div>
+
+          {/* Release Date */}
+          <div className="mt-6 text-[15px] text-gray-500">
+            Released{" "}
+            <span className="font-semibold text-gray-800">
+              {show.movie.release_date}
+            </span>
+          </div>
+
+          {/* Divider */}
+          <div className="my-8 h-px bg-gray-200" />
+
+          {/* About */}
+          <h2 className="text-2xl font-bold text-gray-900">About</h2>
+
+          <p className="mt-4 text-[16px] leading-8 text-gray-600">
+            {show.movie.overview}
+          </p>
         </div>
       </div>
-      {show.movie.status !== "coming_soon" && (
-        <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 p-4">
-          <div className="rounded-[28px] bg-black/60 backdrop-blur-2xl border border-white/10 p-3 shadow-[0_-10px_40px_rgba(0,0,0,.45)]">
+      {/* Buttons */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 p-4">
+        <div className="rounded-3xl bg-black p-3 shadow-xl">
+          {show.movie.status === "coming_soon" ? (
+            <button
+              disabled
+              className="w-full h-14 rounded-2xl bg-gray-600 text-white font-bold cursor-not-allowed"
+            >
+              Coming Soon
+            </button>
+          ) : (
             <button
               onClick={() =>
                 document
                   .getElementById("dateSelect")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="w-full h-14 rounded-2xl bg-gradient-to-r from-primary via-primary/90 to-primary text-black font-bold text-lg shadow-lg shadow-primary/30 active:scale-95 transition-all"
+              className="w-full h-14 rounded-2xl bg-primary text-black font-bold text-lg transition active:scale-95 flex items-center justify-center gap-2"
             >
-              🎟 Buy Tickets
+              <Ticket className="w-5 h-5" />
+              Buy Tickets
             </button>
-          </div>
+          )}
         </div>
-      )}
+      </div>
+
       {/* Hero Banner */}
       <div
-        className="hidden md:flex relative min-h-screen bg-cover bg-center items-end"
+        className="hidden md:flex relative min-h-screen bg-cover bg-center items-center"
         style={{
           backgroundImage: `url(${show.movie.backdrop_path})`,
         }}
@@ -421,8 +411,8 @@ const MovieDetails = () => {
           </div>
         </div>
 
-        <div className="relative w-full px-4 sm:px-6 md:px-16 lg:px-40 pb-10 md:pb-16">
-          <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto items-end">
+        <div className="relative w-full px-4 sm:px-6 md:px-16 lg:px-40">
+          <div className="flex flex-col md:flex-row gap-10 max-w-6xl mx-auto items-center">
             <img
               src={show.movie.poster_path}
               alt={show.movie.title}
