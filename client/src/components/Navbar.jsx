@@ -155,8 +155,7 @@ const Navbar = () => {
         </div>
 
         {/* Right Side */}
-        {/* Right Side */}
-<div className="flex items-center gap-6 relative">
+        <div className="flex items-center gap-3 md:gap-6 relative">
           {/* Desktop Search Icon */}
           <SearchIcon
             onClick={() => setShowSearch(true)}

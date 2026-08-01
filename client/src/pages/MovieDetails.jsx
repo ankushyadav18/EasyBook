@@ -259,7 +259,7 @@ const MovieDetails = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-20 mt-4 px-5 pb-8 shadow-[0_-10px_30px_rgba(0,0,0,0.08)]">
+        <div className="relative z-20 px-5 py-8 shadow-[0_-10px_30px_rgba(0,0,0,0.08)]">
           {/* Movie Title */}
           <h1 className="text-[2.1rem] leading-[1.1] font-extrabold text-gray-900">
             {show.movie.title}
@@ -314,7 +314,7 @@ const MovieDetails = () => {
           </div>
 
           {/* Genres */}
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             {show.movie.genres?.map((genre, index) => (
               <span
                 key={index}
@@ -326,7 +326,7 @@ const MovieDetails = () => {
           </div>
 
           {/* Release Date */}
-          <div className="mt-6 text-[15px] text-gray-500">
+          <div className="mt-4 text-[15px] text-gray-500">
             Released{" "}
             <span className="font-semibold text-gray-800">
               {show.movie.release_date}
@@ -334,12 +334,12 @@ const MovieDetails = () => {
           </div>
 
           {/* Divider */}
-          <div className="my-8 h-px bg-gray-200" />
+          <div className="my-6 h-px bg-gray-200" />
 
           {/* About */}
           <h2 className="text-2xl font-bold text-gray-900">About</h2>
 
-          <p className="mt-4 text-[16px] leading-8 text-gray-600">
+          <p className="mt-2 text-[16px] leading-8 text-gray-600">
             {show.movie.overview}
           </p>
         </div>
@@ -496,7 +496,7 @@ const MovieDetails = () => {
                 {show.movie.status === "coming_soon" ? (
                   <button
                     disabled
-                    className="px-10 py-3 text-sm bg-gray-600 text-gray-900 dark:text-white rounded-md cursor-not-allowed"
+                    className="px-10 py-3 text-sm bg-gray-600 text-gray-900 dark:text-white rounded-full cursor-not-allowed"
                   >
                     Coming Soon
                   </button>

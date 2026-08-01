@@ -46,9 +46,9 @@ export const addMovie = async (req, res) => {
     }
     console.log("Before create:", movieData);
 
-const movie = await Movie.create(movieData);
+    const movie = await Movie.create(movieData);
 
-console.log("After create:", movie);
+    console.log("After create:", movie);
 
     res.status(201).json({
       success: true,
@@ -70,6 +70,22 @@ console.log("After create:", movie);
 // =====================
 export const getMovies = async (req, res) => {
   try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    await Movie.updateMany(
+      {
+        status: "coming_soon",
+        release_date: {
+          $lte: today.toISOString().split("T")[0],
+        },
+      },
+      {
+        $set: {
+          status: "now_showing",
+        },
+      },
+    );
     const movies = await Movie.find({
       isActive: true,
     }).sort({ createdAt: -1 });
@@ -91,6 +107,22 @@ export const getMovies = async (req, res) => {
 // =====================
 export const getNowPlayingMovies = async (req, res) => {
   try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    await Movie.updateMany(
+      {
+        status: "coming_soon",
+        release_date: {
+          $lte: today.toISOString().split("T")[0],
+        },
+      },
+      {
+        $set: {
+          status: "now_showing",
+        },
+      },
+    );
     const movies = await Movie.find({
       status: "now_showing",
       isActive: true,
