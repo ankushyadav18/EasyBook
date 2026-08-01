@@ -205,7 +205,7 @@ const MovieDetails = () => {
       {/* Mobile Hero */}
       <div className="md:hidden min-h-screen bg-white text-black">
         {/* Hero */}
-        <div className="relative h-[40vh] overflow-hidden">
+        <div className="relative h-[44vh] overflow-hidden">
           {/* Background */}
           <img
             src={show.movie.poster_path}
@@ -250,49 +250,49 @@ const MovieDetails = () => {
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
             <button
               onClick={() => setShowTrailer(true)}
-              className="px-8 h-12 rounded-full bg-black/55 backdrop-blur-xl border border-white/20 text-white flex items-center gap-2 font-semibold"
+              className="px-8 h-12 rounded-full bg-black/55 backdrop-blur-xl border border-white/20 text-white flex items-center gap-2 font-semibold whitespace-nowrap"
             >
-              <PlayCircleIcon className="w-5 h-5" />
-              Watch Trailer
+              <PlayCircleIcon className="w-5 h-5 flex-shrink-0" />
+              <span>Watch Trailer</span>
             </button>
           </div>
         </div>
 
         {/* Content */}
-        <div className="relative z-20 px-5 py-8 shadow-[0_-10px_30px_rgba(0,0,0,0.08)]">
+        <div className="relative z-20 px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.08)]">
           {/* Movie Title */}
-          <h1 className="text-[2.1rem] leading-[1.1] font-extrabold text-gray-900">
+          <h1 className="font-sansita text-[2.1rem] leading-[1.1] font-extrabold text-gray-900">
             {show.movie.title}
           </h1>
           {showTrailer && show.movie.trailer && (
-              <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4">
-                <div className="relative w-full max-w-4xl aspect-video">
-                  <button
-                    onClick={() => setShowTrailer(false)}
-                    className="absolute -top-10 right-0 text-gray-900 cursor-pointer dark:text-white text-2xl"
-                  >
-                    ✕
-                  </button>
+            <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4">
+              <div className="relative w-full max-w-4xl aspect-video">
+                <button
+                  onClick={() => setShowTrailer(false)}
+                  className="absolute -top-10 right-0 text-gray-900 cursor-pointer dark:text-white text-2xl"
+                >
+                  ✕
+                </button>
 
-                  <YouTube
-                    videoId={show.movie.trailer}
-                    className="w-full h-full"
-                    iframeClassName="w-full h-full rounded-lg"
-                    opts={{
-                      width: "100%",
-                      height: "100%",
-                      playerVars: {
-                        autoplay: 1,
-                        controls: 1,
-                        modestbranding: 1,
-                        rel: 0,
-                        origin: window.location.origin,
-                      },
-                    }}
-                  />
-                </div>
+                <YouTube
+                  videoId={show.movie.trailer}
+                  className="w-full h-full"
+                  iframeClassName="w-full h-full rounded-lg"
+                  opts={{
+                    width: "100%",
+                    height: "100%",
+                    playerVars: {
+                      autoplay: 1,
+                      controls: 1,
+                      modestbranding: 1,
+                      rel: 0,
+                      origin: window.location.origin,
+                    },
+                  }}
+                />
               </div>
-            )}
+            </div>
+          )}
 
           {/* Info */}
           <div className="mt-3 flex flex-wrap items-center gap-2 text-[15px] text-gray-500 font-medium">
@@ -327,9 +327,13 @@ const MovieDetails = () => {
 
           {/* Release Date */}
           <div className="mt-4 text-[15px] text-gray-500">
-            Released{" "}
+            Released:{" "}
             <span className="font-semibold text-gray-800">
-              {show.movie.release_date}
+              {new Date(show.movie.release_date).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })}
             </span>
           </div>
 
@@ -346,11 +350,11 @@ const MovieDetails = () => {
       </div>
       {/* Buttons */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 p-4">
-        <div className="rounded-3xl bg-black p-3 shadow-xl">
+        <div className="rounded-3xl bg-primary p-1 shadow-xl">
           {show.movie.status === "coming_soon" ? (
             <button
               disabled
-              className="w-full h-14 rounded-2xl bg-gray-600 text-white font-bold cursor-not-allowed"
+              className="w-full h-12 rounded-2xl bg-gray-600 text-white font-bold cursor-not-allowed"
             >
               Coming Soon
             </button>
@@ -361,7 +365,7 @@ const MovieDetails = () => {
                   .getElementById("dateSelect")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="w-full h-14 rounded-2xl bg-primary text-black font-bold text-lg transition active:scale-95 flex items-center justify-center gap-2"
+              className="w-full h-12 rounded-2xl bg-primary text-black font-bold text-lg transition active:scale-95 flex items-center justify-center gap-2"
             >
               <Ticket className="w-5 h-5" />
               Buy Tickets
@@ -420,7 +424,7 @@ const MovieDetails = () => {
             />
 
             <div className="relative flex flex-col gap-5">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-3xl tracking-tight">
+              <h1 className="font-sansita text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-3xl tracking-tight">
                 {show.movie.title}
               </h1>
 
@@ -450,7 +454,7 @@ const MovieDetails = () => {
                     {genre.name || genre}
                   </span>
                 ))}
-                <p className="text-primary font-medium uppercase">
+                <p className="text-primary font-medium">
                   {show.movie.original_language}
                 </p>
               </div>
@@ -592,7 +596,11 @@ const MovieDetails = () => {
               </p>
 
               <h2 className="text-sm sm:text-lg xl:text-3xl text-gray-600 dark:text-gray-400 font-bold mt-1 break-words">
-                {show.movie.release_date}
+                {new Date(show.movie.release_date).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })}
               </h2>
 
               <span className="text-[9px] sm:text-[10px] xl:text-xs text-gray-500">

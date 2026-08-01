@@ -57,7 +57,237 @@ const Navbar = () => {
       {showLogin && <AuthModal onClose={() => setShowLogin(false)} />}
       {showSearch && <SearchModal onClose={() => setShowSearch(false)} />}
 
-      <div className="fixed top-0 left-0 z-50 w-full h-30 flex items-center justify-between px-6 md:px-16 lg:px-36 py-5">
+      {/* Mobile Navbar */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 px-4 py-4">
+        <div className="flex items-center gap-3">
+          {/* Logo */}
+          <Link
+            to="/"
+            onClick={() => {
+              setIsOpen(false);
+              scrollTo(0, 0);
+            }}
+          >
+            <img src={logo} alt="logo" className="w-20 flex-shrink-0" />
+          </Link>
+
+          <div
+            className={`fixed top-0 flex flex-col p-5 gap-4 right-0 h-screen w-72 bg-[#111111] border-l border-white/10 backdrop-blur-xl z-[60] transform transition-transform duration-300 ${
+              isOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="flex items-center justify-between p-5 border-b border-white/10">
+              <h2 className="text-lg font-bold">Menu</h2>
+
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"
+              >
+                <XIcon className="w-5 h-5" />
+              </button>
+            </div>
+
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
+                  : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
+              }
+              onClick={() => {
+                scrollTo(0, 0);
+                setIsOpen(false);
+              }}
+            >
+              Home
+            </NavLink>
+
+            <NavLink
+              to="/movies"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
+                  : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
+              }
+              onClick={() => {
+                scrollTo(0, 0);
+                setIsOpen(false);
+              }}
+            >
+              Movies
+            </NavLink>
+
+            <NavLink
+              to="/my-bookings"
+              onClick={(e) => {
+                setIsOpen(false);
+
+                if (!user) {
+                  e.preventDefault(); // Stop navigation
+                  setShowLogin(true);
+                }
+              }}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
+                  : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
+              }
+            >
+              My Bookings
+            </NavLink>
+
+            <NavLink
+              to="/favorites"
+              onClick={(e) => {
+                setIsOpen(false);
+
+                if (!user) {
+                  e.preventDefault(); // Stop navigation
+                  setShowLogin(true);
+                }
+              }}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full"
+                  : "px-3 py-2 rounded-full hover:bg-white/10 hover:text-primary transition-all duration-300"
+              }
+            >
+              Favorites
+            </NavLink>
+          </div>
+
+          {/* Search */}
+          <button
+            onClick={() => setShowSearch(true)}
+            className="flex-1 min-w-0 h-8 rounded-full bg-white/10 border border-white/10 backdrop-blur-xl flex items-center gap-2 px-4 text-gray-400"
+          >
+            <SearchIcon className="w-4 h-4" />
+            <span className="text-sm truncate whitespace-nowrap">
+              Search movies...
+            </span>
+          </button>
+
+          {/* Profile */}
+
+          {!user ? (
+            <button
+              onClick={() => setShowLogin(true)}
+              className="px-6 py-2.5 bg-primary rounded-full font-semibold hover:scale-105 hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 cursor-pointer"
+            >
+              Login
+            </button>
+          ) : (
+            <div ref={menuRef} className="relative">
+              <button
+                onClick={() => setShowMenu(!showMenu)}
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center"
+              >
+                {user.image ? (
+                  <img
+                    src={user.image}
+                    alt={user.name}
+                    className="w-full h-full rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="font-semibold">
+                    {user.name.charAt(0).toUpperCase()}
+                  </span>
+                )}
+              </button>
+
+              {showMenu && (
+                <div className="absolute right-0 mt-3 w-56 rounded-xl bg-black/80 backdrop-blur-xl border border-gray-600 dark:border-white/10 shadow-xl overflow-hidden">
+                  <div className="px-4 py-4 border-b border-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-gray-900 dark:text-white">
+                        {user.name.charAt(0).toUpperCase()}
+                      </div>
+
+                      <div>
+                        <p className="font-semibold">{user.name}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                          {user.email}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigate("/profile");
+                      setShowMenu(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                  >
+                    <User size={18} />
+                    My Profile
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      navigate("/favorites");
+                      setShowMenu(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                  >
+                    <Heart size={18} />
+                    Favorites
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/my-bookings");
+                      setShowMenu(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                  >
+                    <TicketPlus size={18} />
+                    My Bookings
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/settings");
+                      setShowMenu(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                  >
+                    <Settings size={18} />
+                    Settings
+                  </button>
+
+                  {user.role === "admin" && (
+                    <button
+                      onClick={() => {
+                        navigate("/admin");
+                        setShowMenu(false);
+                      }}
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                    >
+                      <Shield size={18} />
+                      Admin Panel
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => setShowLogoutModal(true)}
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-600 transition cursor-pointer"
+                  >
+                    <LogOut size={18} />
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Menu */}
+
+          <MenuIcon
+            className="w-9 h-9 rounded-full flex items-center justify-center"
+            onClick={() => setIsOpen(true)}
+          />
+        </div>
+      </div>
+
+      <div className="hidden md:flex fixed top-0 left-0 z-50 w-full h-30 items-center justify-between px-6 md:px-16 lg:px-36 py-5">
         {/* Logo */}
         <Link
           to="/"
@@ -70,20 +300,16 @@ const Navbar = () => {
           <img
             src={logo}
             alt="logo"
-            className="w-28 sm:w-32 md:w-40 transition duration-300 hover:scale-105"
+            className="w-34 transition duration-300 hover:scale-105"
           />
         </Link>
 
-        {/* Desktop + Mobile Menu */}
+        {/* Desktop */}
         <div
-          className={`max-md:absolute max-md:top-0 max-md:left-0 max-md:font-medium max-md:text-lg z-50 flex flex-col md:flex-row items-center max-md:justify-center gap-5 md:px-6 py-3 max-md:h-screen md:rounded-full text-black dark:text-white backdrop-blur-xl bg-black/70 md:bg-white/5 md:border md:border-gray-600 dark:border-white/10 shadow-lg shadow-black/30 overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-md:w-full text-white" : "max-md:w-0"
-          }`}
+          className="max-absolute top-0 left-0 font-medium text-lg z-50 flex  flex-row items-center max-md:justify-center gap-5 px-6 py-3 max-h-screen rounded-full text-black dark:text-white backdrop-blur-xl bg-white/5 border border-gray-600 dark:border-white/10 shadow-lg shadow-black/30 overflow-hidden transition-all duration-300
+          "
         >
-          <XIcon
-            className="md:hidden absolute top-6 right-6 w-6 h-6 cursor-pointer"
-            onClick={() => setIsOpen(false)}
-          />
+          
 
           <NavLink
             to="/"
@@ -159,17 +385,8 @@ const Navbar = () => {
           {/* Desktop Search Icon */}
           <SearchIcon
             onClick={() => setShowSearch(true)}
-            className="hidden md:block w-5 h-5 cursor-pointer hover:text-primary hover:scale-110 transition-all duration-300"
+            className="block w-5 h-5 cursor-pointer hover:text-primary hover:scale-110 transition-all duration-300"
           />
-
-          {/* Mobile Search Bar */}
-          <button
-            onClick={() => setShowSearch(true)}
-            className="md:hidden flex-1 max-w-[170px] h-10 rounded-full bg-white/10 border border-white/10 px-4 flex items-center gap-2 text-sm text-gray-400 backdrop-blur-xl"
-          >
-            <SearchIcon className="w-4 h-4" />
-            <span>Search...</span>
-          </button>
 
           {!user ? (
             <button
@@ -282,11 +499,6 @@ const Navbar = () => {
               )}
             </div>
           )}
-          {/* Mobile Menu Icon */}
-          <MenuIcon
-            className="max-md:ml-4 md:hidden w-8 h-8 cursor-pointer"
-            onClick={() => setIsOpen(true)}
-          />
         </div>
       </div>
       <AnimatePresence>
