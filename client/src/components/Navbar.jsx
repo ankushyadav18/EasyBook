@@ -68,11 +68,11 @@ const Navbar = () => {
               scrollTo(0, 0);
             }}
           >
-            <img src={logo} alt="logo" className="w-20 flex-shrink-0" />
+            <img src={logo} alt="logo" className="w-16 flex-shrink-0" />
           </Link>
 
           <div
-            className={`fixed top-0 flex flex-col p-5 gap-4 right-0 h-screen w-72 bg-[#111111] border-l border-white/10 backdrop-blur-xl z-[60] transform transition-transform duration-300 ${
+            className={`fixed top-0 flex flex-col p-5 gap-4 right-0 h-screen w-72 bg-[#111111] border-l border-white/10 backdrop-blur-xl z-40 transform transition-transform duration-300 ${
               isOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
@@ -169,119 +169,123 @@ const Navbar = () => {
 
           {/* Profile */}
 
-          {!user ? (
-            <button
-              onClick={() => setShowLogin(true)}
-              className="px-6 py-2.5 bg-primary rounded-full font-semibold hover:scale-105 hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 cursor-pointer"
-            >
-              Login
-            </button>
-          ) : (
-            <div ref={menuRef} className="relative">
+          <div className="flex items-center gap-3 md:gap-6 relative">
+            {!user ? (
               <button
-                onClick={() => setShowMenu(!showMenu)}
-                className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center"
+                onClick={() => setShowLogin(true)}
+                className="px-6 py-2.5 bg-primary rounded-full font-semibold hover:scale-105 hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 cursor-pointer"
               >
-                {user.image ? (
-                  <img
-                    src={user.image}
-                    alt={user.name}
-                    className="w-full h-full rounded-full object-cover"
-                  />
-                ) : (
-                  <span className="font-semibold">
-                    {user.name.charAt(0).toUpperCase()}
-                  </span>
-                )}
+                Login
               </button>
+            ) : (
+              <div ref={menuRef} className="relative">
+                <button
+                  onClick={() => setShowMenu(!showMenu)}
+                  className="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center"
+                >
+                  {" "}
+                  {user.image ? (
+                    <img
+                      src={user.image}
+                      alt={user.name}
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  ) : (
+                    <span className="font-semibold">
+                      {" "}
+                      {user.name.charAt(0).toUpperCase()}{" "}
+                    </span>
+                  )}{" "}
+                </button>
 
-              {showMenu && (
-                <div className="absolute right-0 mt-3 w-56 rounded-xl bg-black/80 backdrop-blur-xl border border-gray-600 dark:border-white/10 shadow-xl overflow-hidden">
-                  <div className="px-4 py-4 border-b border-gray-700">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-gray-900 dark:text-white">
-                        {user.name.charAt(0).toUpperCase()}
-                      </div>
+                {showMenu && (
+                  <div className="absolute right-0 mt-3 w-56 rounded-xl bg-black/80 backdrop-blur-xl border border-gray-600 dark:border-white/10 shadow-xl overflow-hidden">
+                    <div className="px-4 py-4 border-b border-gray-700">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-gray-900 dark:text-white">
+                          {user.name.charAt(0).toUpperCase()}
+                        </div>
 
-                      <div>
-                        <p className="font-semibold">{user.name}</p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">
-                          {user.email}
-                        </p>
+                        <div>
+                          <p className="font-semibold">{user.name}</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            {user.email}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <button
-                    onClick={() => {
-                      navigate("/profile");
-                      setShowMenu(false);
-                    }}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
-                  >
-                    <User size={18} />
-                    My Profile
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      navigate("/favorites");
-                      setShowMenu(false);
-                    }}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
-                  >
-                    <Heart size={18} />
-                    Favorites
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate("/my-bookings");
-                      setShowMenu(false);
-                    }}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
-                  >
-                    <TicketPlus size={18} />
-                    My Bookings
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate("/settings");
-                      setShowMenu(false);
-                    }}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
-                  >
-                    <Settings size={18} />
-                    Settings
-                  </button>
-
-                  {user.role === "admin" && (
                     <button
                       onClick={() => {
-                        navigate("/admin");
+                        navigate("/profile");
                         setShowMenu(false);
                       }}
                       className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
                     >
-                      <Shield size={18} />
-                      Admin Panel
+                      <User size={18} />
+                      My Profile
                     </button>
-                  )}
 
-                  <button
-                    onClick={() => setShowLogoutModal(true)}
-                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-600 transition cursor-pointer"
-                  >
-                    <LogOut size={18} />
-                    Logout
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
+                    <button
+                      onClick={() => {
+                        navigate("/favorites");
+                        setShowMenu(false);
+                      }}
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                    >
+                      <Heart size={18} />
+                      Favorites
+                    </button>
+                    <button
+                      onClick={() => {
+                        navigate("/my-bookings");
+                        setShowMenu(false);
+                      }}
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                    >
+                      <TicketPlus size={18} />
+                      My Bookings
+                    </button>
+                    <button
+                      onClick={() => {
+                        navigate("/settings");
+                        setShowMenu(false);
+                      }}
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                    >
+                      <Settings size={18} />
+                      Settings
+                    </button>
+
+                    {user.role === "admin" && (
+                      <button
+                        onClick={() => {
+                          navigate("/admin");
+                          setShowMenu(false);
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                      >
+                        <Shield size={18} />
+                        Admin Panel
+                      </button>
+                    )}
+
+                    <button
+                      onClick={() => setShowLogoutModal(true)}
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-600 transition cursor-pointer"
+                    >
+                      <LogOut size={18} />
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
 
           {/* Menu */}
 
           <MenuIcon
-            className="w-9 h-9 rounded-full flex items-center justify-center"
+            className="w-8 h-7 rounded-full flex items-center justify-center"
             onClick={() => setIsOpen(true)}
           />
         </div>
@@ -305,12 +309,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop */}
-        <div
-          className="max-absolute top-0 left-0 font-medium text-lg z-50 flex  flex-row items-center max-md:justify-center gap-5 px-6 py-3 max-h-screen rounded-full text-black dark:text-white backdrop-blur-xl bg-white/5 border border-gray-600 dark:border-white/10 shadow-lg shadow-black/30 overflow-hidden transition-all duration-300
-          "
-        >
-          
-
+        <div className="max-absolute top-0 left-0 font-medium text-lg z-50 flex  flex-row items-center max-md:justify-center gap-5 px-6 py-3 max-h-screen rounded-full text-black dark:text-white backdrop-blur-xl bg-white/5 border border-gray-600 dark:border-white/10 shadow-lg shadow-black/30 overflow-hidden transition-all duration-300">
           <NavLink
             to="/"
             className={({ isActive }) =>

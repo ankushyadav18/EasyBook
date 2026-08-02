@@ -365,7 +365,7 @@ const MovieDetails = () => {
                   .getElementById("dateSelect")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="w-full h-12 rounded-2xl bg-primary text-black font-bold text-lg transition active:scale-95 flex items-center justify-center gap-2"
+              className="w-full h-11 rounded-2xl bg-primary text-black font-bold text-lg transition active:scale-95 flex items-center justify-center gap-2"
             >
               <Ticket className="w-5 h-5" />
               Buy Tickets
