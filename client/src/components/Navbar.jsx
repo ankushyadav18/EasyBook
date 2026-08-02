@@ -169,11 +169,11 @@ const Navbar = () => {
 
           {/* Profile */}
 
-          <div className="flex items-center gap-3 md:gap-6 relative">
+          <div className="flex items-center gap-3 relative">
             {!user ? (
               <button
                 onClick={() => setShowLogin(true)}
-                className="px-6 py-2.5 bg-primary rounded-full font-semibold hover:scale-105 hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 cursor-pointer"
+                className="px-2 py-1 bg-primary rounded-full"
               >
                 Login
               </button>
