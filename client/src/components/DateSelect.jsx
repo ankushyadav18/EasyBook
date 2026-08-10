@@ -75,13 +75,13 @@ const DateSelect = ({ dateTime = {}, id }) => {
                           }`}
                         >
                           <span
-                            className="text-lg sm:text-xl lg:text-2xl text-gray-900 dark:text-gray-300 font-bold"
+                            className="text-sm sm:text-xl lg:text-xl text-gray-900 dark:text-gray-300 font-semibold"
                           >
                             {new Date(date).getDate()}
                           </span>
 
                           <span
-                            className="text-lg sm:text-xl lg:text-2xl text-gray-900 dark:text-gray-300 font-bold"
+                            className="text-sm sm:text-xl lg:text-xl text-gray-900 dark:text-gray-300 font-semibold"
                           >
                             {new Date(date).toLocaleDateString("en-US", {
                               month: "short",
@@ -89,7 +89,7 @@ const DateSelect = ({ dateTime = {}, id }) => {
                           </span>
 
                           <span
-                            className="text-lg sm:text-xl lg:text-2xl text-gray-900 dark:text-gray-300 font-bold"
+                            className="text-sm sm:text-xl lg:text-xl text-gray-900 dark:text-gray-300 font-semibold"
                           >
                             {new Date(date).toLocaleDateString("en-US", {
                               weekday: "short",
