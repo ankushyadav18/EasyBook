@@ -46,7 +46,7 @@ const Footer = () => {
 
           <div className="grid w-full grid-cols-1 gap-8 text-center sm:grid-cols-2 sm:text-left md:w-auto md:min-w-[420px] md:gap-12 lg:min-w-[520px] lg:gap-20">
             <div>
-              <h2 className="mb-4 font-semibold text-gray-900 dark:text-white sm:mb-5">
+              <h2 className="mb-4 font-semibold text-black dark:text-primary sm:mb-5">
                 Company
               </h2>
 
@@ -78,7 +78,7 @@ const Footer = () => {
             </div>
 
             <div className="min-w-0">
-              <h2 className="mb-4 font-semibold text-gray-900 dark:text-white sm:mb-5">
+              <h2 className="mb-4 font-semibold text-black dark:text-primary sm:mb-5">
                 Contact
               </h2>
 
