@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link, useNavigate, NavLink, useLocation } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -25,11 +25,11 @@ const Navbar = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const { user, logout } = useAuth();
   const { showLogin, setShowLogin } = useAppContext();
-  const menuRef = useRef(null);
+  const desktopMenuRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   const handleLogout = () => {
     logout();
@@ -37,10 +37,15 @@ const Navbar = () => {
     navigate("/");
   };
 
-  const isHomePage = location.pathname === "/";
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      const clickedInsideDesktop = desktopMenuRef.current?.contains(
+        event.target,
+      );
+
+      const clickedInsideMobile = mobileMenuRef.current?.contains(event.target);
+
+      if (!clickedInsideDesktop && !clickedInsideMobile) {
         setShowMenu(false);
       }
     };
@@ -178,7 +183,7 @@ const Navbar = () => {
                 Login
               </button>
             ) : (
-              <div  className="relative">
+              <div ref={mobileMenuRef} className="relative">
                 <button
                   onClick={() => setShowMenu(!showMenu)}
                   className="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center"
@@ -380,7 +385,6 @@ const Navbar = () => {
         </div>
 
         {/* Right Side */}
-        {/* Right Side */}
         <div className="hidden md:flex items-center gap-3 md:gap-6 relative">
           {/* Desktop Search Icon */}
           <SearchIcon
@@ -396,7 +400,7 @@ const Navbar = () => {
               Login
             </button>
           ) : (
-            <div ref={menuRef} className="relative">
+            <div ref={desktopMenuRef} className="relative">
               <button
                 onClick={() => setShowMenu(!showMenu)}
                 className="flex items-center gap-2 bg-white/5 border border-gray-600 dark:border-white/10 px-4 py-2 rounded-full cursor-pointer hover:bg-white/10 hover:border-primary/40 transition"
