@@ -178,7 +178,7 @@ const Navbar = () => {
                 Login
               </button>
             ) : (
-              <div ref={menuRef} className="relative">
+              <div  className="relative">
                 <button
                   onClick={() => setShowMenu(!showMenu)}
                   className="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center"
@@ -219,7 +219,7 @@ const Navbar = () => {
                         navigate("/profile");
                         setShowMenu(false);
                       }}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
+                      className="w-full mobile-profile flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition cursor-pointer"
                     >
                       <User size={18} />
                       My Profile
@@ -309,7 +309,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop */}
-        <div className="max-absolute top-0 left-0 font-medium text-lg z-50 flex  flex-row items-center max-md:justify-center gap-5 px-6 py-3 max-h-screen rounded-full text-black dark:text-white backdrop-blur-xl bg-white/5 border border-gray-600 dark:border-white/10 shadow-lg shadow-black/30 overflow-hidden transition-all duration-300">
+        <div className="hidden md:flex top-0 left-0 font-medium text-lg z-50 flex-row items-center gap-5 px-6 py-3 max-h-screen rounded-full text-black dark:text-white backdrop-blur-xl bg-white/5 border border-gray-600 dark:border-white/10 shadow-lg shadow-black/30 overflow-hidden transition-all duration-300">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -380,7 +380,8 @@ const Navbar = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-3 md:gap-6 relative">
+        {/* Right Side */}
+        <div className="hidden md:flex items-center gap-3 md:gap-6 relative">
           {/* Desktop Search Icon */}
           <SearchIcon
             onClick={() => setShowSearch(true)}
@@ -413,7 +414,7 @@ const Navbar = () => {
                     </span>
                   )}
                 </div>
-                <span className="hidden md:block">{user.name}</span>
+                <span className="block">{user.name}</span>
               </button>
 
               {showMenu && (
